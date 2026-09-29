@@ -1,0 +1,10 @@
+# Maxfiy tokenlar va sozlamalar
+.env
+
+# Qaramliklar
+node_modules/
+npm-debug.log
+
+# Tizim fayllari
+.DS_Store
+Thumbs.db

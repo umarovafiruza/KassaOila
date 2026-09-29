@@ -1,0 +1,18 @@
+{
+  "name": "oila-expense-tracker",
+  "version": "1.0.0",
+  "description": "Oila Expense Tracker — Telegram Mini App va Telegram Bot integratsiyasi",
+  "main": "bot.js",
+  "scripts": {
+    "start": "node bot.js"
+  },
+  "keywords": [
+    "telegram",
+    "mini-app",
+    "tma",
+    "expense-tracker",
+    "budget"
+  ],
+  "author": "Umidjon",
+  "license": "ISC"
+}
