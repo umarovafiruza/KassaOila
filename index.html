@@ -376,6 +376,87 @@
     }
 
     /* ==========================================================================
+       OYLIK XARAJATLAR NAVIGATSIYA PANELI (MONTH SELECTOR BAR)
+       ========================================================================== */
+    .month-selector-bar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 9px 12px;
+      margin-bottom: 12px;
+      gap: 8px;
+    }
+
+    .btn-month-nav {
+      background: #f1f4ee;
+      border: 1px solid var(--border-subtle);
+      color: var(--forest-dark);
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      cursor: pointer;
+      flex-shrink: 0;
+      transition: background 0.15s, transform 0.1s;
+    }
+
+    .btn-month-nav:active {
+      transform: scale(0.9);
+      background: #e2e8dc;
+    }
+
+    .month-label-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      flex: 1;
+      min-width: 0;
+      text-align: center;
+    }
+
+    .month-label-text {
+      font-size: 0.94rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .month-sub-total {
+      font-size: 0.74rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      margin-top: 1px;
+    }
+
+    .btn-month-all {
+      background: #f1f4ee;
+      border: 1px solid var(--border-subtle);
+      color: var(--forest-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 6px 11px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: all 0.15s;
+    }
+
+    .btn-month-all.active {
+      background: var(--forest-dark);
+      color: var(--lime-accent);
+      border-color: var(--forest-dark);
+    }
+
+    /* ==========================================================================
        6. TRANZATSIYALAR RO'YXATI
        ========================================================================== */
     .transaction-group {
@@ -1366,6 +1447,17 @@
           <button type="button" class="section-action-btn" style="color: var(--danger);" id="btnClearAllHistory">Barchasini tozalash</button>
         </div>
 
+        <!-- Oylik xarajatlar navigatsiyasi -->
+        <div class="month-selector-bar">
+          <button type="button" class="btn-month-nav" id="btnPrevMonth" title="Oldingi oy">◀</button>
+          <div class="month-label-wrapper">
+            <div class="month-label-text" id="monthLabelText">Sentabr 2026</div>
+            <div class="month-sub-total" id="monthSubTotal">Oylik sarf: 0 so‘m</div>
+          </div>
+          <button type="button" class="btn-month-nav" id="btnNextMonth" title="Keyingi oy">▶</button>
+          <button type="button" class="btn-month-all" id="btnAllMonths" title="Barcha oylar">Barcha oylar</button>
+        </div>
+
         <!-- Izohlar va nomlar bo'yicha qidiruv maydoni -->
         <div class="search-box-wrapper">
           <span class="search-icon">🔍</span>
@@ -1457,17 +1549,6 @@
             <span style="font-weight: 700; color: var(--forest-dark);">➔</span>
           </div>
 
-          <div class="settings-item" id="btnRestoreSample">
-            <div class="settings-left">
-              <span class="settings-icon">🔄</span>
-              <div>
-                <div class="settings-title">Namunaviy ma'lumotlar</div>
-                <div class="settings-desc">Barcha toifalarga oid namunalarni yuklash</div>
-              </div>
-            </div>
-            <span>➔</span>
-          </div>
-
           <div class="settings-item" id="btnClearAllSettings">
             <div class="settings-left">
               <span class="settings-icon">🗑️</span>
@@ -1553,15 +1634,15 @@
         <form id="newExpenseForm" class="sheet-form">
           <input type="hidden" id="editExpenseId" value="" />
 
-          <!-- 1. BIRINCHI BO'LIB SUMMA -->
+          <!-- 1. BIRINCHI BO'LIB SUMMA (VERGUL BILAN AJRATILGAN) -->
           <div class="form-field">
             <label for="inpAmount">Summa (so‘mda)</label>
             <input 
-              type="number" 
+              type="text" 
+              inputmode="numeric"
               id="inpAmount" 
               class="form-input" 
-              placeholder="Masalan: 50 000" 
-              min="1" 
+              placeholder="Masalan: 50,000" 
               required
               style="font-size: 1.25rem; font-weight: 800; color: var(--forest-dark);"
             />
@@ -1640,11 +1721,8 @@
         </div>
 
         <div style="display: flex; gap: 8px; margin-bottom: 12px;">
-          <button type="button" class="btn-add-cat-primary" id="btnAddNewCategory">
+          <button type="button" class="btn-add-cat-primary" id="btnAddNewCategory" style="flex: 1;">
             <span>➕</span> Yangi toifa qo‘shish
-          </button>
-          <button type="button" class="btn-restore-cats-subtle" id="btnResetDefaultCategories" title="Standart toifalarni tiklash">
-            🔄
           </button>
         </div>
 
@@ -1975,73 +2053,17 @@
       return `${year}-${month}-${day}`;
     }
 
-    // Namunaviy to'liq xarajatlar
-    const DEFAULT_EXPENSES = [
-      {
-        id: '1',
-        title: 'Haftalik bozorlik',
-        subtitle: 'Go‘sht, meva-sabzavot, un va non',
-        amount: 380000,
-        category: 'Oziq-ovqat',
-        dateStr: getFormattedDate(0)
-      },
-      {
-        id: '2',
-        title: 'Kommunal to‘lovlar',
-        subtitle: 'Elektr energiyasi va tabiiy gaz',
-        amount: 145000,
-        category: 'Kommunal',
-        dateStr: getFormattedDate(0)
-      },
-      {
-        id: '3',
-        title: 'Fitnes zali oylik obuna',
-        subtitle: 'Sport mashg‘ulotlari uchun',
-        amount: 250000,
-        category: 'Xobbi va sport',
-        dateStr: getFormattedDate(1)
-      },
-      {
-        id: '4',
-        title: 'Uy interneti va mobil tarif',
-        subtitle: 'Optik internet + Telegram obuna',
-        amount: 120000,
-        category: 'Aloqa va internet',
-        dateStr: getFormattedDate(1)
-      },
-      {
-        id: '5',
-        title: 'Benzin quyish va moy almashtirish',
-        subtitle: 'Avtomobil uchun AI-95 va moy',
-        amount: 260000,
-        category: 'Transport',
-        dateStr: getFormattedDate(2)
-      },
-      {
-        id: '6',
-        title: 'Maktab to‘garagi va darsliklar',
-        subtitle: 'Ingliz tili repetitori uchun',
-        amount: 300000,
-        category: 'Ta\'lim',
-        dateStr: getFormattedDate(2)
-      },
-      {
-        id: '7',
-        title: 'Tagliklar va bolalar ovqati',
-        subtitle: 'Kichkintoy uchun pampers va pyure',
-        amount: 190000,
-        category: 'Bolalar',
-        dateStr: getFormattedDate(3)
-      },
-      {
-        id: '8',
-        title: 'Tish davolatish va dorixona',
-        subtitle: 'Stomatolog qabuli va vitaminlar',
-        amount: 210000,
-        category: 'Sog‘liq',
-        dateStr: getFormattedDate(4)
-      }
+    // Namunaviy xarajatlar ro'yxati (Barcha namunalar olib tashlandi, toza ro'yxat)
+    const DEFAULT_EXPENSES = [];
+
+    // Oylik navigatsiya va davrlar
+    const UZ_MONTHS = [
+      'Yanvar', 'Fevral', 'Mart', 'Aprel', 'May', 'Iyun', 
+      'Iyul', 'Avgust', 'Sentabr', 'Oktabr', 'Noyabr', 'Dekabr'
     ];
+    let currentNavDate = new Date();
+    let selectedMonthMode = 'month'; // 'month' yoki 'all'
+    let modalReturnStack = []; // Modal oynalar ketma-ketligini saqlash
 
     // State
     let expenses = loadStorage();
@@ -2067,6 +2089,13 @@
     const topCatName = document.getElementById('topCatName');
     const topCatSum = document.getElementById('topCatSum');
 
+    // Oylik xarajatlar navigatsiyasi
+    const btnPrevMonth = document.getElementById('btnPrevMonth');
+    const btnNextMonth = document.getElementById('btnNextMonth');
+    const btnAllMonths = document.getElementById('btnAllMonths');
+    const monthLabelText = document.getElementById('monthLabelText');
+    const monthSubTotal = document.getElementById('monthSubTotal');
+
     // Modallar va forma elementlari
     const addExpenseModal = document.getElementById('addExpenseModal');
     const expenseModalTitle = document.getElementById('expenseModalTitle');
@@ -2088,7 +2117,6 @@
     const btnClearSearch = document.getElementById('btnClearSearch');
     const btnSeeAllHistory = document.getElementById('btnSeeAllHistory');
     const btnClearAllHistory = document.getElementById('btnClearAllHistory');
-    const btnRestoreSample = document.getElementById('btnRestoreSample');
     const btnClearAllSettings = document.getElementById('btnClearAllSettings');
     const categoryChips = document.getElementById('categoryChips');
 
@@ -2096,7 +2124,6 @@
     const categoryManagerModal = document.getElementById('categoryManagerModal');
     const btnCloseCatManager = document.getElementById('btnCloseCatManager');
     const btnAddNewCategory = document.getElementById('btnAddNewCategory');
-    const btnResetDefaultCategories = document.getElementById('btnResetDefaultCategories');
     const categoryManagerList = document.getElementById('categoryManagerList');
 
     const categoryEditModal = document.getElementById('categoryEditModal');
@@ -2121,13 +2148,34 @@
       try {
         const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('oila_expenses_mobile_tabs_v1');
         if (saved) {
-          const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          let parsed = JSON.parse(saved);
+          if (Array.isArray(parsed)) {
+            // Namunaviy 1..8 id lardagi eski namunalarni tozalash (agar mavjud bo'lsa)
+            const dummyIds = new Set(['1', '2', '3', '4', '5', '6', '7', '8']);
+            parsed = parsed.filter(item => !dummyIds.has(String(item.id)));
+            return parsed;
+          }
         }
       } catch (e) {
         console.warn("Storage o'qishda ogohlantirish:", e);
       }
-      return [...DEFAULT_EXPENSES];
+      return [];
+    }
+
+    // Pul summasini vergul bilan formatlash (masalan: 100000 -> 100,000)
+    function formatAmountWithCommas(val) {
+      if (val === undefined || val === null) return '';
+      const cleanStr = String(val).replace(/\D/g, '');
+      if (!cleanStr) return '';
+      const trimmed = cleanStr.replace(/^0+(?=\d)/, '');
+      return trimmed.replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+    }
+
+    // Vergulli satrdan haqiqiy son qiymatini olish
+    function parseAmountFromFormatted(val) {
+      if (!val) return 0;
+      const cleanStr = String(val).replace(/\D/g, '');
+      return parseInt(cleanStr, 10) || 0;
     }
 
     function saveStorage() {
@@ -2168,8 +2216,9 @@
       return dateStr;
     }
 
-    function getFilteredExpenses() {
+    function getFilteredExpenses(forHistory = false) {
       const todayStr = getFormattedDate(0);
+      const currentYM = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`;
 
       return expenses.filter(item => {
         // 1. Qidiruv filtri (Izoh, nom, toifa yoki summa bo'yicha)
@@ -2191,7 +2240,16 @@
           }
         }
 
-        // 3. Davr filtri
+        // 3. Tarix sahifasi uchun oylik filtr
+        if (forHistory) {
+          if (selectedMonthMode === 'month') {
+            const navYM = `${currentNavDate.getFullYear()}-${String(currentNavDate.getMonth() + 1).padStart(2, '0')}`;
+            return Boolean(item.dateStr && item.dateStr.startsWith(navYM));
+          }
+          return true; // 'all' rejimida barcha oylar
+        }
+
+        // 4. Asosiy ekran Hero Card uchun davr filtri
         if (currentPeriod === 'today') {
           return item.dateStr === todayStr;
         } else if (currentPeriod === 'week') {
@@ -2200,10 +2258,7 @@
           weekAgo.setDate(weekAgo.getDate() - 7);
           return itemDate >= weekAgo;
         } else if (currentPeriod === 'month') {
-          const itemDate = new Date(item.dateStr);
-          const monthAgo = new Date();
-          monthAgo.setDate(monthAgo.getDate() - 30);
-          return itemDate >= monthAgo;
+          return Boolean(item.dateStr && item.dateStr.startsWith(currentYM));
         }
         return true;
       });
@@ -2214,10 +2269,11 @@
     // ==========================================================================
     function render() {
       try {
-        const filtered = getFilteredExpenses();
+        const homeFiltered = getFilteredExpenses(false);
+        const historyFiltered = getFilteredExpenses(true);
 
-        // 1. Hero Card
-        const periodTotal = filtered.reduce((acc, cur) => acc + Number(cur.amount), 0);
+        // 1. Hero Card (Asosiy sahifa)
+        const periodTotal = homeFiltered.reduce((acc, cur) => acc + Number(cur.amount), 0);
         if (heroTotalDisplay) heroTotalDisplay.textContent = formatNumber(periodTotal);
 
         if (heroPeriodTitle) {
@@ -2226,22 +2282,50 @@
           } else if (currentPeriod === 'week') {
             heroPeriodTitle.textContent = "Haftalik sarf";
           } else if (currentPeriod === 'month') {
-            heroPeriodTitle.textContent = "Oylik umumiy sarf";
+            heroPeriodTitle.textContent = "Bu oylik sarf";
           } else {
             heroPeriodTitle.textContent = "Barcha xarajatlar";
           }
         }
 
-        if (heroCountText) heroCountText.textContent = `${filtered.length} ta xarajat`;
-        if (heroTrendText) heroTrendText.textContent = filtered.length > 0 ? "✓ Faol monitoring" : "Qaydlar yo‘q";
+        if (heroCountText) heroCountText.textContent = `${homeFiltered.length} ta xarajat`;
+        if (heroTrendText) heroTrendText.textContent = homeFiltered.length > 0 ? "✓ Faol monitoring" : "Qaydlar yo‘q";
 
-        // 2. Asosiy sahifadagi so'nggi xarajatlar
+        // 2. Oylik xarajatlar navigatsiyasi ko'rsatkichlari (Tarix sahifasi)
+        const navYear = currentNavDate.getFullYear();
+        const navMonthIdx = currentNavDate.getMonth();
+        const navYM = `${navYear}-${String(navMonthIdx + 1).padStart(2, '0')}`;
+        const currentMonthExpenses = expenses.filter(it => it.dateStr && it.dateStr.startsWith(navYM));
+        const currentMonthTotal = currentMonthExpenses.reduce((s, it) => s + Number(it.amount), 0);
+
+        if (monthLabelText) {
+          if (selectedMonthMode === 'month') {
+            monthLabelText.textContent = `${UZ_MONTHS[navMonthIdx]} ${navYear}`;
+          } else {
+            monthLabelText.textContent = "Barcha oylar";
+          }
+        }
+
+        if (monthSubTotal) {
+          if (selectedMonthMode === 'month') {
+            monthSubTotal.textContent = `Oylik sarf: ${formatNumber(currentMonthTotal)} so‘m`;
+          } else {
+            const allSum = expenses.reduce((s, it) => s + Number(it.amount), 0);
+            monthSubTotal.textContent = `Jami sarf: ${formatNumber(allSum)} so‘m`;
+          }
+        }
+
+        if (btnAllMonths) {
+          btnAllMonths.classList.toggle('active', selectedMonthMode === 'all');
+        }
+
+        // 3. Asosiy sahifadagi so'nggi xarajatlar
         renderRecentTransactions(expenses.slice(0, 4));
 
-        // 3. Tarix sahifasidagi barcha xarajatlar
-        renderFullHistory(filtered);
+        // 4. Tarix sahifasidagi barcha xarajatlar
+        renderFullHistory(historyFiltered);
 
-        // 4. Statistika sahifasi
+        // 5. Statistika sahifasi
         renderAnalytics();
       } catch (err) {
         console.error("Render xatoligi:", err);
@@ -2311,11 +2395,19 @@
                 render();
               });
             }
+          } else if (selectedMonthMode === 'month') {
+            const navYear = currentNavDate.getFullYear();
+            const navMonthIdx = currentNavDate.getMonth();
+            historyEmptyState.innerHTML = `
+              <div style="font-size: 2rem; margin-bottom: 6px;">📅</div>
+              <div style="font-size: 0.92rem; font-weight: 700; color: var(--text-main);">${UZ_MONTHS[navMonthIdx]} ${navYear} oyida xarajatlar yo‘q</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Ushbu oy uchun hali hech qanday xarajat kiritilmagan</div>
+            `;
           } else {
             historyEmptyState.innerHTML = `
               <div style="font-size: 2rem; margin-bottom: 6px;">🔍</div>
               <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Xarajat topilmadi</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">Ushbu toifada hech qanday qayd yo‘q</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Hozircha xarajatlar ro‘yxati bo‘sh</div>
             `;
           }
         }
@@ -2380,35 +2472,43 @@
       });
     }
 
-    // Statistika
+    // Statistika (Oy bo'yicha tahlil)
     function renderAnalytics() {
       if (!analyticsBarsList) return;
       analyticsBarsList.innerHTML = '';
-      const totalAll = expenses.reduce((s, it) => s + Number(it.amount), 0);
+
+      const navYear = currentNavDate.getFullYear();
+      const navMonthIdx = currentNavDate.getMonth();
+      const navYM = `${navYear}-${String(navMonthIdx + 1).padStart(2, '0')}`;
+
+      // Oylik rejimda faqat tanlangan oyni, aks holda barchasini tahlil qilish
+      const targetExpenses = selectedMonthMode === 'month'
+        ? expenses.filter(it => it.dateStr && it.dateStr.startsWith(navYM))
+        : expenses;
+
+      const totalAll = targetExpenses.reduce((s, it) => s + Number(it.amount), 0);
       if (analyticsTotalBadge) analyticsTotalBadge.textContent = `${formatNumber(totalAll)} so‘m`;
 
       if (totalAll === 0) {
-        analyticsBarsList.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 16px;">Statistika uchun ma\'lumot yo\'q</div>';
+        const periodNote = selectedMonthMode === 'month' ? `${UZ_MONTHS[navMonthIdx]} oyi uchun` : "Statistika uchun";
+        analyticsBarsList.innerHTML = `<div style="color: var(--text-muted); text-align: center; padding: 16px;">${periodNote} xarajatlar yo‘q</div>`;
         if (topCatName) topCatName.textContent = "Ma'lumot yo'q";
         if (topCatSum) topCatSum.textContent = "0 so'm";
         return;
       }
 
       const catSums = {};
-      Object.keys(CATEGORY_META).forEach(cat => catSums[cat] = 0);
+      userCategories.forEach(cat => catSums[cat.name] = 0);
+      if (!catSums['Boshqa']) catSums['Boshqa'] = 0;
 
-      expenses.forEach(it => {
+      targetExpenses.forEach(it => {
         const catKey = it.category === 'Sog‘liq/Dori' ? 'Sog‘liq' : it.category;
         if (catSums[catKey] !== undefined) {
           catSums[catKey] += Number(it.amount);
         } else {
-          catSums['Boshqa'] += Number(it.amount);
+          catSums['Boshqa'] = (catSums['Boshqa'] || 0) + Number(it.amount);
         }
       });
-
-      // Eng katta toifani aniqlash
-      let maxCat = 'Oziq-ovqat';
-      let maxSum = -1;
 
       // Xarajat mavjud bo'lgan toifalarni saralash (eng kattasi tepada)
       const sortedCats = Object.entries(catSums)
@@ -2619,22 +2719,45 @@
       });
     }
 
-    // Modalni ochish / yopish
-    function openCategoryManager() {
+    // Modalni ochish / yopish (Ustma-ust pop oynalar chiqishini oldini olish bilan)
+    function openCategoryManager(fromExpenseModal = false) {
       triggerHaptic('medium');
       renderCategoryManagerList();
+
+      if (fromExpenseModal || (addExpenseModal && addExpenseModal.classList.contains('open'))) {
+        modalReturnStack.push('addExpenseModal');
+        if (addExpenseModal) addExpenseModal.classList.remove('open');
+      }
+
       if (categoryManagerModal) categoryManagerModal.classList.add('open');
     }
 
     function closeCategoryManager() {
       triggerHaptic('light');
       if (categoryManagerModal) categoryManagerModal.classList.remove('open');
+
+      if (modalReturnStack.length > 0) {
+        const returnTarget = modalReturnStack.pop();
+        if (returnTarget === 'addExpenseModal' && addExpenseModal) {
+          renderCategorySelectors();
+          addExpenseModal.classList.add('open');
+        }
+      }
     }
 
     function openCategoryEdit(catId = null) {
       triggerHaptic('light');
       const isEdit = Boolean(catId);
       const cat = isEdit ? userCategories.find(c => c.id === catId) : null;
+
+      // Agar boshqa modal ochiq bo'lsa, uni yopib, qaytish navbatiga kiritamiz
+      if (categoryManagerModal && categoryManagerModal.classList.contains('open')) {
+        modalReturnStack.push('categoryManagerModal');
+        categoryManagerModal.classList.remove('open');
+      } else if (addExpenseModal && addExpenseModal.classList.contains('open')) {
+        modalReturnStack.push('addExpenseModal');
+        addExpenseModal.classList.remove('open');
+      }
 
       if (catEditModalTitle) {
         catEditModalTitle.textContent = isEdit ? "Toifani tahrirlash" : "Yangi toifa qo‘shish";
@@ -2661,6 +2784,17 @@
     function closeCategoryEdit() {
       triggerHaptic('light');
       if (categoryEditModal) categoryEditModal.classList.remove('open');
+
+      if (modalReturnStack.length > 0) {
+        const returnTarget = modalReturnStack.pop();
+        if (returnTarget === 'categoryManagerModal' && categoryManagerModal) {
+          renderCategoryManagerList();
+          categoryManagerModal.classList.add('open');
+        } else if (returnTarget === 'addExpenseModal' && addExpenseModal) {
+          renderCategorySelectors();
+          addExpenseModal.classList.add('open');
+        }
+      }
     }
 
     // Emoji palitrasi
@@ -2844,26 +2978,36 @@
       });
     }
 
-    // Standart toifalarni tiklash
-    if (btnResetDefaultCategories) {
-      btnResetDefaultCategories.addEventListener('click', () => {
-        triggerHaptic('warning');
-        if (confirm("Barcha toifalarni standart holatga (13 ta toifa) qaytarasizmi?")) {
-          userCategories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
-          selectedCategoryInModal = 'Oziq-ovqat';
-          currentCategoryFilter = 'all';
-          saveCategoriesStorage();
-          renderCategorySelectors();
-          renderCategoryManagerList();
-          render();
-          triggerHaptic('success');
-        }
+    // Oylik navigatsiya tugmalari (Oldingi oy, Keyingi oy, Barcha oylar)
+    if (btnPrevMonth) {
+      btnPrevMonth.addEventListener('click', () => {
+        triggerHaptic('light');
+        selectedMonthMode = 'month';
+        currentNavDate.setMonth(currentNavDate.getMonth() - 1);
+        render();
+      });
+    }
+
+    if (btnNextMonth) {
+      btnNextMonth.addEventListener('click', () => {
+        triggerHaptic('light');
+        selectedMonthMode = 'month';
+        currentNavDate.setMonth(currentNavDate.getMonth() + 1);
+        render();
+      });
+    }
+
+    if (btnAllMonths) {
+      btnAllMonths.addEventListener('click', () => {
+        triggerHaptic('light');
+        selectedMonthMode = selectedMonthMode === 'all' ? 'month' : 'all';
+        render();
       });
     }
 
     // Modal oynalarni ochish/yopish tugmalari
-    if (btnOpenCategoryManager) btnOpenCategoryManager.addEventListener('click', openCategoryManager);
-    if (btnQuickManageFromAddModal) btnQuickManageFromAddModal.addEventListener('click', openCategoryManager);
+    if (btnOpenCategoryManager) btnOpenCategoryManager.addEventListener('click', () => openCategoryManager(false));
+    if (btnQuickManageFromAddModal) btnQuickManageFromAddModal.addEventListener('click', () => openCategoryManager(true));
     if (btnAddNewCategory) btnAddNewCategory.addEventListener('click', () => openCategoryEdit());
     
     if (btnCloseCatManager) btnCloseCatManager.addEventListener('click', closeCategoryManager);
@@ -2984,7 +3128,7 @@
       if (btnSubmitExpense) btnSubmitExpense.innerHTML = '<span>✓</span> O‘zgarishlarni saqlash';
       if (btnDeleteFromModal) btnDeleteFromModal.style.display = 'flex';
 
-      if (inpAmount) inpAmount.value = exp.amount || '';
+      if (inpAmount) inpAmount.value = formatAmountWithCommas(exp.amount || '');
       if (inpTitle) inpTitle.value = exp.title || '';
       if (inpDate) inpDate.value = exp.dateStr || getFormattedDate(0);
 
@@ -3002,6 +3146,7 @@
       triggerHaptic('light');
       if (addExpenseModal) addExpenseModal.classList.remove('open');
       if (editExpenseId) editExpenseId.value = '';
+      modalReturnStack = [];
     }
 
     // Katta + tugmalari (Asosiy ekranda va pastki navigatsiyada)
@@ -3071,14 +3216,23 @@
       });
     }
 
+    // Pul kiritilayotganda sonlarni avtomatik vergul bilan formatlash
+    if (inpAmount) {
+      inpAmount.addEventListener('input', () => {
+        const raw = inpAmount.value;
+        const formatted = formatAmountWithCommas(raw);
+        inpAmount.value = formatted;
+      });
+    }
+
     // Tezkor summa tugmalari (+10k, +50k, ...)
     document.querySelectorAll('.btn-quick-sum').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
         triggerHaptic('light');
         const addVal = parseInt(btn.getAttribute('data-add'), 10) || 0;
-        const currentVal = parseInt(inpAmount.value, 10) || 0;
-        inpAmount.value = currentVal + addVal;
+        const currentVal = parseAmountFromFormatted(inpAmount.value);
+        inpAmount.value = formatAmountWithCommas(currentVal + addVal);
       });
     });
 
@@ -3087,7 +3241,7 @@
       newExpenseForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const amount = inpAmount ? parseFloat(inpAmount.value) : 0;
+        const amount = inpAmount ? parseAmountFromFormatted(inpAmount.value) : 0;
         const title = inpTitle ? inpTitle.value.trim() : '';
         const dateVal = (inpDate && inpDate.value) ? inpDate.value : getFormattedDate(0);
         const editId = editExpenseId ? editExpenseId.value : '';
@@ -3151,18 +3305,6 @@
 
     if (btnClearAllHistory) btnClearAllHistory.addEventListener('click', clearExpenses);
     if (btnClearAllSettings) btnClearAllSettings.addEventListener('click', clearExpenses);
-
-    if (btnRestoreSample) {
-      btnRestoreSample.addEventListener('click', () => {
-        triggerHaptic('light');
-        if (confirm('Barcha toifalarga oid namunaviy ma\'lumotlarni yuklaysizmi?')) {
-          expenses = [...DEFAULT_EXPENSES];
-          saveStorage();
-          render();
-          switchTab('tabHome');
-        }
-      });
-    }
 
     // Dastlabki toifalar va render
     renderCategorySelectors();
