@@ -288,6 +288,86 @@
       word-break: break-all;
     }
 
+    /* Hero kartadagi Kirim va Chiqim qatori */
+    .hero-cashflow-row {
+      display: flex;
+      gap: 10px;
+      margin-top: 14px;
+      margin-bottom: 12px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .cashflow-pill {
+      flex: 1;
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      border-radius: var(--radius-md);
+      padding: 8px 10px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      backdrop-filter: blur(4px);
+    }
+
+    .cashflow-pill.income .cashflow-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(210, 253, 56, 0.2);
+      color: var(--lime-accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .cashflow-pill.expense .cashflow-icon {
+      width: 26px;
+      height: 26px;
+      border-radius: 50%;
+      background: rgba(239, 68, 68, 0.2);
+      color: #fca5a5;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 800;
+      flex-shrink: 0;
+    }
+
+    .cashflow-data {
+      display: flex;
+      flex-direction: column;
+      min-width: 0;
+    }
+
+    .cashflow-name {
+      font-size: 0.68rem;
+      color: #a3c4b0;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      line-height: 1.1;
+    }
+
+    .cashflow-sum {
+      font-size: 0.86rem;
+      font-weight: 800;
+      color: #ffffff;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      line-height: 1.2;
+      margin-top: 2px;
+    }
+
+    .cashflow-pill.income .cashflow-sum {
+      color: var(--lime-accent);
+    }
+
     .hero-footer {
       display: flex;
       align-items: center;
@@ -884,68 +964,249 @@
       color: var(--text-muted);
     }
 
-    /* Asosiy ekranda katta Tezkor Qo'shish tugmasi */
-    .btn-home-quick-add {
-      width: 100%;
-      background: linear-gradient(135deg, var(--forest-dark) 0%, #1a422f 100%);
-      color: #ffffff;
-      border: none;
-      border-radius: var(--radius-lg);
-      padding: 13px 16px;
+    /* Asosiy ekrandagi 2 ta Kirim va Chiqim tezkor tugmalari */
+    .home-quick-actions {
+      display: flex;
+      gap: 10px;
       margin-top: 14px;
       margin-bottom: 6px;
+    }
+
+    .btn-quick-action {
+      flex: 1;
+      height: 60px;
+      border-radius: var(--radius-lg);
+      border: 1.5px solid var(--border-subtle);
+      background: #ffffff;
+      padding: 0 12px;
       display: flex;
       align-items: center;
-      gap: 13px;
+      gap: 10px;
       cursor: pointer;
-      box-shadow: 0 6px 18px rgba(20, 51, 36, 0.16);
-      transition: transform 0.15s ease, box-shadow 0.15s ease;
+      box-shadow: 0 4px 12px rgba(20, 51, 36, 0.04);
+      transition: all 0.15s ease;
+      text-align: left;
     }
 
-    .btn-home-quick-add:active {
-      transform: scale(0.985);
-      box-shadow: 0 2px 8px rgba(20, 51, 36, 0.12);
+    .btn-quick-action:active {
+      transform: scale(0.97);
     }
 
-    .btn-quick-add-icon {
-      width: 42px;
-      height: 42px;
+    .btn-quick-action.income:active {
+      background: #f0fdf4;
+      border-color: #86efac;
+    }
+
+    .btn-quick-action.expense:active {
+      background: #fef2f2;
+      border-color: #fca5a5;
+    }
+
+    .quick-action-icon-circle {
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
-      background-color: var(--lime-accent);
-      color: var(--forest-dark);
-      font-size: 1.8rem;
-      font-weight: 300;
       display: flex;
       align-items: center;
       justify-content: center;
+      font-size: 1.15rem;
+      font-weight: 800;
       flex-shrink: 0;
-      line-height: 1;
     }
 
-    .btn-quick-add-text {
+    .quick-action-icon-circle.income {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .quick-action-icon-circle.expense {
+      background: #fee2e2;
+      color: #dc2626;
+    }
+
+    .quick-action-content {
       display: flex;
       flex-direction: column;
-      text-align: left;
-      flex: 1;
-      gap: 2px;
+      min-width: 0;
     }
 
-    .btn-quick-add-title {
-      font-size: 0.95rem;
+    .quick-action-title {
+      font-size: 0.88rem;
       font-weight: 800;
-      color: #ffffff;
-      letter-spacing: -0.2px;
+      color: var(--forest-dark);
+      line-height: 1.2;
     }
 
-    .btn-quick-add-sub {
-      font-size: 0.74rem;
-      color: #b8d4c3;
+    .quick-action-sub {
+      font-size: 0.68rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
     }
 
-    .btn-quick-add-arrow {
-      font-size: 1rem;
-      color: var(--lime-accent);
+    /* Modal ichidagi Chiqim / Kirim turi o'tkazgichi */
+    .tx-type-switch {
+      display: flex;
+      background: #f1f4ee;
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      gap: 4px;
+    }
+
+    .tx-type-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 9px 0;
+      border-radius: var(--radius-pill);
+      font-size: 0.86rem;
       font-weight: 700;
+      color: #6b7c70;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .tx-type-btn.active.expense {
+      background: var(--forest-dark);
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(20, 51, 36, 0.2);
+    }
+
+    .tx-type-btn.active.income {
+      background: #15803d;
+      color: #ffffff;
+      box-shadow: 0 3px 10px rgba(21, 128, 61, 0.25);
+    }
+
+    /* Tarix sahifasidagi Kirim / Chiqim turi filtri */
+    .history-type-filter-bar {
+      display: flex;
+      background: #ffffff;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      gap: 3px;
+      margin-bottom: 6px;
+    }
+
+    .history-type-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 7px 0;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #748379;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.18s ease;
+    }
+
+    .history-type-btn.active {
+      background: var(--forest-dark);
+      color: #ffffff;
+    }
+
+    .history-type-btn.active[data-filter="income"] {
+      background: #15803d;
+    }
+
+    .history-type-btn.active[data-filter="expense"] {
+      background: var(--forest-dark);
+    }
+
+    /* Statistika sahifasidagi tahlil turi o'tkazgichi */
+    .analytics-tab-bar {
+      display: flex;
+      background: #e9eee6;
+      border-radius: var(--radius-pill);
+      padding: 4px;
+      gap: 4px;
+      margin-bottom: 4px;
+    }
+
+    .analytics-tab-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 8px 0;
+      border-radius: var(--radius-pill);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #6b7c70;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.2s ease;
+    }
+
+    .analytics-tab-btn.active {
+      background: #ffffff;
+      color: var(--forest-dark);
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    }
+
+    /* Toifalar menejeridagi Chiqim / Kirim turi o'tkazgichi */
+    .cat-type-switch-bar {
+      display: flex;
+      background: #f1f4ee;
+      border-radius: var(--radius-pill);
+      padding: 3px;
+      gap: 4px;
+      margin-bottom: 12px;
+    }
+
+    .cat-type-pill-btn {
+      flex: 1;
+      border: none;
+      background: transparent;
+      padding: 7px 0;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 700;
+      color: #6b7c70;
+      cursor: pointer;
+      text-align: center;
+      transition: all 0.18s ease;
+    }
+
+    .cat-type-pill-btn.active.expense {
+      background: var(--forest-dark);
+      color: #ffffff;
+    }
+
+    .cat-type-pill-btn.active.income {
+      background: #15803d;
+      color: #ffffff;
+    }
+
+    /* Transaksiya summa va badge turlari */
+    .tx-amount.income {
+      color: #16a34a !important;
+    }
+
+    .tx-badge {
+      font-size: 0.64rem;
+      font-weight: 800;
+      padding: 2px 6px;
+      border-radius: var(--radius-pill);
+      display: inline-block;
+      margin-right: 4px;
+    }
+
+    .tx-badge.income {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .tx-badge.expense {
+      background: #fee2e2;
+      color: #b91c1c;
     }
 
     /* Qidiruv qutisi (Search box) */
@@ -2055,7 +2316,7 @@
         <!-- Rasmdagi mashhur to'q yashil Hero Card -->
         <div class="hero-card">
           <div class="hero-header">
-            <span class="hero-label" id="heroPeriodTitle">Bugungi xarajat</span>
+            <span class="hero-label" id="heroPeriodTitle">Bugungi sof qoldiq</span>
             <div class="status-dot"></div>
           </div>
 
@@ -2064,32 +2325,58 @@
             <span class="hero-amount" id="heroTotalDisplay">0</span>
           </div>
 
+          <!-- Hero kartadagi Kirim va Chiqim qatori -->
+          <div class="hero-cashflow-row">
+            <div class="cashflow-pill income">
+              <div class="cashflow-icon">↗</div>
+              <div class="cashflow-data">
+                <span class="cashflow-name">Kirim</span>
+                <span class="cashflow-sum" id="heroIncomeDisplay">+0 so‘m</span>
+              </div>
+            </div>
+            <div class="cashflow-pill expense">
+              <div class="cashflow-icon">↘</div>
+              <div class="cashflow-data">
+                <span class="cashflow-name">Chiqim</span>
+                <span class="cashflow-sum" id="heroExpenseDisplay">-0 so‘m</span>
+              </div>
+            </div>
+          </div>
+
           <div class="hero-footer">
             <div class="hero-badge">
-              <span id="heroTrendText">↑ 100% vs kecha</span>
+              <span id="heroTrendText">✓ Faol monitoring</span>
             </div>
-            <div class="hero-subinfo" id="heroCountText">0 ta xarajat</div>
+            <div class="hero-subinfo" id="heroCountText">0 ta amal</div>
           </div>
         </div>
 
-        <!-- Asosiy ekranda katta Tezkor qo'shish tugmasi -->
-        <button type="button" class="btn-home-quick-add" id="btnHomeQuickAdd">
-          <span class="btn-quick-add-icon">+</span>
-          <div class="btn-quick-add-text">
-            <span class="btn-quick-add-title">Tezkor xarajat kiritish</span>
-            <span class="btn-quick-add-sub">Summa va bir qatorli izohni yozish</span>
-          </div>
-          <span class="btn-quick-add-arrow">➔</span>
-        </button>
+        <!-- Asosiy ekrandagi 2 ta Kirim va Chiqim tezkor tugmalari -->
+        <div class="home-quick-actions">
+          <button type="button" class="btn-quick-action income" id="btnHomeQuickIncome">
+            <div class="quick-action-icon-circle income">+</div>
+            <div class="quick-action-content">
+              <span class="quick-action-title">Kirim kiritish</span>
+              <span class="quick-action-sub">Maosh, savdo, sovg‘a...</span>
+            </div>
+          </button>
+          <button type="button" class="btn-quick-action expense" id="btnHomeQuickExpense">
+            <div class="quick-action-icon-circle expense">-</div>
+            <div class="quick-action-content">
+              <span class="quick-action-title">Chiqim kiritish</span>
+              <span class="quick-action-sub">Bozorlik, transport...</span>
+            </div>
+          </button>
+        </div>
 
         <!-- Maxsus Oylik Oilaviy Budjet kartochkasi -->
         <div class="budget-card" id="familyBudgetCard">
           <!-- JS orqali dinamik to'ldiriladi -->
         </div>
 
-        <!-- So'nggi xarajatlar qismi -->
+        <!-- So'nggi amallar qismi -->
         <div class="section-header">
-          <h2 class="section-title">So‘nggi xarajatlar</h2>
+          <h2 class="section-title">So‘nggi amallar</h2>
           <button type="button" class="section-action-btn" id="btnSeeAllHistory">
             <span>Barchasi</span>
             <span>➔</span>
@@ -2103,20 +2390,20 @@
 
         <div class="empty-state-card" id="homeEmptyState" style="display: none;">
           <div style="font-size: 2rem; margin-bottom: 6px;">🌱</div>
-          <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Hozircha xarajat yo‘q</div>
-          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Tepada yoki pastdagi "+" tugmasi bilan xarajat qo‘shing</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Hozircha amallar yo‘q</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Tepadagi tugmalar yoki pastdagi "+" orqali kirim yoki chiqim qo‘shing</div>
         </div>
 
       </section>
 
 
       <!-- ==========================================================================
-           2-SAHIFA: TARIX (ALL EXPENSES)
+           2-SAHIFA: TARIX (ALL TRANSACTIONS)
            ========================================================================== -->
       <section class="app-screen" id="tabHistory">
         
         <div class="section-header" style="margin-top: 4px;">
-          <h2 class="section-title" style="font-size: 1.15rem;">Xarajatlar tarixi</h2>
+          <h2 class="section-title" style="font-size: 1.15rem;">Amallar tarixi</h2>
           <button type="button" class="section-action-btn" style="color: var(--danger);" id="btnClearAllHistory">Barchasini tozalash</button>
         </div>
 
@@ -2125,10 +2412,17 @@
           <button type="button" class="btn-month-nav" id="btnPrevMonth" title="Oldingi oy">◀</button>
           <div class="month-label-wrapper">
             <div class="month-label-text" id="monthLabelText">Sentabr 2026</div>
-            <div class="month-sub-total" id="monthSubTotal">Oylik sarf: 0 so‘m</div>
+            <div class="month-sub-total" id="monthSubTotal">Kirim: +0 | Chiqim: -0</div>
           </div>
           <button type="button" class="btn-month-nav" id="btnNextMonth" title="Keyingi oy">▶</button>
           <button type="button" class="btn-month-all" id="btnAllMonths" title="Barcha oylar">Barcha oylar</button>
+        </div>
+
+        <!-- Kirim / Chiqim turi filtri (Barchasi, Chiqimlar, Kirimlar) -->
+        <div class="history-type-filter-bar" id="historyTypeFilterBar">
+          <button type="button" class="history-type-btn active" data-filter="all">Barchasi</button>
+          <button type="button" class="history-type-btn" data-filter="expense">↘ Chiqimlar</button>
+          <button type="button" class="history-type-btn" data-filter="income">↗ Kirimlar</button>
         </div>
 
         <!-- Izohlar va nomlar bo'yicha qidiruv maydoni -->
@@ -2138,7 +2432,7 @@
             type="text" 
             id="inpSearchHistory" 
             class="search-input" 
-            placeholder="Izoh bo‘yicha qidirish (masalan: kraskalar)..." 
+            placeholder="Izoh yoki toifa bo‘yicha qidirish..." 
             autocomplete="off"
           />
           <button type="button" class="btn-clear-search" id="btnClearSearch" title="Tozalash" style="display: none;">✕</button>
@@ -2154,8 +2448,8 @@
 
         <div class="empty-state-card" id="historyEmptyState" style="display: none;">
           <div style="font-size: 2rem; margin-bottom: 6px;">🔍</div>
-          <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Xarajat topilmadi</div>
-          <div style="font-size: 0.78rem; color: var(--text-muted);">Ushbu toifada hech qanday qayd yo‘q</div>
+          <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Amallar topilmadi</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted);">Ushbu toifada yoki vaqtda hech qanday qayd yo‘q</div>
         </div>
 
       </section>
@@ -2167,20 +2461,27 @@
       <section class="app-screen" id="tabAnalytics">
         
         <div class="section-header" style="margin-top: 4px;">
-          <h2 class="section-title" style="font-size: 1.15rem;">Xarajatlar tahlili</h2>
+          <h2 class="section-title" style="font-size: 1.15rem;">Kirim-chiqim tahlili</h2>
           <span style="font-size: 0.8rem; font-weight: 700; color: var(--forest-dark);" id="analyticsTotalBadge">0 so‘m</span>
+        </div>
+
+        <!-- Tahlil turi o'tkazgichi (Chiqimlar, Kirimlar, Taqqoslash) -->
+        <div class="analytics-tab-bar" id="analyticsTabBar">
+          <button type="button" class="analytics-tab-btn active" data-mode="expense">↘ Chiqimlar</button>
+          <button type="button" class="analytics-tab-btn" data-mode="income">↗ Kirimlar</button>
+          <button type="button" class="analytics-tab-btn" data-mode="compare">⚖️ Taqqoslash</button>
         </div>
 
         <div class="stat-card" id="analyticsBarsList">
           <!-- Dinamik foizlar va progress barlar -->
         </div>
 
-        <!-- Eng katta xarajat toifasi vidjeti -->
-        <div class="stat-card" style="display: flex; align-items: center; justify-content: space-between; background: #eaf1e7;">
+        <!-- Eng katta toifa yoki solishtirma xulosasi vidjeti -->
+        <div class="stat-card" id="topCatWidget" style="display: flex; align-items: center; justify-content: space-between; background: #eaf1e7;">
           <div style="display: flex; align-items: center; gap: 10px;">
             <span style="font-size: 1.8rem;" id="topCatIcon">🍔</span>
             <div>
-              <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;">Asosiy sarf yo‘nalishi</div>
+              <div style="font-size: 0.75rem; color: var(--text-muted); font-weight: 600;" id="topCatSubTitle">Asosiy sarf yo‘nalishi</div>
               <div style="font-size: 0.95rem; font-weight: 800; color: var(--forest-dark);" id="topCatName">Oziq-ovqat</div>
             </div>
           </div>
@@ -2311,15 +2612,18 @@
     <!-- ==========================================================================
          YANGI XARAJAT QO'SHISH MODAL OYNASI (BOTTOM SHEET)
          ========================================================================== -->
+    <!-- ==========================================================================
+         YANGI AMAL (KIRIM/CHIQIM) QO'SHISH MODAL OYNASI (BOTTOM SHEET)
+         ========================================================================== -->
     <div class="modal-overlay" id="addExpenseModal">
       <div class="modal-sheet">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
           <div class="sheet-header-left">
-            <div class="sheet-title-badge">💸</div>
+            <div class="sheet-title-badge" id="modalTxTypeBadge">💸</div>
             <div>
-              <span class="sheet-title" id="expenseModalTitle">Yangi xarajat</span>
-              <div class="sheet-subtitle">Xarajat summasi va tafsilotlarini kiriting</div>
+              <span class="sheet-title" id="expenseModalTitle">Yangi chiqim</span>
+              <div class="sheet-subtitle" id="expenseModalSubtitle">Summa va tafsilotlarini kiriting</div>
             </div>
           </div>
           <button type="button" class="btn-close-sheet" id="btnCloseModal" title="Yopish">✕</button>
@@ -2327,10 +2631,21 @@
 
         <form id="newExpenseForm" class="sheet-form">
           <input type="hidden" id="editExpenseId" value="" />
+          <input type="hidden" id="inpTxType" value="expense" />
+
+          <!-- CHIQIM / KIRIM TURI O'TKAZGICHI -->
+          <div class="tx-type-switch" style="margin-bottom: 12px;">
+            <button type="button" class="tx-type-btn active expense" id="btnTypeExpense" data-type="expense">
+              <span>💸</span> Chiqim
+            </button>
+            <button type="button" class="tx-type-btn income" id="btnTypeIncome" data-type="income">
+              <span>💰</span> Kirim
+            </button>
+          </div>
 
           <!-- 1. BIRINCHI BO'LIB SUMMA (HERO INPUT BILAN) -->
           <div class="form-field">
-            <label for="inpAmount">Summa (so‘mda)</label>
+            <label for="inpAmount" id="lblAmount">Summa (so‘mda)</label>
             <div class="hero-input-wrapper">
               <input 
                 type="text" 
@@ -2352,7 +2667,7 @@
 
           <!-- 2. IKKINCHI BO'LIB BIR QATORLI IZOH -->
           <div class="form-field">
-            <label for="inpTitle">Bir qatorli izoh / Xarajat nomi</label>
+            <label for="inpTitle" id="lblTitle">Bir qatorli izoh / Chiqim nomi</label>
             <input 
               type="text" 
               id="inpTitle" 
@@ -2366,7 +2681,7 @@
           <!-- 3. KATEGORIYA -->
           <div class="form-field">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
-              <label style="margin-bottom: 0;">Kategoriya tanlang</label>
+              <label style="margin-bottom: 0;" id="lblCat">Kategoriya tanlang</label>
               <button type="button" class="btn-quick-cat-action" id="btnQuickManageFromAddModal">
                 ⚙️ Toifalarni sozlash
               </button>
@@ -2411,10 +2726,20 @@
             <div class="sheet-title-badge">🏷️</div>
             <div>
               <span class="sheet-title">Toifalarni boshqarish</span>
-              <div class="sheet-subtitle">Xarajat toifalarini o‘zingizga moslang</div>
+              <div class="sheet-subtitle">Kirim va chiqim toifalarini o‘zingizga moslang</div>
             </div>
           </div>
           <button type="button" class="btn-close-sheet" id="btnCloseCatManager" title="Yopish">✕</button>
+        </div>
+
+        <!-- Chiqim / Kirim toifalari o'tkazgichi -->
+        <div class="cat-type-switch-bar">
+          <button type="button" class="cat-type-pill-btn active expense" id="btnCatFilterExpense" data-type="expense">
+            💸 Chiqim toifalari
+          </button>
+          <button type="button" class="cat-type-pill-btn income" id="btnCatFilterIncome" data-type="income">
+            💰 Kirim toifalari
+          </button>
         </div>
 
         <div style="display: flex; gap: 8px; margin-bottom: 12px;">
@@ -2438,7 +2763,7 @@
         <div class="sheet-handle"></div>
         <div class="sheet-header">
           <div class="sheet-header-left">
-            <div class="sheet-title-badge">✨</div>
+            <div class="sheet-title-badge" id="catEditBadge">✨</div>
             <div>
               <span class="sheet-title" id="catEditModalTitle">Yangi toifa qo‘shish</span>
               <div class="sheet-subtitle">Nomi, belgisi va rangini belgilang</div>
@@ -2449,6 +2774,17 @@
 
         <form id="categoryEditForm" class="sheet-form">
           <input type="hidden" id="editCatOriginalId" value="" />
+          <input type="hidden" id="editCatType" value="expense" />
+
+          <!-- Toifa turi (Chiqim yoki Kirim) -->
+          <div class="tx-type-switch" style="margin-bottom: 12px;">
+            <button type="button" class="tx-type-btn active expense" id="btnCatEditTypeExpense" data-type="expense">
+              <span>💸</span> Chiqim toifasi
+            </button>
+            <button type="button" class="tx-type-btn income" id="btnCatEditTypeIncome" data-type="income">
+              <span>💰</span> Kirim toifasi
+            </button>
+          </div>
 
           <div class="form-field">
             <label for="inpCatName">Toifa nomi (Qisqa)</label>
@@ -2636,18 +2972,20 @@
     } catch (e) {}
 
     // ==========================================================================
-    // TOIFALAR TIZIMI (STANDART VA FOYDALANUVCHI TOIFALARI)
+    // TOIFALAR TIZIMI (STANDART CHIQIM VA KIRIM TOIFALARI)
     // ==========================================================================
     const CATEGORIES_STORAGE_KEY = 'oila_categories_v2';
 
-    const DEFAULT_CATEGORIES = [
+    // Standart Chiqim toifalari (13 ta)
+    const DEFAULT_EXPENSE_CATEGORIES = [
       {
         id: 'cat_food',
         name: 'Oziq-ovqat',
         label: 'Oziq-ovqat va bozorlik',
         icon: '🍔',
         bg: '#ffe8d6',
-        desc: 'Supermarket, bozorlik, go‘sht, meva-sabzavot, non'
+        desc: 'Supermarket, bozorlik, go‘sht, meva-sabzavot, non',
+        type: 'expense'
       },
       {
         id: 'cat_communal',
@@ -2655,7 +2993,8 @@
         label: 'Kommunal xizmatlar',
         icon: '💡',
         bg: '#e0f2fe',
-        desc: 'Gaz, elektr energiyasi, sovuq/issiq suv, chiqindi, isitish'
+        desc: 'Gaz, elektr energiyasi, sovuq/issiq suv, chiqindi, isitish',
+        type: 'expense'
       },
       {
         id: 'cat_net',
@@ -2663,7 +3002,8 @@
         label: 'Aloqa va internet',
         icon: '🌐',
         bg: '#e0e7ff',
-        desc: 'Uy interneti, mobil tariflar, YouTube, Telegram Premium obunalar'
+        desc: 'Uy interneti, mobil tariflar, YouTube, Telegram Premium obunalar',
+        type: 'expense'
       },
       {
         id: 'cat_transport',
@@ -2671,7 +3011,8 @@
         label: 'Transport va avto',
         icon: '🚗',
         bg: '#ede9fe',
-        desc: 'Benzin, moy, texnik xizmat, avtoyuvish, jarimalar, taksi'
+        desc: 'Benzin, moy, texnik xizmat, avtoyuvish, jarimalar, taksi',
+        type: 'expense'
       },
       {
         id: 'cat_education',
@@ -2679,7 +3020,8 @@
         label: 'Ta\'lim va to‘garaklar',
         icon: '📚',
         bg: '#fef3c7',
-        desc: 'Maktab, bog‘cha to‘lovlari, repetitorlar, o‘quv kurslari, qurollar'
+        desc: 'Maktab, bog‘cha to‘lovlari, repetitorlar, o‘quv kurslari, qurollar',
+        type: 'expense'
       },
       {
         id: 'cat_health',
@@ -2687,7 +3029,8 @@
         label: 'Sog‘liqni saqlash',
         icon: '💊',
         bg: '#fce7f3',
-        desc: 'Dorixona, shifokor ko‘rigi, tish davolatish, vitaminlar'
+        desc: 'Dorixona, shifokor ko‘rigi, tish davolatish, vitaminlar',
+        type: 'expense'
       },
       {
         id: 'cat_kids',
@@ -2695,7 +3038,8 @@
         label: 'Bolalar xarajatlari',
         icon: '👶',
         bg: '#ffedd5',
-        desc: 'Tagliklar (pampers), bolalar ovqati, o‘yinchoqlar'
+        desc: 'Tagliklar (pampers), bolalar ovqati, o‘yinchoqlar',
+        type: 'expense'
       },
       {
         id: 'cat_hobby',
@@ -2703,7 +3047,8 @@
         label: 'Xobbi va sport',
         icon: '⚽',
         bg: '#dcfce7',
-        desc: 'Fitnes zali, sport anjomlari, kitoblar, sevimli mashg‘ulotlar'
+        desc: 'Fitnes zali, sport anjomlari, kitoblar, sevimli mashg‘ulotlar',
+        type: 'expense'
       },
       {
         id: 'cat_entertainment',
@@ -2711,7 +3056,8 @@
         label: 'Ko‘ngilochar va dam olish',
         icon: '☕',
         bg: '#fef08a',
-        desc: 'Kafelar, kinoteatr, istirohat bog‘lari, oilaviy sayrlar'
+        desc: 'Kafelar, kinoteatr, istirohat bog‘lari, oilaviy sayrlar',
+        type: 'expense'
       },
       {
         id: 'cat_clothes',
@@ -2719,7 +3065,8 @@
         label: 'Kiyim va shaxsiy parvarish',
         icon: '👕',
         bg: '#fae8ff',
-        desc: 'Mavsumiy kiyimlar, poyabzal, sartaroshxona, kosmetika'
+        desc: 'Mavsumiy kiyimlar, poyabzal, sartaroshxona, kosmetika',
+        type: 'expense'
       },
       {
         id: 'cat_wedding',
@@ -2727,7 +3074,8 @@
         label: 'To‘y-ma‘raka va sovg‘alar',
         icon: '🎁',
         bg: '#ffe4e6',
-        desc: 'To‘ylar, tug‘ilgan kunlar, qarindoshlar yo‘qlovi, ehsonlar'
+        desc: 'To‘ylar, tug‘ilgan kunlar, qarindoshlar yo‘qlovi, ehsonlar',
+        type: 'expense'
       },
       {
         id: 'cat_repair',
@@ -2735,23 +3083,95 @@
         label: 'Kutilmagan / Ta‘mirlash',
         icon: '🔧',
         bg: '#f1f5f9',
-        desc: 'Uy anjomlari, maishiy texnika buzilganda tuzatish xarajatlari'
+        desc: 'Uy anjomlari, maishiy texnika buzilganda tuzatish xarajatlari',
+        type: 'expense'
       },
       {
         id: 'cat_other',
-        name: 'Boshqa',
+        name: 'Boshqa chiqim',
         label: 'Boshqa xarajatlar',
         icon: '✨',
         bg: '#ccfbf1',
-        desc: 'Mayda va tasniflanmagan boshqa kundalik sarflar'
+        desc: 'Mayda va tasniflanmagan boshqa kundalik sarflar',
+        type: 'expense'
       }
     ];
+
+    // Standart Kirim toifalari (7 ta)
+    const DEFAULT_INCOME_CATEGORIES = [
+      {
+        id: 'inc_salary',
+        name: 'Oylik maosh',
+        label: 'Oylik maosh va avans',
+        icon: '💵',
+        bg: '#dcfce7',
+        desc: 'Asosiy ish joyidan oylik maosh, mukofot va rag‘batlantirish',
+        type: 'income'
+      },
+      {
+        id: 'inc_business',
+        name: 'Biznes va savdo',
+        label: 'Biznes va savdo daromadi',
+        icon: '🏪',
+        bg: '#e0f2fe',
+        desc: 'Do‘kon, ishlab chiqarish, mahsulot yoki xizmat sotishdan daromad',
+        type: 'income'
+      },
+      {
+        id: 'inc_freelance',
+        name: 'Frilans va xizmat',
+        label: 'Frilans va qo‘shimcha ish',
+        icon: '💻',
+        bg: '#ede9fe',
+        desc: 'Qo‘shimcha buyurtmalar, konsultatsiya, shartnoma xizmatlari',
+        type: 'income'
+      },
+      {
+        id: 'inc_gift',
+        name: 'Sovg‘a va yordam',
+        label: 'Sovg‘a va moddiy yordam',
+        icon: '🎁',
+        bg: '#ffe4e6',
+        desc: 'Qarindoshlar sovg‘asi, to‘yona, moddiy ko‘mak',
+        type: 'income'
+      },
+      {
+        id: 'inc_invest',
+        name: 'Investitsiya',
+        label: 'Investitsiya va dividend',
+        icon: '📈',
+        bg: '#fef3c7',
+        desc: 'Bank omonatlari foizlari, aksiyalar, ijara daromadlari',
+        type: 'income'
+      },
+      {
+        id: 'inc_debt_return',
+        name: 'Qarz qaytishi',
+        label: 'Qarz qaytarilishi',
+        icon: '🤝',
+        bg: '#ccfbf1',
+        desc: 'Oldin berilgan qarzlar yoki pullar qaytarilganda',
+        type: 'income'
+      },
+      {
+        id: 'inc_other',
+        name: 'Boshqa kirim',
+        label: 'Boshqa daromadlar',
+        icon: '✨',
+        bg: '#f1f5f9',
+        desc: 'Boshqa barcha kutilmagan yoki mayda kirim manbalari',
+        type: 'income'
+      }
+    ];
+
+    const DEFAULT_CATEGORIES = [...DEFAULT_EXPENSE_CATEGORIES, ...DEFAULT_INCOME_CATEGORIES];
 
     const PRESET_EMOJIS = [
       '🍔', '💡', '🌐', '🚗', '📚', '💊', '👶', '⚽', 
       '☕', '👕', '🎁', '🔧', '💳', '✈️', '🏠', '🐱', 
       '🎮', '💻', '🌾', '🧾', '💰', '🎓', '🍕', '🛒', 
-      '🏖️', '🛠️', '🎯', '🚀', '💍', '🏥', '💈', '🎨'
+      '🏖️', '🛠️', '🎯', '🚀', '💍', '🏥', '💈', '🎨',
+      '💵', '📈', '🤝', '💎', '📦', '🏦', '🎁', '🏢'
     ];
 
     const PRESET_COLORS = [
@@ -2771,7 +3191,8 @@
           icon: c.icon || '🏷️',
           bg: c.bg || '#f1f5f9',
           label: c.label || c.name,
-          desc: c.desc || ''
+          desc: c.desc || '',
+          type: c.type || 'expense'
         };
       });
     }
@@ -2781,7 +3202,32 @@
         const saved = localStorage.getItem(CATEGORIES_STORAGE_KEY);
         if (saved) {
           const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) {
+            let hasChanges = false;
+            // Eski toifalarga type: 'expense' qo'yish
+            parsed.forEach(c => {
+              if (!c.type) {
+                c.type = 'expense';
+                hasChanges = true;
+              }
+            });
+
+            // Agar kirim toifalari hali mavjud bo'lmasa, DEFAULT_INCOME_CATEGORIES ni qo'shish
+            const hasIncome = parsed.some(c => c.type === 'income');
+            if (!hasIncome) {
+              DEFAULT_INCOME_CATEGORIES.forEach(inc => {
+                if (!parsed.some(c => c.name === inc.name)) {
+                  parsed.push(JSON.parse(JSON.stringify(inc)));
+                }
+              });
+              hasChanges = true;
+            }
+
+            if (hasChanges) {
+              localStorage.setItem(CATEGORIES_STORAGE_KEY, JSON.stringify(parsed));
+            }
+            return parsed;
+          }
         }
       } catch (e) {
         console.warn("Toifalar xotirasini o'qishda ogohlantirish:", e);
@@ -2810,12 +3256,13 @@
     function getCategoryInfo(catName) {
       if (CATEGORY_META[catName]) return CATEGORY_META[catName];
       if (catName === 'Sog‘liq/Dori' && CATEGORY_META['Sog‘liq']) return CATEGORY_META['Sog‘liq'];
-      if (CATEGORY_META['Boshqa']) return CATEGORY_META['Boshqa'];
+      if (catName === 'Boshqa' && CATEGORY_META['Boshqa chiqim']) return CATEGORY_META['Boshqa chiqim'];
       return {
         icon: '🏷️',
         bg: '#f1f5f9',
         label: catName || 'Noma\'lum',
-        desc: ''
+        desc: '',
+        type: 'expense'
       };
     }
 
@@ -2842,18 +3289,29 @@
     let selectedMonthMode = 'month'; // 'month' yoki 'all'
     let modalReturnStack = []; // Modal oynalar ketma-ketligini saqlash
 
-    // State
+    // State (Kirim-Chiqim holatlari)
     let expenses = loadStorage();
     let currentPeriod = 'today';
     let currentCategoryFilter = 'all';
     let selectedCategoryInModal = 'Oziq-ovqat';
     let searchQuery = '';
 
+    let currentModalTxType = 'expense'; // 'expense' yoki 'income'
+    let historyTypeFilter = 'all'; // 'all', 'expense', 'income'
+    let analyticsTypeFilter = 'expense'; // 'expense', 'income', 'compare'
+    let catManagerTypeFilter = 'expense'; // 'expense', 'income'
+    let catEditType = 'expense'; // 'expense', 'income'
+
     // DOM Elementlari
     const heroTotalDisplay = document.getElementById('heroTotalDisplay');
     const heroPeriodTitle = document.getElementById('heroPeriodTitle');
     const heroCountText = document.getElementById('heroCountText');
     const heroTrendText = document.getElementById('heroTrendText');
+    const heroIncomeDisplay = document.getElementById('heroIncomeDisplay');
+    const heroExpenseDisplay = document.getElementById('heroExpenseDisplay');
+
+    const btnHomeQuickIncome = document.getElementById('btnHomeQuickIncome');
+    const btnHomeQuickExpense = document.getElementById('btnHomeQuickExpense');
     
     const recentTxContainer = document.getElementById('recentTxContainer');
     const fullTxContainer = document.getElementById('fullTxContainer');
@@ -2862,16 +3320,20 @@
     
     const analyticsBarsList = document.getElementById('analyticsBarsList');
     const analyticsTotalBadge = document.getElementById('analyticsTotalBadge');
+    const analyticsTabBar = document.getElementById('analyticsTabBar');
+    const topCatWidget = document.getElementById('topCatWidget');
+    const topCatSubTitle = document.getElementById('topCatSubTitle');
     const topCatIcon = document.getElementById('topCatIcon');
     const topCatName = document.getElementById('topCatName');
     const topCatSum = document.getElementById('topCatSum');
 
-    // Oylik xarajatlar navigatsiyasi
+    // Tarix sahifasi
     const btnPrevMonth = document.getElementById('btnPrevMonth');
     const btnNextMonth = document.getElementById('btnNextMonth');
     const btnAllMonths = document.getElementById('btnAllMonths');
     const monthLabelText = document.getElementById('monthLabelText');
     const monthSubTotal = document.getElementById('monthSubTotal');
+    const historyTypeFilterBar = document.getElementById('historyTypeFilterBar');
 
     // Oilaviy budjet sozlamalari va DOM elementlari
     const BUDGET_STORAGE_KEY = 'oila_monthly_budget_v1';
@@ -2888,12 +3350,19 @@
 
     // Modallar va forma elementlari
     const addExpenseModal = document.getElementById('addExpenseModal');
+    const modalTxTypeBadge = document.getElementById('modalTxTypeBadge');
     const expenseModalTitle = document.getElementById('expenseModalTitle');
+    const expenseModalSubtitle = document.getElementById('expenseModalSubtitle');
     const btnOpenAddModal = document.getElementById('btnOpenAddModal');
-    const btnHomeQuickAdd = document.getElementById('btnHomeQuickAdd');
     const btnCloseModal = document.getElementById('btnCloseModal');
     const newExpenseForm = document.getElementById('newExpenseForm');
     const editExpenseId = document.getElementById('editExpenseId');
+    const inpTxType = document.getElementById('inpTxType');
+    const btnTypeExpense = document.getElementById('btnTypeExpense');
+    const btnTypeIncome = document.getElementById('btnTypeIncome');
+    const lblAmount = document.getElementById('lblAmount');
+    const lblTitle = document.getElementById('lblTitle');
+    const lblCat = document.getElementById('lblCat');
     const inpTitle = document.getElementById('inpTitle');
     const inpAmount = document.getElementById('inpAmount');
     const inpDate = document.getElementById('inpDate');
@@ -2915,12 +3384,18 @@
     const btnCloseCatManager = document.getElementById('btnCloseCatManager');
     const btnAddNewCategory = document.getElementById('btnAddNewCategory');
     const categoryManagerList = document.getElementById('categoryManagerList');
+    const btnCatFilterExpense = document.getElementById('btnCatFilterExpense');
+    const btnCatFilterIncome = document.getElementById('btnCatFilterIncome');
 
     const categoryEditModal = document.getElementById('categoryEditModal');
+    const catEditBadge = document.getElementById('catEditBadge');
     const catEditModalTitle = document.getElementById('catEditModalTitle');
     const btnCloseCatEdit = document.getElementById('btnCloseCatEdit');
     const categoryEditForm = document.getElementById('categoryEditForm');
     const editCatOriginalId = document.getElementById('editCatOriginalId');
+    const editCatType = document.getElementById('editCatType');
+    const btnCatEditTypeExpense = document.getElementById('btnCatEditTypeExpense');
+    const btnCatEditTypeIncome = document.getElementById('btnCatEditTypeIncome');
     const inpCatName = document.getElementById('inpCatName');
     const inpCatDesc = document.getElementById('inpCatDesc');
     const inpCatEmoji = document.getElementById('inpCatEmoji');
@@ -3041,6 +3516,16 @@
             // Namunaviy 1..8 id lardagi eski namunalarni tozalash (agar mavjud bo'lsa)
             const dummyIds = new Set(['1', '2', '3', '4', '5', '6', '7', '8']);
             parsed = parsed.filter(item => !dummyIds.has(String(item.id)));
+            let hasChanges = false;
+            parsed.forEach(item => {
+              if (!item.type) {
+                item.type = 'expense';
+                hasChanges = true;
+              }
+            });
+            if (hasChanges) {
+              localStorage.setItem(STORAGE_KEY, JSON.stringify(parsed));
+            }
             return parsed;
           }
         }
@@ -3162,10 +3647,10 @@
           : "Limit belgilanmagan";
       }
 
-      // Joriy kalendar oydagi xarajatlar
+      // Joriy kalendar oydagi chiqimlar (faqat Chiqimlar hisoblanadi)
       const now = new Date();
       const currentYM = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
-      const curMonthExpenses = expenses.filter(it => it.dateStr && it.dateStr.startsWith(currentYM));
+      const curMonthExpenses = expenses.filter(it => it.dateStr && it.dateStr.startsWith(currentYM) && (it.type || 'expense') !== 'income');
       const curMonthSpent = curMonthExpenses.reduce((s, it) => s + Number(it.amount), 0);
 
       if (!monthlyBudget || monthlyBudget <= 0) {
@@ -3250,6 +3735,8 @@
       const currentYM = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`;
 
       return expenses.filter(item => {
+        const itemType = item.type || 'expense';
+
         // 1. Qidiruv filtri (Izoh, nom, toifa yoki summa bo'yicha)
         if (searchQuery) {
           const q = searchQuery.toLowerCase().trim();
@@ -3269,8 +3756,11 @@
           }
         }
 
-        // 3. Tarix sahifasi uchun oylik filtr
+        // 3. Tarix sahifasi uchun oylik va tur (Kirim/Chiqim) filtri
         if (forHistory) {
+          if (historyTypeFilter !== 'all' && itemType !== historyTypeFilter) {
+            return false;
+          }
           if (selectedMonthMode === 'month') {
             const navYM = `${currentNavDate.getFullYear()}-${String(currentNavDate.getMonth() + 1).padStart(2, '0')}`;
             return Boolean(item.dateStr && item.dateStr.startsWith(navYM));
@@ -3301,31 +3791,59 @@
         const homeFiltered = getFilteredExpenses(false);
         const historyFiltered = getFilteredExpenses(true);
 
-        // 1. Hero Card (Asosiy sahifa)
-        const periodTotal = homeFiltered.reduce((acc, cur) => acc + Number(cur.amount), 0);
-        if (heroTotalDisplay) heroTotalDisplay.textContent = formatNumber(periodTotal);
+        // 1. Hero Card hisob-kitoblari (Kirim, Chiqim va Sof Qoldiq)
+        const homeIncomes = homeFiltered.filter(it => (it.type || 'expense') === 'income');
+        const homeExpenses = homeFiltered.filter(it => (it.type || 'expense') !== 'income');
+        const homeIncomeTotal = homeIncomes.reduce((acc, cur) => acc + Number(cur.amount), 0);
+        const homeExpenseTotal = homeExpenses.reduce((acc, cur) => acc + Number(cur.amount), 0);
+        const netBalance = homeIncomeTotal - homeExpenseTotal;
 
-        if (heroPeriodTitle) {
-          if (currentPeriod === 'today') {
-            heroPeriodTitle.textContent = "Bugungi xarajat";
-          } else if (currentPeriod === 'week') {
-            heroPeriodTitle.textContent = "Haftalik sarf";
-          } else if (currentPeriod === 'month') {
-            heroPeriodTitle.textContent = "Bu oylik sarf";
+        if (heroTotalDisplay) {
+          if (netBalance > 0) {
+            heroTotalDisplay.textContent = '+' + formatNumber(netBalance);
+          } else if (netBalance < 0) {
+            heroTotalDisplay.textContent = '-' + formatNumber(Math.abs(netBalance));
           } else {
-            heroPeriodTitle.textContent = "Barcha xarajatlar";
+            heroTotalDisplay.textContent = '0';
           }
         }
 
-        if (heroCountText) heroCountText.textContent = `${homeFiltered.length} ta xarajat`;
-        if (heroTrendText) heroTrendText.textContent = homeFiltered.length > 0 ? "✓ Faol monitoring" : "Qaydlar yo‘q";
+        if (heroIncomeDisplay) heroIncomeDisplay.textContent = `+${formatNumber(homeIncomeTotal)} so‘m`;
+        if (heroExpenseDisplay) heroExpenseDisplay.textContent = `-${formatNumber(homeExpenseTotal)} so‘m`;
 
-        // 2. Oylik xarajatlar navigatsiyasi ko'rsatkichlari (Tarix sahifasi)
+        if (heroPeriodTitle) {
+          if (currentPeriod === 'today') {
+            heroPeriodTitle.textContent = "Bugungi sof qoldiq";
+          } else if (currentPeriod === 'week') {
+            heroPeriodTitle.textContent = "Haftalik sof qoldiq";
+          } else if (currentPeriod === 'month') {
+            heroPeriodTitle.textContent = "Bu oylik sof qoldiq";
+          } else {
+            heroPeriodTitle.textContent = "Barcha davr qoldig‘i";
+          }
+        }
+
+        if (heroCountText) heroCountText.textContent = `${homeFiltered.length} ta amal (${homeIncomes.length} kirim, ${homeExpenses.length} chiqim)`;
+        if (heroTrendText) {
+          if (netBalance > 0) {
+            heroTrendText.textContent = "↗ Ijobiy balans";
+          } else if (netBalance < 0) {
+            heroTrendText.textContent = "↘ Chiqim ortiqcha";
+          } else {
+            heroTrendText.textContent = homeFiltered.length > 0 ? "✓ Balans 0 so‘m" : "Qaydlar yo‘q";
+          }
+        }
+
+        // 2. Oylik navigatsiya ko'rsatkichlari (Tarix sahifasi)
         const navYear = currentNavDate.getFullYear();
         const navMonthIdx = currentNavDate.getMonth();
         const navYM = `${navYear}-${String(navMonthIdx + 1).padStart(2, '0')}`;
-        const currentMonthExpenses = expenses.filter(it => it.dateStr && it.dateStr.startsWith(navYM));
-        const currentMonthTotal = currentMonthExpenses.reduce((s, it) => s + Number(it.amount), 0);
+        const targetMonthList = selectedMonthMode === 'month'
+          ? expenses.filter(it => it.dateStr && it.dateStr.startsWith(navYM))
+          : expenses;
+        
+        const mIncome = targetMonthList.filter(it => (it.type || 'expense') === 'income').reduce((s, it) => s + Number(it.amount), 0);
+        const mExpense = targetMonthList.filter(it => (it.type || 'expense') !== 'income').reduce((s, it) => s + Number(it.amount), 0);
 
         if (monthLabelText) {
           if (selectedMonthMode === 'month') {
@@ -3336,12 +3854,7 @@
         }
 
         if (monthSubTotal) {
-          if (selectedMonthMode === 'month') {
-            monthSubTotal.textContent = `Oylik sarf: ${formatNumber(currentMonthTotal)} so‘m`;
-          } else {
-            const allSum = expenses.reduce((s, it) => s + Number(it.amount), 0);
-            monthSubTotal.textContent = `Jami sarf: ${formatNumber(allSum)} so‘m`;
-          }
+          monthSubTotal.textContent = `↗ Kirim: +${formatNumber(mIncome)} | ↘ Chiqim: -${formatNumber(mExpense)}`;
         }
 
         if (btnAllMonths) {
@@ -3351,10 +3864,10 @@
         // 3. Oylik oilaviy budjet kartochkasi
         renderBudgetCard();
 
-        // 4. Asosiy sahifadagi so'nggi xarajatlar
+        // 4. Asosiy sahifadagi so'nggi amallar (oxirgi 4 ta)
         renderRecentTransactions(expenses.slice(0, 4));
 
-        // 5. Tarix sahifasidagi barcha xarajatlar
+        // 5. Tarix sahifasidagi barcha amallar
         renderFullHistory(historyFiltered);
 
         // 6. Statistika sahifasi
@@ -3364,7 +3877,7 @@
       }
     }
 
-    // So'nggi xarajatlar (Home)
+    // So'nggi amallar (Home)
     function renderRecentTransactions(items) {
       if (!recentTxContainer) return;
       recentTxContainer.innerHTML = '';
@@ -3376,6 +3889,7 @@
       if (homeEmptyState) homeEmptyState.style.display = 'none';
 
       items.forEach(item => {
+        const isIncome = (item.type || 'expense') === 'income';
         const meta = getCategoryInfo(item.category);
         const rowEl = document.createElement('div');
         rowEl.className = 'tx-item';
@@ -3386,13 +3900,16 @@
               ${meta.icon}
             </div>
             <div class="tx-details">
-              <span class="tx-title">${escapeHtml(item.title)}</span>
+              <div style="display: flex; align-items: center; gap: 4px;">
+                <span class="tx-badge ${isIncome ? 'income' : 'expense'}">${isIncome ? '↗ Kirim' : '↘ Chiqim'}</span>
+                <span class="tx-title">${escapeHtml(item.title)}</span>
+              </div>
               <span class="tx-meta">${meta.label} • ${formatDisplayDate(item.dateStr)}</span>
             </div>
           </div>
           <div class="tx-right">
             <div>
-              <span class="tx-amount">${formatNumber(item.amount)}</span>
+              <span class="tx-amount ${isIncome ? 'income' : 'expense'}">${isIncome ? '+' : '-'}${formatNumber(item.amount)}</span>
               <span class="tx-amount-currency">so‘m</span>
             </div>
             <button type="button" class="btn-tx-edit" data-id="${item.id}" title="Tahrirlash">✏️</button>
@@ -3414,8 +3931,8 @@
           if (searchQuery) {
             historyEmptyState.innerHTML = `
               <div style="font-size: 2rem; margin-bottom: 6px;">🔍</div>
-              <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">Xarajat topilmadi</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">"${escapeHtml(searchQuery)}" bo‘yicha hech qanday xarajat topilmadi</div>
+              <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">Amal topilmadi</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">"${escapeHtml(searchQuery)}" bo‘yicha hech qanday yozuv topilmadi</div>
               <button type="button" id="btnResetSearchState" style="margin-top: 10px; padding: 6px 14px; background: #eef3ef; border: 1px solid var(--border-subtle); border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700; cursor: pointer; color: var(--forest-dark);">Qidiruvni tozalash</button>
             `;
             const resetBtn = document.getElementById('btnResetSearchState');
@@ -3430,16 +3947,17 @@
           } else if (selectedMonthMode === 'month') {
             const navYear = currentNavDate.getFullYear();
             const navMonthIdx = currentNavDate.getMonth();
+            const typeNote = historyTypeFilter === 'income' ? 'kirimlar' : (historyTypeFilter === 'expense' ? 'chiqimlar' : 'amallar');
             historyEmptyState.innerHTML = `
               <div style="font-size: 2rem; margin-bottom: 6px;">📅</div>
-              <div style="font-size: 0.92rem; font-weight: 700; color: var(--text-main);">${UZ_MONTHS[navMonthIdx]} ${navYear} oyida xarajatlar yo‘q</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Ushbu oy uchun hali hech qanday xarajat kiritilmagan</div>
+              <div style="font-size: 0.92rem; font-weight: 700; color: var(--text-main);">${UZ_MONTHS[navMonthIdx]} ${navYear} oyida ${typeNote} yo‘q</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Ushbu oy uchun hali hech qanday qayd kiritilmagan</div>
             `;
           } else {
             historyEmptyState.innerHTML = `
               <div style="font-size: 2rem; margin-bottom: 6px;">🔍</div>
-              <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Xarajat topilmadi</div>
-              <div style="font-size: 0.78rem; color: var(--text-muted);">Hozircha xarajatlar ro‘yxati bo‘sh</div>
+              <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Amallar topilmadi</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Hozircha amallar ro‘yxati bo‘sh</div>
             `;
           }
         }
@@ -3460,7 +3978,16 @@
         const groupEl = document.createElement('div');
         groupEl.className = 'transaction-group';
 
-        const dayTotal = grouped[dateKey].reduce((s, it) => s + Number(it.amount), 0);
+        const dayIncomes = grouped[dateKey].filter(it => (it.type || 'expense') === 'income').reduce((s, it) => s + Number(it.amount), 0);
+        const dayExpenses = grouped[dateKey].filter(it => (it.type || 'expense') !== 'income').reduce((s, it) => s + Number(it.amount), 0);
+        let dayTotalStr = '';
+        if (dayIncomes > 0 && dayExpenses > 0) {
+          dayTotalStr = `+${formatNumber(dayIncomes)} / -${formatNumber(dayExpenses)}`;
+        } else if (dayIncomes > 0) {
+          dayTotalStr = `+${formatNumber(dayIncomes)} so‘m`;
+        } else {
+          dayTotalStr = `-${formatNumber(dayExpenses)} so‘m`;
+        }
 
         const headerEl = document.createElement('div');
         headerEl.className = 'group-date-label';
@@ -3469,11 +3996,12 @@
             <span class="group-day-badge">${dateKey === getFormattedDate(0) ? 'BUGUN' : 'SANA'}</span>
             <span>${formatDisplayDate(dateKey)}</span>
           </div>
-          <span style="font-weight: 700; color: var(--forest-dark);">${formatNumber(dayTotal)} so‘m</span>
+          <span style="font-weight: 700; color: var(--forest-dark); font-size: 0.8rem;">${dayTotalStr}</span>
         `;
         groupEl.appendChild(headerEl);
 
         grouped[dateKey].forEach(item => {
+          const isIncome = (item.type || 'expense') === 'income';
           const meta = getCategoryInfo(item.category);
           const rowEl = document.createElement('div');
           rowEl.className = 'tx-item';
@@ -3484,13 +4012,16 @@
                 ${meta.icon}
               </div>
               <div class="tx-details">
-                <span class="tx-title">${escapeHtml(item.title)}</span>
+                <div style="display: flex; align-items: center; gap: 4px;">
+                  <span class="tx-badge ${isIncome ? 'income' : 'expense'}">${isIncome ? '↗ Kirim' : '↘ Chiqim'}</span>
+                  <span class="tx-title">${escapeHtml(item.title)}</span>
+                </div>
                 <span class="tx-meta">${escapeHtml(item.subtitle || meta.label)}</span>
               </div>
             </div>
             <div class="tx-right">
               <div>
-                <span class="tx-amount">${formatNumber(item.amount)}</span>
+                <span class="tx-amount ${isIncome ? 'income' : 'expense'}">${isIncome ? '+' : '-'}${formatNumber(item.amount)}</span>
                 <span class="tx-amount-currency">so‘m</span>
               </div>
               <button type="button" class="btn-tx-edit" data-id="${item.id}" title="Tahrirlash">✏️</button>
@@ -3504,7 +4035,7 @@
       });
     }
 
-    // Statistika (Oy bo'yicha tahlil)
+    // Statistika (Oy bo'yicha Kirim-Chiqim tahlili)
     function renderAnalytics() {
       if (!analyticsBarsList) return;
       analyticsBarsList.innerHTML = '';
@@ -3514,46 +4045,113 @@
       const navYM = `${navYear}-${String(navMonthIdx + 1).padStart(2, '0')}`;
 
       // Oylik rejimda faqat tanlangan oyni, aks holda barchasini tahlil qilish
-      const targetExpenses = selectedMonthMode === 'month'
+      const periodItems = selectedMonthMode === 'month'
         ? expenses.filter(it => it.dateStr && it.dateStr.startsWith(navYM))
         : expenses;
 
-      const totalAll = targetExpenses.reduce((s, it) => s + Number(it.amount), 0);
-      if (analyticsTotalBadge) analyticsTotalBadge.textContent = `${formatNumber(totalAll)} so‘m`;
+      if (analyticsTypeFilter === 'compare') {
+        // 3-REJIM: TAQQOSLASH (Kirim vs Chiqim)
+        const totalIncome = periodItems.filter(it => (it.type || 'expense') === 'income').reduce((s, it) => s + Number(it.amount), 0);
+        const totalExpense = periodItems.filter(it => (it.type || 'expense') !== 'income').reduce((s, it) => s + Number(it.amount), 0);
+        const netSavings = totalIncome - totalExpense;
+        const savingsPercent = totalIncome > 0 ? Math.round((netSavings / totalIncome) * 100) : 0;
+        const maxVal = Math.max(totalIncome, totalExpense, 1);
 
+        if (analyticsTotalBadge) {
+          analyticsTotalBadge.textContent = (netSavings >= 0 ? '+' : '-') + `${formatNumber(Math.abs(netSavings))} so‘m`;
+        }
+
+        const incomePercentOfMax = Math.round((totalIncome / maxVal) * 100);
+        const expensePercentOfMax = Math.round((totalExpense / maxVal) * 100);
+
+        analyticsBarsList.innerHTML = `
+          <div style="font-size: 0.85rem; font-weight: 700; color: var(--forest-dark); margin-bottom: 12px;">Daromad va xarajat mutanosibligi</div>
+          
+          <div class="stat-row">
+            <div class="stat-row-top">
+              <div class="stat-cat-left">
+                <span>↗</span>
+                <span style="font-weight: 700; color: #15803d;">Jami Kirim</span>
+              </div>
+              <div>
+                <span style="font-weight: 800; color: #15803d;">+${formatNumber(totalIncome)} so‘m</span>
+              </div>
+            </div>
+            <div class="stat-progress-bg">
+              <div class="stat-progress-fill" style="width: ${incomePercentOfMax}%; background: #16a34a;"></div>
+            </div>
+          </div>
+
+          <div class="stat-row" style="margin-top: 12px;">
+            <div class="stat-row-top">
+              <div class="stat-cat-left">
+                <span>↘</span>
+                <span style="font-weight: 700; color: #dc2626;">Jami Chiqim</span>
+              </div>
+              <div>
+                <span style="font-weight: 800; color: #dc2626;">-${formatNumber(totalExpense)} so‘m</span>
+              </div>
+            </div>
+            <div class="stat-progress-bg">
+              <div class="stat-progress-fill" style="width: ${expensePercentOfMax}%; background: #dc2626;"></div>
+            </div>
+          </div>
+        `;
+
+        if (topCatIcon) topCatIcon.textContent = netSavings >= 0 ? "💰" : "⚠️";
+        if (topCatSubTitle) topCatSubTitle.textContent = "Sof jamg‘arma / Qoldiq";
+        if (topCatName) {
+          topCatName.textContent = netSavings >= 0 
+            ? `Jamg‘arma: ${savingsPercent}% (Ijobiy)` 
+            : `Defitsit: ${formatNumber(Math.abs(netSavings))} so‘m`;
+        }
+        if (topCatSum) topCatSum.textContent = (netSavings >= 0 ? '+' : '-') + `${formatNumber(Math.abs(netSavings))} so‘m`;
+        return;
+      }
+
+      // 1-REJIM yoki 2-REJIM: 'expense' yoki 'income' toifalari bo'yicha tahlil
+      const isIncome = analyticsTypeFilter === 'income';
+      const targetExpenses = periodItems.filter(it => (it.type || 'expense') === analyticsTypeFilter);
+      const totalAll = targetExpenses.reduce((s, it) => s + Number(it.amount), 0);
+
+      if (analyticsTotalBadge) {
+        analyticsTotalBadge.textContent = (isIncome ? '+' : '') + `${formatNumber(totalAll)} so‘m`;
+      }
+
+      const periodName = selectedMonthMode === 'month' ? `${UZ_MONTHS[navMonthIdx]} oyi uchun` : "Statistika uchun";
       if (totalAll === 0) {
-        const periodNote = selectedMonthMode === 'month' ? `${UZ_MONTHS[navMonthIdx]} oyi uchun` : "Statistika uchun";
-        analyticsBarsList.innerHTML = `<div style="color: var(--text-muted); text-align: center; padding: 16px;">${periodNote} xarajatlar yo‘q</div>`;
+        analyticsBarsList.innerHTML = `<div style="color: var(--text-muted); text-align: center; padding: 16px;">${periodName} ${isIncome ? 'kirimlar' : 'xarajatlar'} yo‘q</div>`;
         if (topCatName) topCatName.textContent = "Ma'lumot yo'q";
         if (topCatSum) topCatSum.textContent = "0 so'm";
+        if (topCatSubTitle) topCatSubTitle.textContent = isIncome ? "Asosiy daromad manbai" : "Asosiy sarf yo‘nalishi";
         return;
       }
 
       const catSums = {};
-      userCategories.forEach(cat => catSums[cat.name] = 0);
-      if (!catSums['Boshqa']) catSums['Boshqa'] = 0;
+      userCategories.filter(c => (c.type || 'expense') === analyticsTypeFilter).forEach(cat => catSums[cat.name] = 0);
+      const fallbackOther = isIncome ? 'Boshqa kirim' : 'Boshqa chiqim';
+      if (!catSums[fallbackOther]) catSums[fallbackOther] = 0;
 
       targetExpenses.forEach(it => {
         const catKey = it.category === 'Sog‘liq/Dori' ? 'Sog‘liq' : it.category;
         if (catSums[catKey] !== undefined) {
           catSums[catKey] += Number(it.amount);
         } else {
-          catSums['Boshqa'] = (catSums['Boshqa'] || 0) + Number(it.amount);
+          catSums[fallbackOther] = (catSums[fallbackOther] || 0) + Number(it.amount);
         }
       });
 
-      // Xarajat mavjud bo'lgan toifalarni saralash (eng kattasi tepada)
       const sortedCats = Object.entries(catSums)
         .filter(([_, sum]) => sum > 0)
         .sort((a, b) => b[1] - a[1]);
 
       if (sortedCats.length === 0) {
-        analyticsBarsList.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 16px;">Hozircha xarajatlar kiritilmagan</div>';
+        analyticsBarsList.innerHTML = `<div style="color: var(--text-muted); text-align: center; padding: 16px;">Hozircha ${isIncome ? 'kirimlar' : 'xarajatlar'} kiritilmagan</div>`;
         return;
       }
 
-      maxCat = sortedCats[0][0];
-      maxSum = sortedCats[0][1];
+      const maxCat = sortedCats[0][0];
+      const maxSum = sortedCats[0][1];
 
       sortedCats.forEach(([cat, sum]) => {
         const percent = Math.round((sum / totalAll) * 100);
@@ -3568,12 +4166,12 @@
               <span>${meta.label}</span>
             </div>
             <div>
-              <span style="font-weight: 700;">${formatNumber(sum)} so‘m</span>
+              <span style="font-weight: 700;">${isIncome ? '+' : ''}${formatNumber(sum)} so‘m</span>
               <span style="color: var(--text-muted); font-size: 0.75rem; margin-left: 4px;">(${percent}%)</span>
             </div>
           </div>
           <div class="stat-progress-bg">
-            <div class="stat-progress-fill" style="width: ${percent}%;"></div>
+            <div class="stat-progress-fill" style="width: ${percent}%; ${isIncome ? 'background: #16a34a;' : ''}"></div>
           </div>
         `;
         analyticsBarsList.appendChild(row);
@@ -3581,8 +4179,9 @@
 
       const topMeta = getCategoryInfo(maxCat);
       if (topCatIcon) topCatIcon.textContent = topMeta.icon;
+      if (topCatSubTitle) topCatSubTitle.textContent = isIncome ? "Asosiy daromad manbai" : "Asosiy sarf yo‘nalishi";
       if (topCatName) topCatName.textContent = topMeta.label;
-      if (topCatSum) topCatSum.textContent = `${formatNumber(maxSum)} so‘m`;
+      if (topCatSum) topCatSum.textContent = (isIncome ? '+' : '') + `${formatNumber(maxSum)} so‘m`;
     }
 
     function escapeHtml(str) {
@@ -3663,16 +4262,17 @@
     // DINAMIK TOIFALAR RENDERI VA BOSHQARUVI
     // ==========================================================================
     function renderCategorySelectors() {
-      // 1. Yangi xarajat oynasidagi toifalar paneli (#catGridSelector)
+      // 1. Yangi amal oynasidagi toifalar paneli (#catGridSelector) - faqat joriy turga mos (Kirim yoki Chiqim)
       if (catGridSelector) {
         catGridSelector.innerHTML = '';
         
-        // Agar tanlangan toifa ro'yxatda bo'lmasa, birinchisini tanlash
-        if (!userCategories.some(c => c.name === selectedCategoryInModal) && userCategories.length > 0) {
-          selectedCategoryInModal = userCategories[0].name;
+        const activeCats = userCategories.filter(c => (c.type || 'expense') === currentModalTxType);
+
+        if (!activeCats.some(c => c.name === selectedCategoryInModal) && activeCats.length > 0) {
+          selectedCategoryInModal = activeCats[0].name;
         }
 
-        userCategories.forEach(cat => {
+        activeCats.forEach(cat => {
           const item = document.createElement('div');
           item.className = 'cat-choice-item' + (cat.name === selectedCategoryInModal ? ' selected' : '');
           item.setAttribute('data-value', cat.name);
@@ -3712,8 +4312,12 @@
         allBtn.textContent = '☰ Barchasi';
         categoryChips.appendChild(allBtn);
 
-        // Har bir toifa chipi
-        userCategories.forEach(cat => {
+        // Faol turga mos toifalar (agar historyTypeFilter !== 'all' bo'lsa)
+        const chipsCats = historyTypeFilter === 'all' 
+          ? userCategories 
+          : userCategories.filter(c => (c.type || 'expense') === historyTypeFilter);
+
+        chipsCats.forEach(cat => {
           const chip = document.createElement('button');
           chip.type = 'button';
           chip.className = 'chip-btn' + (currentCategoryFilter === cat.name ? ' active' : '');
@@ -3729,7 +4333,14 @@
       if (!categoryManagerList) return;
       categoryManagerList.innerHTML = '';
 
-      userCategories.forEach(cat => {
+      const activeCats = userCategories.filter(c => (c.type || 'expense') === catManagerTypeFilter);
+
+      if (activeCats.length === 0) {
+        categoryManagerList.innerHTML = `<div style="text-align: center; color: var(--text-muted); padding: 24px 16px;">Ushbu turdagi toifalar mavjud emas</div>`;
+        return;
+      }
+
+      activeCats.forEach(cat => {
         const row = document.createElement('div');
         row.className = 'cat-manager-row';
         row.innerHTML = `
@@ -3751,9 +4362,11 @@
       });
     }
 
-    // Modalni ochish / yopish (Ustma-ust pop oynalar chiqishini oldini olish bilan)
+    // Modalni ochish / yopish
     function openCategoryManager(fromExpenseModal = false) {
       triggerHaptic('medium');
+      if (btnCatFilterExpense) btnCatFilterExpense.classList.toggle('active', catManagerTypeFilter === 'expense');
+      if (btnCatFilterIncome) btnCatFilterIncome.classList.toggle('active', catManagerTypeFilter === 'income');
       renderCategoryManagerList();
 
       if (fromExpenseModal || (addExpenseModal && addExpenseModal.classList.contains('open'))) {
@@ -3777,12 +4390,19 @@
       }
     }
 
+    function setCatEditType(type = 'expense') {
+      catEditType = type;
+      if (editCatType) editCatType.value = type;
+      if (btnCatEditTypeExpense) btnCatEditTypeExpense.classList.toggle('active', type === 'expense');
+      if (btnCatEditTypeIncome) btnCatEditTypeIncome.classList.toggle('active', type === 'income');
+      if (catEditBadge) catEditBadge.textContent = type === 'income' ? '💰' : '💸';
+    }
+
     function openCategoryEdit(catId = null) {
       triggerHaptic('light');
       const isEdit = Boolean(catId);
       const cat = isEdit ? userCategories.find(c => c.id === catId) : null;
 
-      // Agar boshqa modal ochiq bo'lsa, uni yopib, qaytish navbatiga kiritamiz
       if (categoryManagerModal && categoryManagerModal.classList.contains('open')) {
         modalReturnStack.push('categoryManagerModal');
         categoryManagerModal.classList.remove('open');
@@ -3790,6 +4410,9 @@
         modalReturnStack.push('addExpenseModal');
         addExpenseModal.classList.remove('open');
       }
+
+      const initialType = isEdit ? (cat.type || 'expense') : catManagerTypeFilter;
+      setCatEditType(initialType);
 
       if (catEditModalTitle) {
         catEditModalTitle.textContent = isEdit ? "Toifani tahrirlash" : "Yangi toifa qo‘shish";
@@ -3799,11 +4422,11 @@
       if (inpCatName) inpCatName.value = isEdit ? cat.name : '';
       if (inpCatDesc) inpCatDesc.value = isEdit ? (cat.desc || '') : '';
       
-      const currentEmoji = isEdit ? (cat.icon || '🏷️') : '🏷️';
+      const currentEmoji = isEdit ? (cat.icon || '🏷️') : (initialType === 'income' ? '💵' : '🏷️');
       if (inpCatEmoji) inpCatEmoji.value = currentEmoji;
       if (selectedEmojiPreview) selectedEmojiPreview.textContent = currentEmoji;
 
-      const currentBg = isEdit ? (cat.bg || '#ffe8d6') : '#ffe8d6';
+      const currentBg = isEdit ? (cat.bg || '#ffe8d6') : (initialType === 'income' ? '#dcfce7' : '#ffe8d6');
       if (inpCatBgColor) inpCatBgColor.value = currentBg;
 
       renderEmojiPalette(currentEmoji);
@@ -3892,9 +4515,11 @@
         const desc = inpCatDesc ? inpCatDesc.value.trim() : '';
         const icon = (inpCatEmoji && inpCatEmoji.value.trim()) ? inpCatEmoji.value.trim() : '🏷️';
         const bg = inpCatBgColor ? inpCatBgColor.value : '#ffe8d6';
+        const catType = (editCatType && editCatType.value) ? editCatType.value : catEditType;
 
         if (!name) {
           showAppAlert("Iltimos, toifa nomini kiriting", "Toifa nomi kiritilmadi", "🏷️");
+          if (inpCatName) inpCatName.focus();
           return;
         }
 
@@ -3915,8 +4540,9 @@
             userCategories[catIndex].desc = desc;
             userCategories[catIndex].icon = icon;
             userCategories[catIndex].bg = bg;
+            userCategories[catIndex].type = catType;
 
-            // Xarajatlar ro'yxatida ham eski nomni yangisiga almashtirish
+            // Transaksiyalar ro'yxatida ham eski nomni yangisiga almashtirish
             if (oldName !== name) {
               expenses.forEach(it => {
                 if (it.category === oldName) {
@@ -3943,10 +4569,12 @@
             label: name,
             icon: icon,
             bg: bg,
-            desc: desc
+            desc: desc,
+            type: catType
           };
           userCategories.push(newCat);
           selectedCategoryInModal = name;
+          catManagerTypeFilter = catType;
         }
 
         saveCategoriesStorage();
@@ -3977,14 +4605,15 @@
           const cat = userCategories.find(c => c.id === id);
           if (!cat) return;
 
-          if (userCategories.length <= 1) {
-            showAppAlert("Kamida bitta xarajat toifasi qolishi shart!", "Toifani o‘chirib bo‘lmaydi", "⚠️");
+          const sameTypeCats = userCategories.filter(c => (c.type || 'expense') === (cat.type || 'expense'));
+          if (sameTypeCats.length <= 1) {
+            showAppAlert("Kamida bitta toifa qolishi shart!", "Toifani o‘chirib bo‘lmaydi", "⚠️");
             return;
           }
 
           const confirmed = await showConfirmDialog({
             title: `"${cat.name}" toifasini o‘chirish`,
-            message: `"${cat.name}" toifasini o‘chirmoqchimisiz? Ushbu toifadagi xarajatlar avtomatik ravishda "Boshqa" toifasiga o‘tkaziladi.`,
+            message: `"${cat.name}" toifasini o‘chirmoqchimisiz? Ushbu toifadagi yozuvlar avtomatik ravishda boshqa toifaga o‘tkaziladi.`,
             confirmText: "Ha, o‘chirish",
             cancelText: "Bekor qilish",
             icon: cat.icon || "🏷️",
@@ -3992,7 +4621,10 @@
           });
 
           if (confirmed) {
-            const fallbackName = userCategories.find(c => c.id !== id && c.name === 'Boshqa')?.name || userCategories.find(c => c.id !== id)?.name || 'Boshqa';
+            const isInc = (cat.type || 'expense') === 'income';
+            const fallbackCat = sameTypeCats.find(c => c.id !== id && (c.name === (isInc ? 'Boshqa kirim' : 'Boshqa chiqim') || c.name === 'Boshqa')) || sameTypeCats.find(c => c.id !== id);
+            const fallbackName = fallbackCat ? fallbackCat.name : (isInc ? 'Boshqa kirim' : 'Boshqa chiqim');
+
             expenses.forEach(it => {
               if (it.category === cat.name) {
                 it.category = fallbackName;
@@ -4046,6 +4678,34 @@
       });
     }
 
+    // Tarix sahifasidagi Kirim / Chiqim turi filtri
+    if (historyTypeFilterBar) {
+      historyTypeFilterBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.history-type-btn');
+        if (!btn) return;
+        triggerHaptic('light');
+        historyTypeFilterBar.querySelectorAll('.history-type-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        historyTypeFilter = btn.getAttribute('data-filter') || 'all';
+        currentCategoryFilter = 'all'; // Tur o'zgarganda toifa chipini Barchasiga qaytarish
+        renderCategorySelectors();
+        render();
+      });
+    }
+
+    // Statistika sahifasidagi rejim o'tkazgichi (Chiqimlar, Kirimlar, Taqqoslash)
+    if (analyticsTabBar) {
+      analyticsTabBar.addEventListener('click', (e) => {
+        const btn = e.target.closest('.analytics-tab-btn');
+        if (!btn) return;
+        triggerHaptic('light');
+        analyticsTabBar.querySelectorAll('.analytics-tab-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        analyticsTypeFilter = btn.getAttribute('data-mode') || 'expense';
+        renderAnalytics();
+      });
+    }
+
     // Modal oynalarni ochish/yopish tugmalari
     if (btnOpenCategoryManager) btnOpenCategoryManager.addEventListener('click', () => openCategoryManager(false));
     if (btnQuickManageFromAddModal) btnQuickManageFromAddModal.addEventListener('click', () => openCategoryManager(true));
@@ -4054,6 +4714,40 @@
     if (btnCloseCatManager) btnCloseCatManager.addEventListener('click', closeCategoryManager);
     if (btnCloseCatEdit) btnCloseCatEdit.addEventListener('click', closeCategoryEdit);
     if (btnCancelCatEdit) btnCancelCatEdit.addEventListener('click', closeCategoryEdit);
+
+    if (btnCatFilterExpense) {
+      btnCatFilterExpense.addEventListener('click', () => {
+        triggerHaptic('light');
+        catManagerTypeFilter = 'expense';
+        btnCatFilterExpense.classList.add('active');
+        if (btnCatFilterIncome) btnCatFilterIncome.classList.remove('active');
+        renderCategoryManagerList();
+      });
+    }
+
+    if (btnCatFilterIncome) {
+      btnCatFilterIncome.addEventListener('click', () => {
+        triggerHaptic('light');
+        catManagerTypeFilter = 'income';
+        btnCatFilterIncome.classList.add('active');
+        if (btnCatFilterExpense) btnCatFilterExpense.classList.remove('active');
+        renderCategoryManagerList();
+      });
+    }
+
+    if (btnCatEditTypeExpense) {
+      btnCatEditTypeExpense.addEventListener('click', () => {
+        triggerHaptic('light');
+        setCatEditType('expense');
+      });
+    }
+
+    if (btnCatEditTypeIncome) {
+      btnCatEditTypeIncome.addEventListener('click', () => {
+        triggerHaptic('light');
+        setCatEditType('income');
+      });
+    }
 
     if (categoryManagerModal) {
       categoryManagerModal.addEventListener('click', (e) => {
@@ -4079,10 +4773,10 @@
         const id = delBtn.getAttribute('data-id');
         if (id) {
           const exp = expenses.find(x => x.id === id);
-          const expTitle = exp ? `"${exp.title}"` : 'Ushbu xarajatni';
+          const expTitle = exp ? `"${exp.title}"` : 'Ushbu yozuvni';
           const confirmed = await showConfirmDialog({
             title: `${expTitle} o‘chirmoqchimisiz?`,
-            message: `${expTitle} xarajat yozuvini ro‘yxatdan butunlay o‘chirmoqchimisiz?`,
+            message: `${expTitle} yozuvini ro‘yxatdan butunlay o‘chirmoqchimisiz?`,
             confirmText: "Ha, o‘chirish",
             cancelText: "Bekor qilish",
             icon: "🗑️",
@@ -4093,7 +4787,7 @@
             saveStorage();
             render();
             triggerHaptic('success');
-            showToast("Xarajat o‘chirildi");
+            showToast("Amal o‘chirildi");
           }
         }
         return;
@@ -4141,13 +4835,64 @@
     }
 
     // ==========================================================================
-    // MODAL FORMA: TEZKOR QO'SHISH VA TAHRIRLASH
+    // MODAL FORMA: TEZKOR QO'SHISH VA TAHRIRLASH (KIRIM / CHIQIM)
     // ==========================================================================
-    // 1. Yangi xarajat qo'shish rejimi
-    function openAddModal() {
+    function setModalTxType(type = 'expense') {
+      currentModalTxType = type;
+      if (inpTxType) inpTxType.value = type;
+
+      const isIncome = type === 'income';
+      if (modalTxTypeBadge) modalTxTypeBadge.textContent = isIncome ? '💰' : '💸';
+      
+      const isEdit = Boolean(editExpenseId && editExpenseId.value);
+      if (expenseModalTitle) {
+        expenseModalTitle.textContent = isEdit 
+          ? (isIncome ? 'Kirimni tahrirlash' : 'Chiqimni tahrirlash') 
+          : (isIncome ? 'Yangi kirim' : 'Yangi chiqim');
+      }
+      if (expenseModalSubtitle) {
+        expenseModalSubtitle.textContent = isIncome 
+          ? "Kirim summasi va daromad manbaini kiriting" 
+          : "Chiqim summasi va tafsilotlarini kiriting";
+      }
+
+      if (lblAmount) lblAmount.textContent = isIncome ? "Kirim summasi (so‘mda)" : "Chiqim summasi (so‘mda)";
+      if (lblTitle) lblTitle.textContent = isIncome ? "Bir qatorli izoh / Daromad manbai" : "Bir qatorli izoh / Chiqim nomi";
+      if (inpTitle) inpTitle.placeholder = isIncome ? "Masalan: Oylik maosh, Savdo tushumi, Sovg‘a..." : "Masalan: Kraskalar, Tushlik, Benzin...";
+
+      if (btnTypeExpense) btnTypeExpense.classList.toggle('active', !isIncome);
+      if (btnTypeIncome) btnTypeIncome.classList.toggle('active', isIncome);
+
+      // Tanlangan toifani joriy turga moslab yangilash
+      const typeCats = userCategories.filter(c => (c.type || 'expense') === type);
+      if (!typeCats.some(c => c.name === selectedCategoryInModal) && typeCats.length > 0) {
+        selectedCategoryInModal = typeCats[0].name;
+      }
+      renderCategorySelectors();
+    }
+
+    if (btnTypeExpense) {
+      btnTypeExpense.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerHaptic('light');
+        setModalTxType('expense');
+      });
+    }
+
+    if (btnTypeIncome) {
+      btnTypeIncome.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerHaptic('light');
+        setModalTxType('income');
+      });
+    }
+
+    // 1. Yangi amal qo'shish rejimi
+    function openAddModal(type = 'expense') {
       triggerHaptic('medium');
       if (editExpenseId) editExpenseId.value = '';
-      if (expenseModalTitle) expenseModalTitle.textContent = 'Yangi xarajat';
+      setModalTxType(type);
+
       if (btnSubmitExpense) btnSubmitExpense.innerHTML = '<span>✓</span> Saqlash';
       if (btnDeleteFromModal) btnDeleteFromModal.style.display = 'none';
 
@@ -4155,13 +4900,7 @@
       if (inpTitle) inpTitle.value = '';
       if (inpDate) inpDate.value = getFormattedDate(0);
 
-      if (userCategories.length > 0 && !userCategories.some(c => c.name === selectedCategoryInModal)) {
-        selectedCategoryInModal = userCategories[0].name;
-      }
-      renderCategorySelectors();
-
       if (addExpenseModal) addExpenseModal.classList.add('open');
-      // Birinchi bo'lib summaga fokus berish
       setTimeout(() => {
         if (inpAmount) inpAmount.focus();
       }, 100);
@@ -4174,7 +4913,9 @@
       if (!exp) return;
 
       if (editExpenseId) editExpenseId.value = exp.id;
-      if (expenseModalTitle) expenseModalTitle.textContent = 'Xarajatni tahrirlash';
+      const expType = exp.type || 'expense';
+      setModalTxType(expType);
+
       if (btnSubmitExpense) btnSubmitExpense.innerHTML = '<span>✓</span> O‘zgarishlarni saqlash';
       if (btnDeleteFromModal) btnDeleteFromModal.style.display = 'flex';
 
@@ -4182,11 +4923,10 @@
       if (inpTitle) inpTitle.value = exp.title || '';
       if (inpDate) inpDate.value = exp.dateStr || getFormattedDate(0);
 
-      selectedCategoryInModal = exp.category || 'Oziq-ovqat';
+      selectedCategoryInModal = exp.category;
       renderCategorySelectors();
 
       if (addExpenseModal) addExpenseModal.classList.add('open');
-      // Summani tahrirlash uchun fokus
       setTimeout(() => {
         if (inpAmount) inpAmount.focus();
       }, 100);
@@ -4199,9 +4939,10 @@
       modalReturnStack = [];
     }
 
-    // Katta + tugmalari (Asosiy ekranda va pastki navigatsiyada)
-    if (btnOpenAddModal) btnOpenAddModal.addEventListener('click', openAddModal);
-    if (btnHomeQuickAdd) btnHomeQuickAdd.addEventListener('click', openAddModal);
+    // Katta + va Kirim/Chiqim tugmalari
+    if (btnHomeQuickIncome) btnHomeQuickIncome.addEventListener('click', () => openAddModal('income'));
+    if (btnHomeQuickExpense) btnHomeQuickExpense.addEventListener('click', () => openAddModal('expense'));
+    if (btnOpenAddModal) btnOpenAddModal.addEventListener('click', () => openAddModal(currentModalTxType || 'expense'));
     if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
 
     // Modal ichidagi o'chirish tugmasi
@@ -4211,10 +4952,10 @@
         const editId = editExpenseId ? editExpenseId.value : '';
         if (!editId) return;
         const exp = expenses.find(x => x.id === editId);
-        const expTitle = exp ? `"${exp.title}"` : 'Ushbu xarajatni';
+        const expTitle = exp ? `"${exp.title}"` : 'Ushbu yozuvni';
         const confirmed = await showConfirmDialog({
           title: `${expTitle} o‘chirmoqchimisiz?`,
-          message: `${expTitle} xarajat yozuvini ro‘yxatdan butunlay o‘chirmoqchimisiz?`,
+          message: `${expTitle} yozuvini ro‘yxatdan butunlay o‘chirmoqchimisiz?`,
           confirmText: "Ha, o‘chirish",
           cancelText: "Bekor qilish",
           icon: "🗑️",
@@ -4226,7 +4967,7 @@
           render();
           triggerHaptic('success');
           closeModal();
-          showToast("Xarajat o‘chirildi");
+          showToast("Amal o‘chirildi");
         }
       });
     }
@@ -4366,7 +5107,7 @@
       });
     });
 
-    // Xarajatni saqlash (Yangi kiritish yoki tahrirlash)
+    // Yangi amalni saqlash (Kirim yoki Chiqim)
     if (newExpenseForm) {
       newExpenseForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -4375,15 +5116,20 @@
         const title = inpTitle ? inpTitle.value.trim() : '';
         const dateVal = (inpDate && inpDate.value) ? inpDate.value : getFormattedDate(0);
         const editId = editExpenseId ? editExpenseId.value : '';
+        const isIncome = currentModalTxType === 'income';
 
         if (isNaN(amount) || amount <= 0) {
-          showAppAlert("Iltimos, to‘g‘ri summa kiriting", "Summa kiritilmadi", "💸");
+          showAppAlert("Iltimos, to‘g‘ri summa kiriting", "Summa kiritilmadi", isIncome ? "💰" : "💸");
           if (inpAmount) inpAmount.focus();
           return;
         }
 
         if (!title) {
-          showAppAlert("Iltimos, bir qatorli izoh yoki xarajat nomini kiriting", "Izoh kiritilmadi", "✏️");
+          showAppAlert(
+            isIncome ? "Iltimos, daromad manbasi yoki izoh kiriting" : "Iltimos, bir qatorli izoh yoki xarajat nomini kiriting", 
+            "Izoh kiritilmadi", 
+            "✏️"
+          );
           if (inpTitle) inpTitle.focus();
           return;
         }
@@ -4399,6 +5145,7 @@
             expenses[index].amount = amount;
             expenses[index].category = selectedCategoryInModal;
             expenses[index].dateStr = dateVal;
+            expenses[index].type = currentModalTxType;
           }
         } else {
           // 2. Yangi qo'shish: Boshiga qo'shish
@@ -4408,7 +5155,8 @@
             subtitle: meta.label,
             amount: amount,
             category: selectedCategoryInModal,
-            dateStr: dateVal
+            dateStr: dateVal,
+            type: currentModalTxType
           };
           expenses.unshift(newRecord);
         }
@@ -4420,7 +5168,7 @@
         if (inpAmount) inpAmount.value = '';
         if (inpTitle) inpTitle.value = '';
         closeModal();
-        showToast(editId ? "Xarajat tahrirlandi" : "Xarajat qo‘shildi");
+        showToast(editId ? "Amal tahrirlandi" : (isIncome ? "Kirim qo‘shildi" : "Chiqim qo‘shildi"));
       });
     }
 
@@ -4428,7 +5176,7 @@
     async function clearExpenses() {
       const confirmed = await showConfirmDialog({
         title: "Barcha xotirani tozalash",
-        message: "Barcha kiritilgan xarajatlar butunlay o‘chiriladi. Ushbu amalni ortga qaytarib bo‘lmaydi. Davom etasizmi?",
+        message: "Barcha kiritilgan kirim va chiqimlar butunlay o‘chiriladi. Ushbu amalni ortga qaytarib bo‘lmaydi. Davom etasizmi?",
         confirmText: "Ha, hammasini o‘chirish",
         cancelText: "Bekor qilish",
         icon: "⚠️",
@@ -4439,7 +5187,7 @@
         saveStorage();
         render();
         triggerHaptic('success');
-        showToast("Barcha xarajatlar tozalandi");
+        showToast("Barcha amallar tozalandi");
       }
     }
 

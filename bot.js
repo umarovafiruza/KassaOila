@@ -226,13 +226,16 @@ async function handleMessage(msg) {
   const userName = msg.from ? msg.from.first_name : 'Foydalanuvchi';
   const appUrl = (WEBAPP_URL && WEBAPP_URL.startsWith('https://')) ? WEBAPP_URL : null;
 
-  // Mini App dan kelgan xarajat ma'lumoti
+  // Mini App dan kelgan amal ma'lumoti (kirim yoki chiqim)
   if (msg.web_app_data && msg.web_app_data.data) {
     try {
       const data = JSON.parse(msg.web_app_data.data);
+      const isIncome = data.type === 'income';
+      const header = isIncome ? `💰 <b>Yangi kirim qayd etildi!</b>` : `💸 <b>Yangi chiqim qayd etildi!</b>`;
+      const sign = isIncome ? '+' : '-';
       await callTelegram('sendMessage', {
         chat_id: chatId,
-        text: `✅ <b>Yangi xarajat qayd etildi!</b>\n\n📌 <b>Nomi:</b> ${data.title}\n💰 <b>Summasi:</b> ${data.amount} so'm\n🏷️ <b>Kategoriya:</b> ${data.category || 'Boshqa'}`,
+        text: `${header}\n\n📌 <b>Nomi:</b> ${data.title || data.category || 'Amal'}\n💵 <b>Summasi:</b> ${sign}${data.amount} so'm\n🏷️ <b>Toifa:</b> ${data.category || 'Boshqa'}\n📅 <b>Sana:</b> ${data.date || 'Bugun'}`,
         parse_mode: 'HTML'
       });
       return;
@@ -245,20 +248,20 @@ async function handleMessage(msg) {
     if (appUrl) {
       inlineKeyboard.push([
         {
-          text: '📱 Oila Expense Tracker-ni ochish',
+          text: '📱 Kassa Oila (Kirim-Chiqim) ochish',
           web_app: { url: appUrl }
         }
       ]);
     }
 
     inlineKeyboard.push([
-      { text: '📊 Hisobot', callback_data: 'hisob' },
+      { text: '📊 Balans & Hisobot', callback_data: 'hisob' },
       { text: 'ℹ️ Yordam', callback_data: 'help' }
     ]);
 
     const welcomeMsg = `Assalomu alaykum, <b>${userName}</b>! 👋\n\n` +
-      `🌿 <b>"Oila Expense Tracker"</b> botiga xush kelibsiz!\n\n` +
-      `Bu bot orqali oilaviy byudjetni boshqarishingiz, xarajatlarni toifalar bo‘yicha kiritishingiz va tahlil qilishingiz mumkin.\n\n` +
+      `🌿 <b>"Kassa Oila — Kirim va Chiqim"</b> tizimiga xush kelibsiz!\n\n` +
+      `Bu bot orqali barcha daromad va xarajatlaringizni, oilaviy oylik budjetingizni real vaqtda tahlil qilib boshqarishingiz mumkin.\n\n` +
       `Ilovani ishga tushirish uchun pastdagi tugmani bosing 👇`;
 
     await callTelegram('sendMessage', {
@@ -271,9 +274,9 @@ async function handleMessage(msg) {
     });
 
   // /hisob, hisobot, hisob-kitob buyruqlari
-  } else if (text === '/hisob' || text === '/balans' || text.includes('hisob')) {
-    const hisobMsg = `📊 <b>Xarajatlar monitoringi va Hisobot:</b>\n\n` +
-      `Barcha xarajatlaringiz ro‘yxatini ko‘rish, yangi sarf qo‘shish va tahlil qilish uchun ilovani oching 👇`;
+  } else if (text === '/hisob' || text === '/balans' || text.includes('hisob') || text.includes('balans')) {
+    const hisobMsg = `📊 <b>Kirim-chiqim monitoringi va Balans:</b>\n\n` +
+      `Sof jamg‘arma, oylik tushum va xarajatlarni toifalar bo‘yicha ko‘rish hamda tahlil qilish uchun ilovani oching 👇`;
 
     await callTelegram('sendMessage', {
       chat_id: chatId,
@@ -290,9 +293,10 @@ async function handleMessage(msg) {
   } else if (text === '/help' || text.includes('yordam')) {
     const helpMsg = `📖 <b>Qo‘llanma va Yordam:</b>\n\n` +
       `1️⃣ <b>"Ilovani ochish"</b> tugmasi orqali to‘liq Mini App ochiladi.\n` +
-      `2️⃣ Yangi xarajat qo‘shish uchun <b>"+"</b> tugmasini bosing.\n` +
-      `3️⃣ Kategoriya, summa va sanani kiritib <b>"Saqlash"</b> tugmasini bosing.\n` +
-      `4️⃣ Barcha hisoblar qurilmangizda va Telegram xotirasida xavfsiz saqlanadi.`;
+      `2️⃣ Asosiy ekranda <b>"+ Kirim"</b> yoki <b>"- Chiqim"</b> tugmasi orqali tezkor amallarni kiriting.\n` +
+      `3️⃣ Kategoriya, summa va izohni kiritib <b>"Saqlash"</b> tugmasini bosing.\n` +
+      `4️⃣ <b>Statistika</b> bo‘limida sof qoldiq, kirim-chiqim taqqoslashi va toifalar foizini kuzating.\n` +
+      `5️⃣ Barcha ma'lumotlar qurilmangizda va Telegram bulutida xavfsiz saqlanadi.`;
 
     await callTelegram('sendMessage', {
       chat_id: chatId,
