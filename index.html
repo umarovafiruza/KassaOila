@@ -34,13 +34,20 @@
       --danger: #ef4444;
       --danger-bg: #fee2e2;
 
-      /* Kategoriya fonlari */
+      /* Kategoriya ranglari */
       --cat-food-bg: #ffe8d6;
       --cat-comm-bg: #e0f2fe;
-      --cat-trans-bg: #e0e7ff;
-      --cat-health-bg: #fce7f3;
+      --cat-telecom-bg: #e0e7ff;
+      --cat-trans-bg: #ede9fe;
       --cat-edu-bg: #fef3c7;
-      --cat-other-bg: #dcfce7;
+      --cat-health-bg: #fce7f3;
+      --cat-kids-bg: #ffedd5;
+      --cat-sport-bg: #dcfce7;
+      --cat-leisure-bg: #fef08a;
+      --cat-clothes-bg: #fae8ff;
+      --cat-wedding-bg: #ffe4e6;
+      --cat-repair-bg: #f1f5f9;
+      --cat-other-bg: #ccfbf1;
 
       --font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --radius-xl: 24px;
@@ -337,7 +344,7 @@
       display: flex;
       gap: 8px;
       overflow-x: auto;
-      padding: 2px 0;
+      padding: 4px 0;
       scrollbar-width: none;
     }
 
@@ -804,10 +811,14 @@
       cursor: pointer;
     }
 
+    /* Kategoriya tanlash (Grid) */
     .cat-selector-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
+      max-height: 220px;
+      overflow-y: auto;
+      padding: 2px;
     }
 
     .cat-choice-item {
@@ -821,6 +832,7 @@
       background-color: #fafbfc;
       cursor: pointer;
       text-align: center;
+      transition: all 0.15s ease;
     }
 
     .cat-choice-item.selected {
@@ -833,9 +845,22 @@
     }
 
     .cat-choice-name {
-      font-size: 0.72rem;
+      font-size: 0.7rem;
       font-weight: 700;
       color: var(--text-main);
+      line-height: 1.2;
+    }
+
+    /* Tanlangan toifa namunasi / yo'nalishi (Hint) */
+    .cat-hint-box {
+      font-size: 0.73rem;
+      color: var(--text-muted);
+      background-color: #f6f8f4;
+      padding: 6px 10px;
+      border-radius: var(--radius-sm);
+      border: 1px dashed var(--border-subtle);
+      margin-top: 4px;
+      line-height: 1.35;
     }
 
     .btn-save-expense {
@@ -917,7 +942,7 @@
           </button>
         </div>
 
-        <!-- Ixcham so'nggi ro'yxat (faqat oxirgi 3-4 ta) -->
+        <!-- Ixcham so'nggi ro'yxat (faqat oxirgi 4 ta) -->
         <div id="recentTxContainer" style="display: flex; flex-direction: column; gap: 8px;">
           <!-- JS orqali to'ldiriladi -->
         </div>
@@ -941,16 +966,21 @@
           <button type="button" class="section-action-btn" style="color: var(--danger);" id="btnClearAllHistory">Barchasini tozalash</button>
         </div>
 
-        <!-- Kategoriya chip filtrlari -->
+        <!-- Kategoriya chip filtrlari (Barcha yangi toifalar bilan) -->
         <div class="filter-chips-container" id="categoryChips">
-          <button type="button" class="chip-btn active" data-cat="all">
-            <span>☰</span> Barchasi
-          </button>
+          <button type="button" class="chip-btn active" data-cat="all">☰ Barchasi</button>
           <button type="button" class="chip-btn" data-cat="Oziq-ovqat">🍔 Oziq-ovqat</button>
           <button type="button" class="chip-btn" data-cat="Kommunal">💡 Kommunal</button>
+          <button type="button" class="chip-btn" data-cat="Aloqa va internet">🌐 Aloqa va internet</button>
           <button type="button" class="chip-btn" data-cat="Transport">🚗 Transport</button>
-          <button type="button" class="chip-btn" data-cat="Sog‘liq/Dori">💊 Sog‘liq</button>
           <button type="button" class="chip-btn" data-cat="Ta'lim">📚 Ta'lim</button>
+          <button type="button" class="chip-btn" data-cat="Sog‘liq">💊 Sog‘liq</button>
+          <button type="button" class="chip-btn" data-cat="Bolalar">👶 Bolalar</button>
+          <button type="button" class="chip-btn" data-cat="Xobbi va sport">⚽ Xobbi va sport</button>
+          <button type="button" class="chip-btn" data-cat="Dam olish">☕ Ko‘ngilochar</button>
+          <button type="button" class="chip-btn" data-cat="Kiyim va parvarish">👕 Kiyim-kechak</button>
+          <button type="button" class="chip-btn" data-cat="To‘y va sovg‘alar">🎁 To‘y-ma'raka</button>
+          <button type="button" class="chip-btn" data-cat="Ta‘mirlash">🔧 Ta‘mirlash</button>
           <button type="button" class="chip-btn" data-cat="Boshqa">✨ Boshqa</button>
         </div>
 
@@ -1012,7 +1042,7 @@
               <span class="settings-icon">👤</span>
               <div>
                 <div class="settings-title" id="settingsUserName">Umidjon</div>
-                <div class="settings-desc">Telegram hisobi ulangan</div>
+                <div class="settings-desc">Telegram hisobi ulangan (@KassaOilaBot)</div>
               </div>
             </div>
             <span style="font-size: 0.75rem; color: #16a34a; font-weight: 700;">Faol</span>
@@ -1023,7 +1053,7 @@
               <span class="settings-icon">🔄</span>
               <div>
                 <div class="settings-title">Namunaviy ma'lumotlar</div>
-                <div class="settings-desc">Test qilish uchun namunalarni yuklash</div>
+                <div class="settings-desc">Barcha toifalarga oid namunalarni yuklash</div>
               </div>
             </div>
             <span>➔</span>
@@ -1118,7 +1148,7 @@
               type="text" 
               id="inpTitle" 
               class="form-input" 
-              placeholder="Masalan: Bozorlik, Tushlik, Benzin..." 
+              placeholder="Masalan: Bozorlik, Fitnes, Svet to‘lovi..." 
               required 
               autocomplete="off"
             />
@@ -1143,32 +1173,80 @@
           </div>
 
           <div class="form-field">
-            <label>Kategoriya</label>
+            <label>Kategoriya tanlang</label>
+            <!-- 13 ta to'liq oilaviy kategoriya paneli -->
             <div class="cat-selector-grid" id="catGridSelector">
+              
               <div class="cat-choice-item selected" data-value="Oziq-ovqat">
                 <span class="cat-choice-icon">🍔</span>
                 <span class="cat-choice-name">Oziq-ovqat</span>
               </div>
+
               <div class="cat-choice-item" data-value="Kommunal">
                 <span class="cat-choice-icon">💡</span>
                 <span class="cat-choice-name">Kommunal</span>
               </div>
+
+              <div class="cat-choice-item" data-value="Aloqa va internet">
+                <span class="cat-choice-icon">🌐</span>
+                <span class="cat-choice-name">Aloqa & Net</span>
+              </div>
+
               <div class="cat-choice-item" data-value="Transport">
                 <span class="cat-choice-icon">🚗</span>
                 <span class="cat-choice-name">Transport</span>
               </div>
-              <div class="cat-choice-item" data-value="Sog‘liq/Dori">
-                <span class="cat-choice-icon">💊</span>
-                <span class="cat-choice-name">Sog‘liq</span>
-              </div>
+
               <div class="cat-choice-item" data-value="Ta'lim">
                 <span class="cat-choice-icon">📚</span>
                 <span class="cat-choice-name">Ta'lim</span>
               </div>
+
+              <div class="cat-choice-item" data-value="Sog‘liq">
+                <span class="cat-choice-icon">💊</span>
+                <span class="cat-choice-name">Sog‘liq</span>
+              </div>
+
+              <div class="cat-choice-item" data-value="Bolalar">
+                <span class="cat-choice-icon">👶</span>
+                <span class="cat-choice-name">Bolalar</span>
+              </div>
+
+              <div class="cat-choice-item" data-value="Xobbi va sport">
+                <span class="cat-choice-icon">⚽</span>
+                <span class="cat-choice-name">Xobbi & Sport</span>
+              </div>
+
+              <div class="cat-choice-item" data-value="Dam olish">
+                <span class="cat-choice-icon">☕</span>
+                <span class="cat-choice-name">Ko‘ngilochar</span>
+              </div>
+
+              <div class="cat-choice-item" data-value="Kiyim va parvarish">
+                <span class="cat-choice-icon">👕</span>
+                <span class="cat-choice-name">Kiyim-kechak</span>
+              </div>
+
+              <div class="cat-choice-item" data-value="To‘y va sovg‘alar">
+                <span class="cat-choice-icon">🎁</span>
+                <span class="cat-choice-name">To‘y-marosim</span>
+              </div>
+
+              <div class="cat-choice-item" data-value="Ta‘mirlash">
+                <span class="cat-choice-icon">🔧</span>
+                <span class="cat-choice-name">Ta‘mirlash</span>
+              </div>
+
               <div class="cat-choice-item" data-value="Boshqa">
                 <span class="cat-choice-icon">✨</span>
                 <span class="cat-choice-name">Boshqa</span>
               </div>
+
+            </div>
+
+            <!-- Tanlangan toifa namunasi / yo'nalishi -->
+            <div class="cat-hint-box" id="catHintText">
+              Supermarket, bozorlik, go‘sht, meva-sabzavot, non
             </div>
           </div>
 
@@ -1187,7 +1265,7 @@
   </div>
 
   <!-- ==========================================================================
-       JAVASCRIPT: ISHONCHLI VA XATOSIZ TUGMALAR LOGIKASI
+       JAVASCRIPT: TO'LIQ KATEGORIYALAR TIZIMI VA SAQLASH
        ========================================================================== -->
   <script>
     // 1. Telegram WebApp SDK-ni xavfsiz boshlash
@@ -1217,9 +1295,7 @@
             tg.HapticFeedback.impactOccurred(type);
           }
         }
-      } catch (e) {
-        // Haptic xatolik bo'lsa dastur to'xtab qolmaydi
-      }
+      } catch (e) {}
     }
 
     // Foydalanuvchi ma'lumotlari
@@ -1234,17 +1310,98 @@
       }
     } catch (e) {}
 
-    // Kategoriyalar
+    // ==========================================================================
+    // TO'LIQ 13 TA KATEGORIYA METAMA'LUMOTLARI
+    // ==========================================================================
     const CATEGORY_META = {
-      'Oziq-ovqat': { icon: '🍔', bg: '#ffe8d6', label: 'Oziq-ovqat' },
-      'Kommunal':   { icon: '💡', bg: '#e0f2fe', label: 'Kommunal' },
-      'Transport':  { icon: '🚗', bg: '#e0e7ff', label: 'Transport' },
-      'Sog‘liq/Dori':{ icon: '💊', bg: '#fce7f3', label: 'Sog‘liq' },
-      'Ta\'lim':    { icon: '📚', bg: '#fef3c7', label: 'Ta\'lim' },
-      'Boshqa':     { icon: '✨', bg: '#dcfce7', label: 'Boshqa' }
+      'Oziq-ovqat': {
+        icon: '🍔',
+        bg: '#ffe8d6',
+        label: 'Oziq-ovqat va bozorlik',
+        desc: 'Supermarket, bozorlik, go‘sht, meva-sabzavot, non'
+      },
+      'Kommunal': {
+        icon: '💡',
+        bg: '#e0f2fe',
+        label: 'Kommunal xizmatlar',
+        desc: 'Gaz, elektr energiyasi, sovuq/issiq suv, chiqindi, isitish'
+      },
+      'Aloqa va internet': {
+        icon: '🌐',
+        bg: '#e0e7ff',
+        label: 'Aloqa va internet',
+        desc: 'Uy interneti, mobil tariflar, YouTube, Telegram Premium obunalar'
+      },
+      'Transport': {
+        icon: '🚗',
+        bg: '#ede9fe',
+        label: 'Transport va avto',
+        desc: 'Benzin, moy, texnik xizmat, avtoyuvish, jarimalar, taksi'
+      },
+      'Ta\'lim': {
+        icon: '📚',
+        bg: '#fef3c7',
+        label: 'Ta\'lim va to‘garaklar',
+        desc: 'Maktab, bog‘cha to‘lovlari, repetitorlar, o‘quv kurslari, qurollar'
+      },
+      'Sog‘liq': {
+        icon: '💊',
+        bg: '#fce7f3',
+        label: 'Sog‘liqni saqlash',
+        desc: 'Dorixona, shifokor ko‘rigi, tish davolatish, vitaminlar'
+      },
+      'Bolalar': {
+        icon: '👶',
+        bg: '#ffedd5',
+        label: 'Bolalar xarajatlari',
+        desc: 'Tagliklar (pampers), bolalar ovqati, o‘yinchoqlar'
+      },
+      'Xobbi va sport': {
+        icon: '⚽',
+        bg: '#dcfce7',
+        label: 'Xobbi va sport',
+        desc: 'Fitnes zali, sport anjomlari, kitoblar, sevimli mashg‘ulotlar'
+      },
+      'Dam olish': {
+        icon: '☕',
+        bg: '#fef08a',
+        label: 'Ko‘ngilochar va dam olish',
+        desc: 'Kafelar, kinoteatr, istirohat bog‘lari, oilaviy sayrlar'
+      },
+      'Kiyim va parvarish': {
+        icon: '👕',
+        bg: '#fae8ff',
+        label: 'Kiyim va shaxsiy parvarish',
+        desc: 'Mavsumiy kiyimlar, poyabzal, sartaroshxona, kosmetika'
+      },
+      'To‘y va sovg‘alar': {
+        icon: '🎁',
+        bg: '#ffe4e6',
+        label: 'To‘y-ma‘raka va sovg‘alar',
+        desc: 'To‘ylar, tug‘ilgan kunlar, qarindoshlar yo‘qlovi, ehsonlar'
+      },
+      'Ta‘mirlash': {
+        icon: '🔧',
+        bg: '#f1f5f9',
+        label: 'Kutilmagan / Ta‘mirlash',
+        desc: 'Uy anjomlari, maishiy texnika buzilganda tuzatish xarajatlari'
+      },
+      'Boshqa': {
+        icon: '✨',
+        bg: '#ccfbf1',
+        label: 'Boshqa xarajatlar',
+        desc: 'Mayda va tasniflanmagan boshqa kundalik sarflar'
+      }
     };
 
-    const STORAGE_KEY = 'oila_expenses_mobile_tabs_v1';
+    // Moslashtiruvchi yordamchi (Eski va yangi nomlarni moslashtirish)
+    function getCategoryInfo(catName) {
+      if (CATEGORY_META[catName]) return CATEGORY_META[catName];
+      if (catName === 'Sog‘liq/Dori') return CATEGORY_META['Sog‘liq'];
+      return CATEGORY_META['Boshqa'];
+    }
+
+    const STORAGE_KEY = 'oila_expenses_mobile_tabs_v2';
 
     function getFormattedDate(daysAgo = 0) {
       const d = new Date();
@@ -1255,38 +1412,71 @@
       return `${year}-${month}-${day}`;
     }
 
+    // Namunaviy to'liq xarajatlar
     const DEFAULT_EXPENSES = [
       {
         id: '1',
-        title: 'Food / Oziq-ovqat xaridi',
-        subtitle: 'Bozorlik va supermarket',
-        amount: 350000,
+        title: 'Haftalik bozorlik',
+        subtitle: 'Go‘sht, meva-sabzavot, un va non',
+        amount: 380000,
         category: 'Oziq-ovqat',
         dateStr: getFormattedDate(0)
       },
       {
         id: '2',
         title: 'Kommunal to‘lovlar',
-        subtitle: 'Elektr energiyasi va gaz',
-        amount: 140000,
+        subtitle: 'Elektr energiyasi va tabiiy gaz',
+        amount: 145000,
         category: 'Kommunal',
-        dateStr: getFormattedDate(1)
+        dateStr: getFormattedDate(0)
       },
       {
         id: '3',
-        title: 'Benzin quyish',
-        subtitle: 'Avtomobil uchun AI-95',
-        amount: 200000,
+        title: 'Fitnes zali oylik obuna',
+        subtitle: 'Sport mashg‘ulotlari uchun',
+        amount: 250000,
+        category: 'Xobbi va sport',
+        dateStr: getFormattedDate(1)
+      },
+      {
+        id: '4',
+        title: 'Uy interneti va mobil tarif',
+        subtitle: 'Optik internet + Telegram obuna',
+        amount: 120000,
+        category: 'Aloqa va internet',
+        dateStr: getFormattedDate(1)
+      },
+      {
+        id: '5',
+        title: 'Benzin quyish va moy almashtirish',
+        subtitle: 'Avtomobil uchun AI-95 va moy',
+        amount: 260000,
         category: 'Transport',
         dateStr: getFormattedDate(2)
       },
       {
-        id: '4',
-        title: 'Dorixona xaridi',
-        subtitle: 'Dori-darmon va vitaminlar',
-        amount: 85000,
-        category: 'Sog‘liq/Dori',
+        id: '6',
+        title: 'Maktab to‘garagi va darsliklar',
+        subtitle: 'Ingliz tili repetitori uchun',
+        amount: 300000,
+        category: 'Ta\'lim',
+        dateStr: getFormattedDate(2)
+      },
+      {
+        id: '7',
+        title: 'Tagliklar va bolalar ovqati',
+        subtitle: 'Kichkintoy uchun pampers va pyure',
+        amount: 190000,
+        category: 'Bolalar',
         dateStr: getFormattedDate(3)
+      },
+      {
+        id: '8',
+        title: 'Tish davolatish va dorixona',
+        subtitle: 'Stomatolog qabuli va vitaminlar',
+        amount: 210000,
+        category: 'Sog‘liq',
+        dateStr: getFormattedDate(4)
       }
     ];
 
@@ -1322,19 +1512,20 @@
     const inpAmount = document.getElementById('inpAmount');
     const inpDate = document.getElementById('inpDate');
     const catGridSelector = document.getElementById('catGridSelector');
+    const catHintText = document.getElementById('catHintText');
     
     const btnSeeAllHistory = document.getElementById('btnSeeAllHistory');
     const btnClearAllHistory = document.getElementById('btnClearAllHistory');
     const btnRestoreSample = document.getElementById('btnRestoreSample');
     const btnClearAllSettings = document.getElementById('btnClearAllSettings');
 
-    // Storage: 100% xavfsiz va xatoliklardan himoyalangan
+    // Storage
     function loadStorage() {
       try {
-        const saved = localStorage.getItem(STORAGE_KEY);
+        const saved = localStorage.getItem(STORAGE_KEY) || localStorage.getItem('oila_expenses_mobile_tabs_v1');
         if (saved) {
           const parsed = JSON.parse(saved);
-          if (Array.isArray(parsed)) return parsed;
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
         }
       } catch (e) {
         console.warn("Storage o'qishda ogohlantirish:", e);
@@ -1347,13 +1538,10 @@
         const jsonStr = JSON.stringify(expenses);
         localStorage.setItem(STORAGE_KEY, jsonStr);
 
-        // Telegram CloudStorage-ga xavfsiz murojaat
         if (tg?.CloudStorage?.setItem) {
           try {
             tg.CloudStorage.setItem(STORAGE_KEY, jsonStr, () => {});
-          } catch (cloudErr) {
-            // CloudStorage qo'llab-quvvatlanmasa xato bermaydi
-          }
+          } catch (cloudErr) {}
         }
       } catch (e) {
         console.error("Storage yozishda xatolik:", e);
@@ -1387,10 +1575,14 @@
       const todayStr = getFormattedDate(0);
 
       return expenses.filter(item => {
-        if (currentCategoryFilter !== 'all' && item.category !== currentCategoryFilter) {
-          return false;
+        // Kategoriya filtri
+        if (currentCategoryFilter !== 'all') {
+          if (item.category !== currentCategoryFilter && !(currentCategoryFilter === 'Sog‘liq' && item.category === 'Sog‘liq/Dori')) {
+            return false;
+          }
         }
 
+        // Davr filtri
         if (currentPeriod === 'today') {
           return item.dateStr === todayStr;
         } else if (currentPeriod === 'week') {
@@ -1409,7 +1601,7 @@
     }
 
     // ==========================================================================
-    // RENDER FUNKSIYASI
+    // RENDER FUNKSIYALARI
     // ==========================================================================
     function render() {
       try {
@@ -1459,7 +1651,7 @@
       if (homeEmptyState) homeEmptyState.style.display = 'none';
 
       items.forEach(item => {
-        const meta = CATEGORY_META[item.category] || CATEGORY_META['Boshqa'];
+        const meta = getCategoryInfo(item.category);
         const rowEl = document.createElement('div');
         rowEl.className = 'tx-item';
         rowEl.innerHTML = `
@@ -1522,7 +1714,7 @@
         groupEl.appendChild(headerEl);
 
         grouped[dateKey].forEach(item => {
-          const meta = CATEGORY_META[item.category] || CATEGORY_META['Boshqa'];
+          const meta = getCategoryInfo(item.category);
           const rowEl = document.createElement('div');
           rowEl.className = 'tx-item';
           rowEl.innerHTML = `
@@ -1532,7 +1724,7 @@
               </div>
               <div class="tx-details">
                 <span class="tx-title">${escapeHtml(item.title)}</span>
-                <span class="tx-meta">${escapeHtml(item.subtitle || item.category)}</span>
+                <span class="tx-meta">${escapeHtml(item.subtitle || meta.label)}</span>
               </div>
             </div>
             <div class="tx-right">
@@ -1568,23 +1760,34 @@
       Object.keys(CATEGORY_META).forEach(cat => catSums[cat] = 0);
 
       expenses.forEach(it => {
-        if (catSums[it.category] !== undefined) {
-          catSums[it.category] += Number(it.amount);
+        const catKey = it.category === 'Sog‘liq/Dori' ? 'Sog‘liq' : it.category;
+        if (catSums[catKey] !== undefined) {
+          catSums[catKey] += Number(it.amount);
         } else {
           catSums['Boshqa'] += Number(it.amount);
         }
       });
 
+      // Eng katta toifani aniqlash
       let maxCat = 'Oziq-ovqat';
       let maxSum = -1;
 
-      Object.entries(catSums).forEach(([cat, sum]) => {
-        if (sum > maxSum) {
-          maxSum = sum;
-          maxCat = cat;
-        }
+      // Xarajat mavjud bo'lgan toifalarni saralash (eng kattasi tepada)
+      const sortedCats = Object.entries(catSums)
+        .filter(([_, sum]) => sum > 0)
+        .sort((a, b) => b[1] - a[1]);
+
+      if (sortedCats.length === 0) {
+        analyticsBarsList.innerHTML = '<div style="color: var(--text-muted); text-align: center; padding: 16px;">Hozircha xarajatlar kiritilmagan</div>';
+        return;
+      }
+
+      maxCat = sortedCats[0][0];
+      maxSum = sortedCats[0][1];
+
+      sortedCats.forEach(([cat, sum]) => {
         const percent = Math.round((sum / totalAll) * 100);
-        const meta = CATEGORY_META[cat] || CATEGORY_META['Boshqa'];
+        const meta = getCategoryInfo(cat);
 
         const row = document.createElement('div');
         row.className = 'stat-row';
@@ -1592,7 +1795,7 @@
           <div class="stat-row-top">
             <div class="stat-cat-left">
               <span>${meta.icon}</span>
-              <span>${cat}</span>
+              <span>${meta.label}</span>
             </div>
             <div>
               <span style="font-weight: 700;">${formatNumber(sum)} so‘m</span>
@@ -1606,9 +1809,9 @@
         analyticsBarsList.appendChild(row);
       });
 
-      const topMeta = CATEGORY_META[maxCat] || CATEGORY_META['Boshqa'];
+      const topMeta = getCategoryInfo(maxCat);
       if (topCatIcon) topCatIcon.textContent = topMeta.icon;
-      if (topCatName) topCatName.textContent = maxCat;
+      if (topCatName) topCatName.textContent = topMeta.label;
       if (topCatSum) topCatSum.textContent = `${formatNumber(maxSum)} so‘m`;
     }
 
@@ -1625,29 +1828,24 @@
     function switchTab(targetTabId) {
       triggerHaptic('light');
 
-      // Barcha sahifalarni yashirish
       document.querySelectorAll('.app-screen').forEach(screen => {
         screen.classList.remove('active');
       });
 
-      // Tanlangan sahifani faollashtirish
       const activeScreen = document.getElementById(targetTabId);
       if (activeScreen) {
         activeScreen.classList.add('active');
       }
 
-      // Pastki navigatsiya tugmalarini yangilash
       document.querySelectorAll('.nav-btn').forEach(btn => {
         const isMatch = btn.getAttribute('data-tab') === targetTabId;
         btn.classList.toggle('active', isMatch);
       });
 
-      // Skrollni boshiga qaytarish
       const viewport = document.querySelector('.page-viewport');
       if (viewport) viewport.scrollTop = 0;
     }
 
-    // Pastki tugmalar bosilishi
     document.querySelectorAll('.nav-btn').forEach(btn => {
       btn.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1656,7 +1854,6 @@
       });
     });
 
-    // "Barchasi ➔" tugmasi
     if (btnSeeAllHistory) {
       btnSeeAllHistory.addEventListener('click', (e) => {
         e.preventDefault();
@@ -1711,7 +1908,7 @@
     if (fullTxContainer) fullTxContainer.addEventListener('click', handleDelete);
 
     // ==========================================================================
-    // MODAL FORMA VA XARAJAT QO'SHISH (100% ISHONCHLI)
+    // MODAL FORMA VA XARAJAT QO'SHISH
     // ==========================================================================
     function openModal() {
       triggerHaptic('medium');
@@ -1728,7 +1925,6 @@
     if (btnOpenAddModal) btnOpenAddModal.addEventListener('click', openModal);
     if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
 
-    // Orqa fon bosilganda yopish
     if (addExpenseModal) {
       addExpenseModal.addEventListener('click', (e) => {
         if (e.target === addExpenseModal) {
@@ -1737,14 +1933,13 @@
       });
     }
 
-    // ESC tugmasi bosilganda yopish
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape' && addExpenseModal?.classList.contains('open')) {
         closeModal();
       }
     });
 
-    // Modal ichida kategoriya tanlash
+    // Modal ichida kategoriya tanlash va izohini yangilash
     if (catGridSelector) {
       catGridSelector.addEventListener('click', (e) => {
         const item = e.target.closest('.cat-choice-item');
@@ -1752,7 +1947,14 @@
         triggerHaptic('light');
         document.querySelectorAll('.cat-choice-item').forEach(el => el.classList.remove('selected'));
         item.classList.add('selected');
+        
         selectedCategoryInModal = item.getAttribute('data-value') || 'Oziq-ovqat';
+        
+        // Tanlangan toifaga mos namuna tavsifini yangilash
+        const meta = getCategoryInfo(selectedCategoryInModal);
+        if (catHintText) {
+          catHintText.textContent = meta.desc || meta.label;
+        }
       });
     }
 
@@ -1767,7 +1969,7 @@
       });
     });
 
-    // Xarajatni saqlash formasi
+    // Xarajatni saqlash
     if (newExpenseForm) {
       newExpenseForm.addEventListener('submit', (e) => {
         e.preventDefault();
@@ -1788,22 +1990,22 @@
           return;
         }
 
+        const meta = getCategoryInfo(selectedCategoryInModal);
+
         const newRecord = {
           id: Date.now().toString(),
           title: title,
-          subtitle: selectedCategoryInModal,
+          subtitle: meta.label,
           amount: amount,
           category: selectedCategoryInModal,
           dateStr: dateVal
         };
 
-        // Yangi xarajatni ro'yxat boshiga qo'shish
         expenses.unshift(newRecord);
         saveStorage();
         triggerHaptic('success');
         render();
 
-        // Formani tozalash va modalni yopish
         if (inpTitle) inpTitle.value = '';
         if (inpAmount) inpAmount.value = '';
         closeModal();
@@ -1826,7 +2028,7 @@
     if (btnRestoreSample) {
       btnRestoreSample.addEventListener('click', () => {
         triggerHaptic('light');
-        if (confirm('Namunaviy ma\'lumotlarni qayta tiklaysizmi?')) {
+        if (confirm('Barcha toifalarga oid namunaviy ma\'lumotlarni yuklaysizmi?')) {
           expenses = [...DEFAULT_EXPENSES];
           saveStorage();
           render();
