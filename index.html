@@ -415,6 +415,13 @@
       justify-content: space-between;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
       border: 1px solid rgba(227, 232, 222, 0.7);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .tx-item:active {
+      background-color: #f7faf7;
+      transform: scale(0.995);
     }
 
     .tx-left {
@@ -422,6 +429,7 @@
       align-items: center;
       gap: 12px;
       min-width: 0;
+      flex: 1;
     }
 
     .tx-icon-box {
@@ -462,7 +470,7 @@
     .tx-right {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 8px;
       flex-shrink: 0;
       margin-left: 10px;
     }
@@ -478,6 +486,26 @@
       font-size: 0.76rem;
       font-weight: 600;
       color: var(--text-muted);
+    }
+
+    .btn-tx-edit {
+      background: none;
+      border: none;
+      color: #6b7280;
+      cursor: pointer;
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      transition: all 0.15s ease;
+    }
+
+    .btn-tx-edit:active {
+      color: var(--forest-dark);
+      background-color: #e8f3ec;
     }
 
     .btn-tx-delete {
@@ -500,6 +528,27 @@
       background-color: var(--danger-bg);
     }
 
+    .btn-delete-expense-modal {
+      flex: 1;
+      height: 48px;
+      background-color: #fef2f2;
+      color: var(--danger);
+      border: 1px solid #fecaca;
+      border-radius: var(--radius-md);
+      font-size: 0.88rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: all 0.15s ease;
+    }
+
+    .btn-delete-expense-modal:active {
+      background-color: #fee2e2;
+    }
+
     .empty-state-card {
       background-color: var(--bg-card);
       border-radius: var(--radius-lg);
@@ -507,6 +556,122 @@
       text-align: center;
       border: 1px dashed var(--border-subtle);
       color: var(--text-muted);
+    }
+
+    /* Asosiy ekranda katta Tezkor Qo'shish tugmasi */
+    .btn-home-quick-add {
+      width: 100%;
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #1a422f 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-lg);
+      padding: 13px 16px;
+      margin-top: 14px;
+      margin-bottom: 6px;
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      cursor: pointer;
+      box-shadow: 0 6px 18px rgba(20, 51, 36, 0.16);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .btn-home-quick-add:active {
+      transform: scale(0.985);
+      box-shadow: 0 2px 8px rgba(20, 51, 36, 0.12);
+    }
+
+    .btn-quick-add-icon {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background-color: var(--lime-accent);
+      color: var(--forest-dark);
+      font-size: 1.8rem;
+      font-weight: 300;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      line-height: 1;
+    }
+
+    .btn-quick-add-text {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      flex: 1;
+      gap: 2px;
+    }
+
+    .btn-quick-add-title {
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #ffffff;
+      letter-spacing: -0.2px;
+    }
+
+    .btn-quick-add-sub {
+      font-size: 0.74rem;
+      color: #b8d4c3;
+    }
+
+    .btn-quick-add-arrow {
+      font-size: 1rem;
+      color: var(--lime-accent);
+      font-weight: 700;
+    }
+
+    /* Qidiruv qutisi (Search box) */
+    .search-box-wrapper {
+      position: relative;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+    }
+
+    .search-icon {
+      position: absolute;
+      left: 14px;
+      font-size: 0.95rem;
+      color: #8b998e;
+      pointer-events: none;
+    }
+
+    .search-input {
+      width: 100%;
+      height: 44px;
+      padding: 0 38px 0 40px;
+      border-radius: var(--radius-pill);
+      border: 1px solid var(--border-subtle);
+      background-color: #ffffff;
+      font-size: 0.88rem;
+      font-family: inherit;
+      color: var(--text-main);
+      outline: none;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+    }
+
+    .search-input:focus {
+      border-color: var(--forest-dark);
+      box-shadow: 0 0 0 3px rgba(20, 51, 36, 0.08);
+    }
+
+    .btn-clear-search {
+      position: absolute;
+      right: 12px;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      border: none;
+      background: #e2e8f0;
+      color: #64748b;
+      font-size: 0.75rem;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
     }
 
     /* ==========================================================================
@@ -1158,6 +1323,16 @@
           </div>
         </div>
 
+        <!-- Asosiy ekranda katta Tezkor qo'shish tugmasi -->
+        <button type="button" class="btn-home-quick-add" id="btnHomeQuickAdd">
+          <span class="btn-quick-add-icon">+</span>
+          <div class="btn-quick-add-text">
+            <span class="btn-quick-add-title">Tezkor xarajat kiritish</span>
+            <span class="btn-quick-add-sub">Summa va bir qatorli izohni yozish</span>
+          </div>
+          <span class="btn-quick-add-arrow">➔</span>
+        </button>
+
         <!-- So'nggi xarajatlar qismi -->
         <div class="section-header">
           <h2 class="section-title">So‘nggi xarajatlar</h2>
@@ -1175,7 +1350,7 @@
         <div class="empty-state-card" id="homeEmptyState" style="display: none;">
           <div style="font-size: 2rem; margin-bottom: 6px;">🌱</div>
           <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Hozircha xarajat yo‘q</div>
-          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Pastdagi sariq "+" tugmasi bilan xarajat qo‘shing</div>
+          <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">Tepada yoki pastdagi "+" tugmasi bilan xarajat qo‘shing</div>
         </div>
 
       </section>
@@ -1189,6 +1364,19 @@
         <div class="section-header" style="margin-top: 4px;">
           <h2 class="section-title" style="font-size: 1.15rem;">Xarajatlar tarixi</h2>
           <button type="button" class="section-action-btn" style="color: var(--danger);" id="btnClearAllHistory">Barchasini tozalash</button>
+        </div>
+
+        <!-- Izohlar va nomlar bo'yicha qidiruv maydoni -->
+        <div class="search-box-wrapper">
+          <span class="search-icon">🔍</span>
+          <input 
+            type="text" 
+            id="inpSearchHistory" 
+            class="search-input" 
+            placeholder="Izoh bo‘yicha qidirish (masalan: kraskalar)..." 
+            autocomplete="off"
+          />
+          <button type="button" class="btn-clear-search" id="btnClearSearch" title="Tozalash" style="display: none;">✕</button>
         </div>
 
         <!-- Kategoriya chip filtrlari (JS orqali dinamik to'ldiriladi) -->
@@ -1358,32 +1546,24 @@
       <div class="modal-sheet">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
-          <span class="sheet-title">Yangi xarajat</span>
+          <span class="sheet-title" id="expenseModalTitle">Yangi xarajat</span>
           <button type="button" class="btn-close-sheet" id="btnCloseModal" title="Yopish">✕</button>
         </div>
 
         <form id="newExpenseForm" class="sheet-form">
-          <div class="form-field">
-            <label for="inpTitle">Xarajat nomi / tavsifi</label>
-            <input 
-              type="text" 
-              id="inpTitle" 
-              class="form-input" 
-              placeholder="Masalan: Bozorlik, Fitnes, Svet to‘lovi..." 
-              required 
-              autocomplete="off"
-            />
-          </div>
+          <input type="hidden" id="editExpenseId" value="" />
 
+          <!-- 1. BIRINCHI BO'LIB SUMMA -->
           <div class="form-field">
             <label for="inpAmount">Summa (so‘mda)</label>
             <input 
               type="number" 
               id="inpAmount" 
               class="form-input" 
-              placeholder="100 000" 
+              placeholder="Masalan: 50 000" 
               min="1" 
               required
+              style="font-size: 1.25rem; font-weight: 800; color: var(--forest-dark);"
             />
             <div class="quick-amounts">
               <button type="button" class="btn-quick-sum" data-add="10000">+10 ming</button>
@@ -1393,6 +1573,20 @@
             </div>
           </div>
 
+          <!-- 2. IKKINCHI BO'LIB BIR QATORLI IZOH -->
+          <div class="form-field">
+            <label for="inpTitle">Bir qatorli izoh / Xarajat nomi</label>
+            <input 
+              type="text" 
+              id="inpTitle" 
+              class="form-input" 
+              placeholder="Masalan: Kraskalar, Tushlik, Benzin..." 
+              required 
+              autocomplete="off"
+            />
+          </div>
+
+          <!-- 3. KATEGORIYA -->
           <div class="form-field">
             <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
               <label style="margin-bottom: 0;">Kategoriya tanlang</label>
@@ -1410,14 +1604,21 @@
             </div>
           </div>
 
+          <!-- 4. SANA -->
           <div class="form-field">
             <label for="inpDate">Sana</label>
             <input type="date" id="inpDate" class="form-input" />
           </div>
 
-          <button type="submit" class="btn-save-expense" id="btnSubmitExpense">
-            <span>✓</span> Saqlash
-          </button>
+          <!-- TUGMALAR -->
+          <div style="display: flex; gap: 8px; margin-top: 6px;">
+            <button type="button" class="btn-delete-expense-modal" id="btnDeleteFromModal" style="display: none;">
+              🗑️ O‘chirish
+            </button>
+            <button type="submit" class="btn-save-expense" id="btnSubmitExpense" style="flex: 2; margin-top: 0;">
+              <span>✓</span> Saqlash
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -1847,6 +2048,7 @@
     let currentPeriod = 'today';
     let currentCategoryFilter = 'all';
     let selectedCategoryInModal = 'Oziq-ovqat';
+    let searchQuery = '';
 
     // DOM Elementlari
     const heroTotalDisplay = document.getElementById('heroTotalDisplay');
@@ -1865,17 +2067,25 @@
     const topCatName = document.getElementById('topCatName');
     const topCatSum = document.getElementById('topCatSum');
 
-    // Modallar
+    // Modallar va forma elementlari
     const addExpenseModal = document.getElementById('addExpenseModal');
+    const expenseModalTitle = document.getElementById('expenseModalTitle');
     const btnOpenAddModal = document.getElementById('btnOpenAddModal');
+    const btnHomeQuickAdd = document.getElementById('btnHomeQuickAdd');
     const btnCloseModal = document.getElementById('btnCloseModal');
     const newExpenseForm = document.getElementById('newExpenseForm');
+    const editExpenseId = document.getElementById('editExpenseId');
     const inpTitle = document.getElementById('inpTitle');
     const inpAmount = document.getElementById('inpAmount');
     const inpDate = document.getElementById('inpDate');
     const catGridSelector = document.getElementById('catGridSelector');
     const catHintText = document.getElementById('catHintText');
+    const btnSubmitExpense = document.getElementById('btnSubmitExpense');
+    const btnDeleteFromModal = document.getElementById('btnDeleteFromModal');
     
+    // Qidiruv va filtrlar
+    const inpSearchHistory = document.getElementById('inpSearchHistory');
+    const btnClearSearch = document.getElementById('btnClearSearch');
     const btnSeeAllHistory = document.getElementById('btnSeeAllHistory');
     const btnClearAllHistory = document.getElementById('btnClearAllHistory');
     const btnRestoreSample = document.getElementById('btnRestoreSample');
@@ -1962,14 +2172,26 @@
       const todayStr = getFormattedDate(0);
 
       return expenses.filter(item => {
-        // Kategoriya filtri
+        // 1. Qidiruv filtri (Izoh, nom, toifa yoki summa bo'yicha)
+        if (searchQuery) {
+          const q = searchQuery.toLowerCase().trim();
+          const matchTitle = (item.title || '').toLowerCase().includes(q);
+          const matchSubtitle = (item.subtitle || '').toLowerCase().includes(q);
+          const matchCat = (item.category || '').toLowerCase().includes(q);
+          const matchAmount = (item.amount || '').toString().includes(q);
+          if (!matchTitle && !matchSubtitle && !matchCat && !matchAmount) {
+            return false;
+          }
+        }
+
+        // 2. Kategoriya filtri
         if (currentCategoryFilter !== 'all') {
           if (item.category !== currentCategoryFilter && !(currentCategoryFilter === 'Sog‘liq' && item.category === 'Sog‘liq/Dori')) {
             return false;
           }
         }
 
-        // Davr filtri
+        // 3. Davr filtri
         if (currentPeriod === 'today') {
           return item.dateStr === todayStr;
         } else if (currentPeriod === 'week') {
@@ -2041,6 +2263,7 @@
         const meta = getCategoryInfo(item.category);
         const rowEl = document.createElement('div');
         rowEl.className = 'tx-item';
+        rowEl.setAttribute('data-id', item.id);
         rowEl.innerHTML = `
           <div class="tx-left">
             <div class="tx-icon-box" style="background-color: ${meta.bg};">
@@ -2056,6 +2279,7 @@
               <span class="tx-amount">${formatNumber(item.amount)}</span>
               <span class="tx-amount-currency">so‘m</span>
             </div>
+            <button type="button" class="btn-tx-edit" data-id="${item.id}" title="Tahrirlash">✏️</button>
             <button type="button" class="btn-tx-delete" data-id="${item.id}" title="O‘chirish">✕</button>
           </div>
         `;
@@ -2069,7 +2293,32 @@
       fullTxContainer.innerHTML = '';
 
       if (items.length === 0) {
-        if (historyEmptyState) historyEmptyState.style.display = 'block';
+        if (historyEmptyState) {
+          historyEmptyState.style.display = 'block';
+          if (searchQuery) {
+            historyEmptyState.innerHTML = `
+              <div style="font-size: 2rem; margin-bottom: 6px;">🔍</div>
+              <div style="font-size: 0.95rem; font-weight: 700; color: var(--text-main);">Xarajat topilmadi</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted); margin-top: 3px;">"${escapeHtml(searchQuery)}" bo‘yicha hech qanday xarajat topilmadi</div>
+              <button type="button" id="btnResetSearchState" style="margin-top: 10px; padding: 6px 14px; background: #eef3ef; border: 1px solid var(--border-subtle); border-radius: var(--radius-pill); font-size: 0.75rem; font-weight: 700; cursor: pointer; color: var(--forest-dark);">Qidiruvni tozalash</button>
+            `;
+            const resetBtn = document.getElementById('btnResetSearchState');
+            if (resetBtn) {
+              resetBtn.addEventListener('click', () => {
+                searchQuery = '';
+                if (inpSearchHistory) inpSearchHistory.value = '';
+                if (btnClearSearch) btnClearSearch.style.display = 'none';
+                render();
+              });
+            }
+          } else {
+            historyEmptyState.innerHTML = `
+              <div style="font-size: 2rem; margin-bottom: 6px;">🔍</div>
+              <div style="font-size: 0.9rem; font-weight: 700; color: var(--text-main);">Xarajat topilmadi</div>
+              <div style="font-size: 0.78rem; color: var(--text-muted);">Ushbu toifada hech qanday qayd yo‘q</div>
+            `;
+          }
+        }
         return;
       }
       if (historyEmptyState) historyEmptyState.style.display = 'none';
@@ -2104,6 +2353,7 @@
           const meta = getCategoryInfo(item.category);
           const rowEl = document.createElement('div');
           rowEl.className = 'tx-item';
+          rowEl.setAttribute('data-id', item.id);
           rowEl.innerHTML = `
             <div class="tx-left">
               <div class="tx-icon-box" style="background-color: ${meta.bg};">
@@ -2119,6 +2369,7 @@
                 <span class="tx-amount">${formatNumber(item.amount)}</span>
                 <span class="tx-amount-currency">so‘m</span>
               </div>
+              <button type="button" class="btn-tx-edit" data-id="${item.id}" title="Tahrirlash">✏️</button>
               <button type="button" class="btn-tx-delete" data-id="${item.id}" title="O‘chirish">✕</button>
             </div>
           `;
@@ -2632,44 +2883,147 @@
     }
 
     // ==========================================================================
-    // O'CHIRISH TUGMALARI (EVENT DELEGATION)
+    // TRANSAKSIYALARNI BOSISH (TAHRIRLASH VA O'CHIRISH)
     // ==========================================================================
-    function handleDelete(e) {
+    function handleTransactionClick(e) {
+      // 1. O'chirish tugmasi bosilgan bo'lsa (✕)
       const delBtn = e.target.closest('.btn-tx-delete');
-      if (!delBtn) return;
-      e.preventDefault();
-      e.stopPropagation();
-      triggerHaptic('warning');
+      if (delBtn) {
+        e.preventDefault();
+        e.stopPropagation();
+        triggerHaptic('warning');
+        const id = delBtn.getAttribute('data-id');
+        if (id) {
+          const exp = expenses.find(x => x.id === id);
+          const expTitle = exp ? `"${exp.title}"` : 'ushbu xarajatni';
+          if (confirm(`${expTitle} o‘chirmoqchimisiz?`)) {
+            expenses = expenses.filter(item => item.id !== id);
+            saveStorage();
+            render();
+          }
+        }
+        return;
+      }
 
-      const id = delBtn.getAttribute('data-id');
-      if (id) {
-        expenses = expenses.filter(item => item.id !== id);
-        saveStorage();
-        render();
+      // 2. Qalamcha ✏️ bosilganda yoki butun kartochka ustiga bosilganda (Tahrirlash)
+      const editBtn = e.target.closest('.btn-tx-edit');
+      const txItem = e.target.closest('.tx-item');
+
+      if (editBtn || txItem) {
+        e.preventDefault();
+        const id = (editBtn || txItem).getAttribute('data-id');
+        if (id) {
+          openEditModal(id);
+        }
       }
     }
 
-    if (recentTxContainer) recentTxContainer.addEventListener('click', handleDelete);
-    if (fullTxContainer) fullTxContainer.addEventListener('click', handleDelete);
+    if (recentTxContainer) recentTxContainer.addEventListener('click', handleTransactionClick);
+    if (fullTxContainer) fullTxContainer.addEventListener('click', handleTransactionClick);
 
     // ==========================================================================
-    // MODAL FORMA VA XARAJAT QO'SHISH
+    // QIDIRUV (SEARCH) ISHLOVCHILARI
     // ==========================================================================
-    function openModal() {
+    if (inpSearchHistory) {
+      inpSearchHistory.addEventListener('input', (e) => {
+        searchQuery = (e.target.value || '').trim();
+        if (btnClearSearch) {
+          btnClearSearch.style.display = searchQuery ? 'flex' : 'none';
+        }
+        render();
+      });
+    }
+
+    if (btnClearSearch) {
+      btnClearSearch.addEventListener('click', () => {
+        searchQuery = '';
+        if (inpSearchHistory) {
+          inpSearchHistory.value = '';
+          inpSearchHistory.focus();
+        }
+        btnClearSearch.style.display = 'none';
+        render();
+      });
+    }
+
+    // ==========================================================================
+    // MODAL FORMA: TEZKOR QO'SHISH VA TAHRIRLASH
+    // ==========================================================================
+    // 1. Yangi xarajat qo'shish rejimi
+    function openAddModal() {
       triggerHaptic('medium');
+      if (editExpenseId) editExpenseId.value = '';
+      if (expenseModalTitle) expenseModalTitle.textContent = 'Yangi xarajat';
+      if (btnSubmitExpense) btnSubmitExpense.innerHTML = '<span>✓</span> Saqlash';
+      if (btnDeleteFromModal) btnDeleteFromModal.style.display = 'none';
+
+      if (inpAmount) inpAmount.value = '';
+      if (inpTitle) inpTitle.value = '';
       if (inpDate) inpDate.value = getFormattedDate(0);
+
+      if (userCategories.length > 0 && !userCategories.some(c => c.name === selectedCategoryInModal)) {
+        selectedCategoryInModal = userCategories[0].name;
+      }
       renderCategorySelectors();
+
       if (addExpenseModal) addExpenseModal.classList.add('open');
-      if (inpTitle) inpTitle.focus();
+      // Birinchi bo'lib summaga fokus berish
+      setTimeout(() => {
+        if (inpAmount) inpAmount.focus();
+      }, 100);
+    }
+
+    // 2. Kartochkani bosib tahrirlash rejimi
+    function openEditModal(expenseId) {
+      triggerHaptic('medium');
+      const exp = expenses.find(e => e.id === expenseId);
+      if (!exp) return;
+
+      if (editExpenseId) editExpenseId.value = exp.id;
+      if (expenseModalTitle) expenseModalTitle.textContent = 'Xarajatni tahrirlash';
+      if (btnSubmitExpense) btnSubmitExpense.innerHTML = '<span>✓</span> O‘zgarishlarni saqlash';
+      if (btnDeleteFromModal) btnDeleteFromModal.style.display = 'flex';
+
+      if (inpAmount) inpAmount.value = exp.amount || '';
+      if (inpTitle) inpTitle.value = exp.title || '';
+      if (inpDate) inpDate.value = exp.dateStr || getFormattedDate(0);
+
+      selectedCategoryInModal = exp.category || 'Oziq-ovqat';
+      renderCategorySelectors();
+
+      if (addExpenseModal) addExpenseModal.classList.add('open');
+      // Summani tahrirlash uchun fokus
+      setTimeout(() => {
+        if (inpAmount) inpAmount.focus();
+      }, 100);
     }
 
     function closeModal() {
       triggerHaptic('light');
       if (addExpenseModal) addExpenseModal.classList.remove('open');
+      if (editExpenseId) editExpenseId.value = '';
     }
 
-    if (btnOpenAddModal) btnOpenAddModal.addEventListener('click', openModal);
+    // Katta + tugmalari (Asosiy ekranda va pastki navigatsiyada)
+    if (btnOpenAddModal) btnOpenAddModal.addEventListener('click', openAddModal);
+    if (btnHomeQuickAdd) btnHomeQuickAdd.addEventListener('click', openAddModal);
     if (btnCloseModal) btnCloseModal.addEventListener('click', closeModal);
+
+    // Modal ichidagi o'chirish tugmasi
+    if (btnDeleteFromModal) {
+      btnDeleteFromModal.addEventListener('click', (e) => {
+        e.preventDefault();
+        const editId = editExpenseId ? editExpenseId.value : '';
+        if (!editId) return;
+        triggerHaptic('warning');
+        if (confirm("Ushbu xarajatni o‘chirishni tasdiqlaysizmi?")) {
+          expenses = expenses.filter(item => item.id !== editId);
+          saveStorage();
+          render();
+          closeModal();
+        }
+      });
+    }
 
     if (addExpenseModal) {
       addExpenseModal.addEventListener('click', (e) => {
@@ -2728,20 +3082,15 @@
       });
     });
 
-    // Xarajatni saqlash
+    // Xarajatni saqlash (Yangi kiritish yoki tahrirlash)
     if (newExpenseForm) {
       newExpenseForm.addEventListener('submit', (e) => {
         e.preventDefault();
 
-        const title = inpTitle ? inpTitle.value.trim() : '';
         const amount = inpAmount ? parseFloat(inpAmount.value) : 0;
+        const title = inpTitle ? inpTitle.value.trim() : '';
         const dateVal = (inpDate && inpDate.value) ? inpDate.value : getFormattedDate(0);
-
-        if (!title) {
-          alert("Iltimos, xarajat nomini kiriting");
-          if (inpTitle) inpTitle.focus();
-          return;
-        }
+        const editId = editExpenseId ? editExpenseId.value : '';
 
         if (isNaN(amount) || amount <= 0) {
           alert("Iltimos, to‘g‘ri summa kiriting");
@@ -2749,24 +3098,43 @@
           return;
         }
 
+        if (!title) {
+          alert("Iltimos, bir qatorli izoh yoki xarajat nomini kiriting");
+          if (inpTitle) inpTitle.focus();
+          return;
+        }
+
         const meta = getCategoryInfo(selectedCategoryInModal);
 
-        const newRecord = {
-          id: Date.now().toString(),
-          title: title,
-          subtitle: meta.label,
-          amount: amount,
-          category: selectedCategoryInModal,
-          dateStr: dateVal
-        };
+        if (editId) {
+          // 1. Tahrirlash: Mavjud yozuvni yangilash
+          const index = expenses.findIndex(x => x.id === editId);
+          if (index !== -1) {
+            expenses[index].title = title;
+            expenses[index].subtitle = meta.label;
+            expenses[index].amount = amount;
+            expenses[index].category = selectedCategoryInModal;
+            expenses[index].dateStr = dateVal;
+          }
+        } else {
+          // 2. Yangi qo'shish: Boshiga qo'shish
+          const newRecord = {
+            id: Date.now().toString(),
+            title: title,
+            subtitle: meta.label,
+            amount: amount,
+            category: selectedCategoryInModal,
+            dateStr: dateVal
+          };
+          expenses.unshift(newRecord);
+        }
 
-        expenses.unshift(newRecord);
         saveStorage();
         triggerHaptic('success');
         render();
 
-        if (inpTitle) inpTitle.value = '';
         if (inpAmount) inpAmount.value = '';
+        if (inpTitle) inpTitle.value = '';
         closeModal();
       });
     }
