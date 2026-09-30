@@ -1795,6 +1795,172 @@
       color: var(--forest-dark);
       transform: scale(0.97);
     }
+
+    /* ==========================================================================
+       12. MAXSUS TASDIQLASH (CONFIRM) VA OGOHLANTIRISH DIALOGLARI
+       ========================================================================== */
+    .confirm-dialog-card {
+      width: 100%;
+      max-width: 360px;
+      margin: auto 16px;
+      background: #ffffff;
+      border-radius: 28px;
+      padding: 26px 22px 22px;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      box-shadow: 0 20px 50px rgba(12, 28, 19, 0.35);
+      border: 1px solid rgba(255, 255, 255, 0.9);
+      transform: scale(0.85);
+      opacity: 0;
+      transition: all 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+
+    .modal-overlay.open .confirm-dialog-card {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .confirm-dialog-icon-wrapper {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: #fee2e2;
+      border: 4px solid #fef2f2;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 14px;
+      box-shadow: 0 4px 14px rgba(239, 68, 68, 0.15);
+      transition: all 0.2s ease;
+    }
+
+    .confirm-dialog-icon-wrapper.warning {
+      background: #fef3c7;
+      border-color: #fffbeb;
+      box-shadow: 0 4px 14px rgba(245, 158, 11, 0.15);
+    }
+
+    .confirm-dialog-icon-wrapper.primary {
+      background: #eef5ee;
+      border-color: #f7faf7;
+      box-shadow: 0 4px 14px rgba(20, 51, 36, 0.1);
+    }
+
+    .confirm-dialog-icon {
+      font-size: 2rem;
+      line-height: 1;
+    }
+
+    .confirm-dialog-title {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+      letter-spacing: -0.02em;
+      margin-bottom: 8px;
+      line-height: 1.3;
+      word-break: break-word;
+    }
+
+    .confirm-dialog-message {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      line-height: 1.45;
+      margin-bottom: 22px;
+      padding: 0 4px;
+      word-break: break-word;
+    }
+
+    .confirm-dialog-actions {
+      display: flex;
+      width: 100%;
+      gap: 10px;
+    }
+
+    .btn-confirm-cancel {
+      flex: 1;
+      height: 48px;
+      border: 1.5px solid var(--border-subtle);
+      background-color: #f4f6f2;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-main);
+      cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-confirm-cancel:active {
+      background-color: #e5eae2;
+      transform: scale(0.97);
+    }
+
+    .btn-confirm-accept {
+      flex: 1.2;
+      height: 48px;
+      border: none;
+      background: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+      color: #ffffff;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 800;
+      cursor: pointer;
+      box-shadow: 0 4px 14px rgba(220, 38, 38, 0.25);
+      transition: all 0.15s ease;
+    }
+
+    .btn-confirm-accept.primary {
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #1c4530 100%);
+      box-shadow: 0 4px 14px rgba(20, 51, 36, 0.22);
+    }
+
+    .btn-confirm-accept:active {
+      transform: scale(0.97);
+      opacity: 0.92;
+    }
+
+    /* Toast Bildirishnomalari */
+    .app-toast-container {
+      position: fixed;
+      top: 18px;
+      left: 0;
+      right: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      z-index: 300;
+      pointer-events: none;
+      padding: 0 16px;
+    }
+
+    .app-toast {
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      padding: 10px 18px;
+      border-radius: var(--radius-pill);
+      font-size: 0.82rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      box-shadow: 0 8px 24px rgba(20, 51, 36, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      transform: translateY(-20px) scale(0.95);
+      opacity: 0;
+      transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+      pointer-events: auto;
+    }
+
+    .app-toast.show {
+      transform: translateY(0) scale(1);
+      opacity: 1;
+    }
+
+    .app-toast.error {
+      background-color: #dc2626;
+    }
   </style>
 </head>
 <body>
@@ -2339,6 +2505,28 @@
       </div>
     </div>
 
+    <!-- ==========================================================================
+         MAXSUS TASDIQLASH (CONFIRM) DIALOG MODALI
+         ========================================================================== -->
+    <div class="modal-overlay" id="confirmDialogModal" style="z-index: 250; align-items: center; justify-content: center; padding: 20px;">
+      <div class="confirm-dialog-card">
+        <div class="confirm-dialog-icon-wrapper" id="confirmDialogIconWrapper">
+          <span id="confirmDialogIcon" class="confirm-dialog-icon">🗑️</span>
+        </div>
+        
+        <h3 class="confirm-dialog-title" id="confirmDialogTitle">O‘chirishni tasdiqlang</h3>
+        <p class="confirm-dialog-message" id="confirmDialogMessage">Ushbu yozuvni ro‘yxatdan o‘chirmoqchimisiz?</p>
+        
+        <div class="confirm-dialog-actions">
+          <button type="button" class="btn-confirm-cancel" id="btnConfirmCancel">Bekor qilish</button>
+          <button type="button" class="btn-confirm-accept" id="btnConfirmAccept">Ha, o‘chirish</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ekranning yuqori qismidagi Toast bildirishnomalar konteyneri -->
+    <div class="app-toast-container" id="appToastContainer"></div>
+
   </div>
 
   <!-- ==========================================================================
@@ -2684,6 +2872,104 @@
 
     const btnOpenCategoryManager = document.getElementById('btnOpenCategoryManager');
     const btnQuickManageFromAddModal = document.getElementById('btnQuickManageFromAddModal');
+
+    // Maxsus tasdiqlash (Confirm) va ogohlantirish modali
+    const confirmDialogModal = document.getElementById('confirmDialogModal');
+    const confirmDialogIconWrapper = document.getElementById('confirmDialogIconWrapper');
+    const confirmDialogIcon = document.getElementById('confirmDialogIcon');
+    const confirmDialogTitle = document.getElementById('confirmDialogTitle');
+    const confirmDialogMessage = document.getElementById('confirmDialogMessage');
+    const btnConfirmCancel = document.getElementById('btnConfirmCancel');
+    const btnConfirmAccept = document.getElementById('btnConfirmAccept');
+
+    let confirmResolveFn = null;
+
+    function showConfirmDialog({
+      title = "Tasdiqlang",
+      message = "Ushbu amalni bajarishni tasdiqlaysizmi?",
+      confirmText = "Ha, o‘chirish",
+      cancelText = "Bekor qilish",
+      icon = "🗑️",
+      type = "danger"
+    }) {
+      return new Promise((resolve) => {
+        confirmResolveFn = resolve;
+        
+        if (confirmDialogTitle) confirmDialogTitle.textContent = title;
+        if (confirmDialogMessage) confirmDialogMessage.textContent = message;
+        if (confirmDialogIcon) confirmDialogIcon.textContent = icon;
+        if (btnConfirmCancel) {
+          btnConfirmCancel.textContent = cancelText;
+          btnConfirmCancel.style.display = cancelText ? 'block' : 'none';
+        }
+        if (btnConfirmAccept) {
+          btnConfirmAccept.textContent = confirmText;
+          if (type === 'primary') {
+            btnConfirmAccept.className = 'btn-confirm-accept primary';
+          } else {
+            btnConfirmAccept.className = 'btn-confirm-accept';
+          }
+        }
+
+        if (confirmDialogIconWrapper) {
+          confirmDialogIconWrapper.className = 'confirm-dialog-icon-wrapper ' + (type || 'danger');
+        }
+
+        triggerHaptic('warning');
+        if (confirmDialogModal) confirmDialogModal.classList.add('open');
+      });
+    }
+
+    function closeConfirmDialog(result = false) {
+      triggerHaptic('light');
+      if (confirmDialogModal) confirmDialogModal.classList.remove('open');
+      if (confirmResolveFn) {
+        confirmResolveFn(result);
+        confirmResolveFn = null;
+      }
+    }
+
+    if (btnConfirmAccept) {
+      btnConfirmAccept.addEventListener('click', () => closeConfirmDialog(true));
+    }
+    if (btnConfirmCancel) {
+      btnConfirmCancel.addEventListener('click', () => closeConfirmDialog(false));
+    }
+    if (confirmDialogModal) {
+      confirmDialogModal.addEventListener('click', (e) => {
+        if (e.target === confirmDialogModal) closeConfirmDialog(false);
+      });
+    }
+
+    // Zamonaviy Alert oynasi (Brauzer alert'i o'rniga)
+    function showAppAlert(message, title = "Diqqat", icon = "⚠️") {
+      return showConfirmDialog({
+        title: title,
+        message: message,
+        confirmText: "Tushundim",
+        cancelText: "",
+        icon: icon,
+        type: "primary"
+      });
+    }
+
+    // Ekranning yuqori qismida zamonaviy Toast xabari
+    function showToast(message, type = 'success') {
+      const container = document.getElementById('appToastContainer');
+      if (!container) return;
+      const toast = document.createElement('div');
+      toast.className = 'app-toast ' + (type === 'error' ? 'error' : '');
+      const icon = type === 'error' ? '⚠️' : '✓';
+      toast.innerHTML = `<span style="font-size: 1rem;">${icon}</span> <span>${escapeHtml(message)}</span>`;
+      container.appendChild(toast);
+
+      requestAnimationFrame(() => toast.classList.add('show'));
+
+      setTimeout(() => {
+        toast.classList.remove('show');
+        setTimeout(() => toast.remove(), 300);
+      }, 2500);
+    }
 
     // Storage
     function loadStorage() {
@@ -3548,14 +3834,14 @@
         const bg = inpCatBgColor ? inpCatBgColor.value : '#ffe8d6';
 
         if (!name) {
-          alert("Iltimos, toifa nomini kiriting");
+          showAppAlert("Iltimos, toifa nomini kiriting", "Toifa nomi kiritilmadi", "🏷️");
           return;
         }
 
         // Nom takrorlanmasligini tekshirish
         const existing = userCategories.find(c => c.name.toLowerCase() === name.toLowerCase() && c.id !== origId);
         if (existing) {
-          alert(`"${name}" nomli toifa allaqachon mavjud! Iltimos, boshqa nom bering.`);
+          showAppAlert(`"${name}" nomli toifa allaqachon mavjud! Iltimos, boshqa nom bering.`, "Nom band", "🏷️");
           return;
         }
 
@@ -3610,12 +3896,13 @@
 
         triggerHaptic('success');
         closeCategoryEdit();
+        showToast(origId ? "Toifa yangilandi" : "Yangi toifa qo‘shildi");
       });
     }
 
     // Toifalar ro'yxatidagi harakatlar (Tahrirlash va O'chirish)
     if (categoryManagerList) {
-      categoryManagerList.addEventListener('click', (e) => {
+      categoryManagerList.addEventListener('click', async (e) => {
         const editBtn = e.target.closest('.btn-cat-action.edit');
         const delBtn = e.target.closest('.btn-cat-action.delete');
 
@@ -3631,12 +3918,19 @@
           if (!cat) return;
 
           if (userCategories.length <= 1) {
-            alert("Kamida bitta xarajat toifasi qolishi shart!");
+            showAppAlert("Kamida bitta xarajat toifasi qolishi shart!", "Toifani o‘chirib bo‘lmaydi", "⚠️");
             return;
           }
 
-          triggerHaptic('warning');
-          const confirmed = confirm(`"${cat.name}" toifasini o‘chirmoqchimisiz?\n\nUshbu toifadagi xarajatlar avtomatik ravishda "Boshqa" toifasiga o‘tkaziladi.`);
+          const confirmed = await showConfirmDialog({
+            title: `"${cat.name}" toifasini o‘chirish`,
+            message: `"${cat.name}" toifasini o‘chirmoqchimisiz? Ushbu toifadagi xarajatlar avtomatik ravishda "Boshqa" toifasiga o‘tkaziladi.`,
+            confirmText: "Ha, o‘chirish",
+            cancelText: "Bekor qilish",
+            icon: cat.icon || "🏷️",
+            type: "danger"
+          });
+
           if (confirmed) {
             const fallbackName = userCategories.find(c => c.id !== id && c.name === 'Boshqa')?.name || userCategories.find(c => c.id !== id)?.name || 'Boshqa';
             expenses.forEach(it => {
@@ -3659,6 +3953,7 @@
             renderCategoryManagerList();
             render();
             triggerHaptic('success');
+            showToast(`"${cat.name}" toifasi o‘chirildi`);
           }
         }
       });
@@ -3715,21 +4010,30 @@
     // ==========================================================================
     // TRANSAKSIYALARNI BOSISH (TAHRIRLASH VA O'CHIRISH)
     // ==========================================================================
-    function handleTransactionClick(e) {
+    async function handleTransactionClick(e) {
       // 1. O'chirish tugmasi bosilgan bo'lsa (✕)
       const delBtn = e.target.closest('.btn-tx-delete');
       if (delBtn) {
         e.preventDefault();
         e.stopPropagation();
-        triggerHaptic('warning');
         const id = delBtn.getAttribute('data-id');
         if (id) {
           const exp = expenses.find(x => x.id === id);
-          const expTitle = exp ? `"${exp.title}"` : 'ushbu xarajatni';
-          if (confirm(`${expTitle} o‘chirmoqchimisiz?`)) {
+          const expTitle = exp ? `"${exp.title}"` : 'Ushbu xarajatni';
+          const confirmed = await showConfirmDialog({
+            title: `${expTitle} o‘chirmoqchimisiz?`,
+            message: `${expTitle} xarajat yozuvini ro‘yxatdan butunlay o‘chirmoqchimisiz?`,
+            confirmText: "Ha, o‘chirish",
+            cancelText: "Bekor qilish",
+            icon: "🗑️",
+            type: "danger"
+          });
+          if (confirmed) {
             expenses = expenses.filter(item => item.id !== id);
             saveStorage();
             render();
+            triggerHaptic('success');
+            showToast("Xarajat o‘chirildi");
           }
         }
         return;
@@ -3842,16 +4146,27 @@
 
     // Modal ichidagi o'chirish tugmasi
     if (btnDeleteFromModal) {
-      btnDeleteFromModal.addEventListener('click', (e) => {
+      btnDeleteFromModal.addEventListener('click', async (e) => {
         e.preventDefault();
         const editId = editExpenseId ? editExpenseId.value : '';
         if (!editId) return;
-        triggerHaptic('warning');
-        if (confirm("Ushbu xarajatni o‘chirishni tasdiqlaysizmi?")) {
+        const exp = expenses.find(x => x.id === editId);
+        const expTitle = exp ? `"${exp.title}"` : 'Ushbu xarajatni';
+        const confirmed = await showConfirmDialog({
+          title: `${expTitle} o‘chirmoqchimisiz?`,
+          message: `${expTitle} xarajat yozuvini ro‘yxatdan butunlay o‘chirmoqchimisiz?`,
+          confirmText: "Ha, o‘chirish",
+          cancelText: "Bekor qilish",
+          icon: "🗑️",
+          type: "danger"
+        });
+        if (confirmed) {
           expenses = expenses.filter(item => item.id !== editId);
           saveStorage();
           render();
+          triggerHaptic('success');
           closeModal();
+          showToast("Xarajat o‘chirildi");
         }
       });
     }
@@ -3896,7 +4211,7 @@
         e.preventDefault();
         const amt = inpBudgetAmount ? parseAmountFromFormatted(inpBudgetAmount.value) : 0;
         if (amt <= 0) {
-          alert("Iltimos, to‘g‘ri budjet miqdorini kiriting");
+          showAppAlert("Iltimos, to‘g‘ri budjet miqdorini kiriting", "Budjet kiritilmadi", "💰");
           if (inpBudgetAmount) inpBudgetAmount.focus();
           return;
         }
@@ -3904,25 +4219,36 @@
         triggerHaptic('success');
         renderBudgetCard();
         closeBudgetModal();
+        showToast("Oylik budjet saqlandi");
       });
     }
 
     if (btnClearBudget) {
-      btnClearBudget.addEventListener('click', (e) => {
+      btnClearBudget.addEventListener('click', async (e) => {
         e.preventDefault();
-        triggerHaptic('warning');
-        if (confirm("Oylik oilaviy budjetni o‘chirmoqchimisiz?")) {
+        const confirmed = await showConfirmDialog({
+          title: "Budjetni o‘chirish",
+          message: "Oylik oilaviy budjet limitini butunlay o‘chirmoqchimisiz?",
+          confirmText: "Ha, o‘chirish",
+          cancelText: "Bekor qilish",
+          icon: "💰",
+          type: "danger"
+        });
+        if (confirmed) {
           saveBudgetStorage(0);
           triggerHaptic('success');
           renderBudgetCard();
           closeBudgetModal();
+          showToast("Budjet limiti olib tashlandi");
         }
       });
     }
 
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (budgetModal?.classList.contains('open')) {
+        if (confirmDialogModal?.classList.contains('open')) {
+          closeConfirmDialog(false);
+        } else if (budgetModal?.classList.contains('open')) {
           closeBudgetModal();
         } else if (categoryEditModal?.classList.contains('open')) {
           closeCategoryEdit();
@@ -3991,13 +4317,13 @@
         const editId = editExpenseId ? editExpenseId.value : '';
 
         if (isNaN(amount) || amount <= 0) {
-          alert("Iltimos, to‘g‘ri summa kiriting");
+          showAppAlert("Iltimos, to‘g‘ri summa kiriting", "Summa kiritilmadi", "💸");
           if (inpAmount) inpAmount.focus();
           return;
         }
 
         if (!title) {
-          alert("Iltimos, bir qatorli izoh yoki xarajat nomini kiriting");
+          showAppAlert("Iltimos, bir qatorli izoh yoki xarajat nomini kiriting", "Izoh kiritilmadi", "✏️");
           if (inpTitle) inpTitle.focus();
           return;
         }
@@ -4034,16 +4360,26 @@
         if (inpAmount) inpAmount.value = '';
         if (inpTitle) inpTitle.value = '';
         closeModal();
+        showToast(editId ? "Xarajat tahrirlandi" : "Xarajat qo‘shildi");
       });
     }
 
     // Tozalash amallari
-    function clearExpenses() {
-      triggerHaptic('warning');
-      if (confirm('Barcha xarajatlarni o‘chirmoqchimisiz?')) {
+    async function clearExpenses() {
+      const confirmed = await showConfirmDialog({
+        title: "Barcha xotirani tozalash",
+        message: "Barcha kiritilgan xarajatlar butunlay o‘chiriladi. Ushbu amalni ortga qaytarib bo‘lmaydi. Davom etasizmi?",
+        confirmText: "Ha, hammasini o‘chirish",
+        cancelText: "Bekor qilish",
+        icon: "⚠️",
+        type: "danger"
+      });
+      if (confirmed) {
         expenses = [];
         saveStorage();
         render();
+        triggerHaptic('success');
+        showToast("Barcha xarajatlar tozalandi");
       }
     }
 
