@@ -878,6 +878,231 @@
       gap: 8px;
       margin-top: 6px;
     }
+
+    /* ==========================================================================
+       11. TOIFALARNI BOSHQARISH VA MOSLASH (CATEGORY MANAGER CSS)
+       ========================================================================== */
+    .btn-quick-cat-action {
+      background: #f0f7f2;
+      border: 1px solid #cce2d3;
+      color: var(--forest-dark);
+      font-size: 0.72rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      transition: background-color 0.15s ease;
+    }
+
+    .btn-quick-cat-action:active {
+      background-color: #dbebe0;
+    }
+
+    .cat-add-new-card {
+      border: 1.5px dashed #9cb5a5 !important;
+      background-color: #f7faf8 !important;
+    }
+
+    .cat-add-new-card:active {
+      background-color: #eaf3ed !important;
+    }
+
+    .btn-add-cat-primary {
+      flex: 1;
+      height: 42px;
+      background-color: var(--forest-dark);
+      color: #ffffff;
+      border: none;
+      border-radius: var(--radius-md);
+      font-size: 0.85rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      cursor: pointer;
+    }
+
+    .btn-restore-cats-subtle {
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--border-subtle);
+      background: #fafbfc;
+      border-radius: var(--radius-md);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.1rem;
+      cursor: pointer;
+      color: var(--text-muted);
+    }
+
+    .btn-restore-cats-subtle:active, .btn-add-cat-primary:active {
+      opacity: 0.85;
+    }
+
+    .cat-manager-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      max-height: 48vh;
+      overflow-y: auto;
+      padding-right: 2px;
+    }
+
+    .cat-manager-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 10px 12px;
+      background-color: #fafbfc;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-md);
+    }
+
+    .cat-manager-left {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      min-width: 0;
+    }
+
+    .cat-manager-icon {
+      width: 38px;
+      height: 38px;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.25rem;
+      flex-shrink: 0;
+    }
+
+    .cat-manager-texts {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+      min-width: 0;
+    }
+
+    .cat-manager-title {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-main);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cat-manager-desc {
+      font-size: 0.72rem;
+      color: var(--text-muted);
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .cat-manager-actions {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-left: 8px;
+      flex-shrink: 0;
+    }
+
+    .btn-cat-action {
+      width: 32px;
+      height: 32px;
+      border: 1px solid var(--border-subtle);
+      background-color: #ffffff;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.82rem;
+      cursor: pointer;
+      color: var(--text-main);
+    }
+
+    .btn-cat-action:active {
+      background-color: #f1f3f0;
+    }
+
+    .btn-cat-action.delete:active {
+      color: var(--danger);
+      border-color: #fca5a5;
+      background-color: var(--danger-bg);
+    }
+
+    .emoji-picker-container {
+      display: grid;
+      grid-template-columns: repeat(8, 1fr);
+      gap: 6px;
+      background-color: #fafbfc;
+      padding: 8px;
+      border-radius: var(--radius-md);
+      border: 1px solid var(--border-subtle);
+      max-height: 120px;
+      overflow-y: auto;
+    }
+
+    .emoji-choice-btn {
+      width: 100%;
+      aspect-ratio: 1;
+      border: none;
+      background: none;
+      font-size: 1.2rem;
+      cursor: pointer;
+      border-radius: var(--radius-sm);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .emoji-choice-btn:active, .emoji-choice-btn.selected {
+      background-color: #dcece1;
+    }
+
+    .color-picker-palette {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      padding: 4px 0;
+    }
+
+    .color-dot-choice {
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      border: 2px solid #ffffff;
+      box-shadow: 0 0 0 1px #d1d5db;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+    }
+
+    .color-dot-choice.selected {
+      box-shadow: 0 0 0 2px var(--forest-dark);
+    }
+
+    .btn-cancel-edit {
+      flex: 1;
+      height: 48px;
+      border: 1px solid var(--border-subtle);
+      background-color: #f9fafb;
+      border-radius: var(--radius-md);
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      cursor: pointer;
+    }
   </style>
 </head>
 <body>
@@ -966,23 +1191,8 @@
           <button type="button" class="section-action-btn" style="color: var(--danger);" id="btnClearAllHistory">Barchasini tozalash</button>
         </div>
 
-        <!-- Kategoriya chip filtrlari (Barcha yangi toifalar bilan) -->
-        <div class="filter-chips-container" id="categoryChips">
-          <button type="button" class="chip-btn active" data-cat="all">☰ Barchasi</button>
-          <button type="button" class="chip-btn" data-cat="Oziq-ovqat">🍔 Oziq-ovqat</button>
-          <button type="button" class="chip-btn" data-cat="Kommunal">💡 Kommunal</button>
-          <button type="button" class="chip-btn" data-cat="Aloqa va internet">🌐 Aloqa va internet</button>
-          <button type="button" class="chip-btn" data-cat="Transport">🚗 Transport</button>
-          <button type="button" class="chip-btn" data-cat="Ta'lim">📚 Ta'lim</button>
-          <button type="button" class="chip-btn" data-cat="Sog‘liq">💊 Sog‘liq</button>
-          <button type="button" class="chip-btn" data-cat="Bolalar">👶 Bolalar</button>
-          <button type="button" class="chip-btn" data-cat="Xobbi va sport">⚽ Xobbi va sport</button>
-          <button type="button" class="chip-btn" data-cat="Dam olish">☕ Ko‘ngilochar</button>
-          <button type="button" class="chip-btn" data-cat="Kiyim va parvarish">👕 Kiyim-kechak</button>
-          <button type="button" class="chip-btn" data-cat="To‘y va sovg‘alar">🎁 To‘y-ma'raka</button>
-          <button type="button" class="chip-btn" data-cat="Ta‘mirlash">🔧 Ta‘mirlash</button>
-          <button type="button" class="chip-btn" data-cat="Boshqa">✨ Boshqa</button>
-        </div>
+        <!-- Kategoriya chip filtrlari (JS orqali dinamik to'ldiriladi) -->
+        <div class="filter-chips-container" id="categoryChips"></div>
 
         <!-- Sanalar bo'yicha to'liq guruhlangan ro'yxat -->
         <div id="fullTxContainer" style="display: flex; flex-direction: column; gap: 10px;">
@@ -1046,6 +1256,17 @@
               </div>
             </div>
             <span style="font-size: 0.75rem; color: #16a34a; font-weight: 700;">Faol</span>
+          </div>
+
+          <div class="settings-item" id="btnOpenCategoryManager">
+            <div class="settings-left">
+              <span class="settings-icon">🏷️</span>
+              <div>
+                <div class="settings-title">Toifalarni boshqarish</div>
+                <div class="settings-desc">Kategoriyalarni tahrirlash, yangi qo‘shish va o‘chirish</div>
+              </div>
+            </div>
+            <span style="font-weight: 700; color: var(--forest-dark);">➔</span>
           </div>
 
           <div class="settings-item" id="btnRestoreSample">
@@ -1173,76 +1394,15 @@
           </div>
 
           <div class="form-field">
-            <label>Kategoriya tanlang</label>
-            <!-- 13 ta to'liq oilaviy kategoriya paneli -->
-            <div class="cat-selector-grid" id="catGridSelector">
-              
-              <div class="cat-choice-item selected" data-value="Oziq-ovqat">
-                <span class="cat-choice-icon">🍔</span>
-                <span class="cat-choice-name">Oziq-ovqat</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Kommunal">
-                <span class="cat-choice-icon">💡</span>
-                <span class="cat-choice-name">Kommunal</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Aloqa va internet">
-                <span class="cat-choice-icon">🌐</span>
-                <span class="cat-choice-name">Aloqa & Net</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Transport">
-                <span class="cat-choice-icon">🚗</span>
-                <span class="cat-choice-name">Transport</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Ta'lim">
-                <span class="cat-choice-icon">📚</span>
-                <span class="cat-choice-name">Ta'lim</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Sog‘liq">
-                <span class="cat-choice-icon">💊</span>
-                <span class="cat-choice-name">Sog‘liq</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Bolalar">
-                <span class="cat-choice-icon">👶</span>
-                <span class="cat-choice-name">Bolalar</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Xobbi va sport">
-                <span class="cat-choice-icon">⚽</span>
-                <span class="cat-choice-name">Xobbi & Sport</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Dam olish">
-                <span class="cat-choice-icon">☕</span>
-                <span class="cat-choice-name">Ko‘ngilochar</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Kiyim va parvarish">
-                <span class="cat-choice-icon">👕</span>
-                <span class="cat-choice-name">Kiyim-kechak</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="To‘y va sovg‘alar">
-                <span class="cat-choice-icon">🎁</span>
-                <span class="cat-choice-name">To‘y-marosim</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Ta‘mirlash">
-                <span class="cat-choice-icon">🔧</span>
-                <span class="cat-choice-name">Ta‘mirlash</span>
-              </div>
-
-              <div class="cat-choice-item" data-value="Boshqa">
-                <span class="cat-choice-icon">✨</span>
-                <span class="cat-choice-name">Boshqa</span>
-              </div>
-
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 2px;">
+              <label style="margin-bottom: 0;">Kategoriya tanlang</label>
+              <button type="button" class="btn-quick-cat-action" id="btnQuickManageFromAddModal">
+                ⚙️ Toifalarni sozlash
+              </button>
             </div>
+
+            <!-- Dinamik kategoriya paneli -->
+            <div class="cat-selector-grid" id="catGridSelector"></div>
 
             <!-- Tanlangan toifa namunasi / yo'nalishi -->
             <div class="cat-hint-box" id="catHintText">
@@ -1258,6 +1418,115 @@
           <button type="submit" class="btn-save-expense" id="btnSubmitExpense">
             <span>✓</span> Saqlash
           </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         TOIFALARNI BOSHQARISH MODAL OYNASI (CATEGORY MANAGER)
+         ========================================================================== -->
+    <div class="modal-overlay" id="categoryManagerModal">
+      <div class="modal-sheet" style="max-height: 86vh;">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <div>
+            <span class="sheet-title">Toifalarni boshqarish</span>
+            <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 2px;">
+              Xarajat toifalarini o‘zingizga moslang
+            </div>
+          </div>
+          <button type="button" class="btn-close-sheet" id="btnCloseCatManager" title="Yopish">✕</button>
+        </div>
+
+        <div style="display: flex; gap: 8px; margin-bottom: 12px;">
+          <button type="button" class="btn-add-cat-primary" id="btnAddNewCategory">
+            <span>➕</span> Yangi toifa qo‘shish
+          </button>
+          <button type="button" class="btn-restore-cats-subtle" id="btnResetDefaultCategories" title="Standart toifalarni tiklash">
+            🔄
+          </button>
+        </div>
+
+        <!-- Barcha toifalar ro'yxati -->
+        <div class="cat-manager-list" id="categoryManagerList">
+          <!-- JS orqali to'ldiriladi -->
+        </div>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         TOIFANI QO'SHISH / TAHRIRLASH MODAL OYNASI (ADD/EDIT CATEGORY)
+         ========================================================================== -->
+    <div class="modal-overlay" id="categoryEditModal" style="z-index: 120;">
+      <div class="modal-sheet" style="max-height: 90vh;">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <span class="sheet-title" id="catEditModalTitle">Yangi toifa qo‘shish</span>
+          <button type="button" class="btn-close-sheet" id="btnCloseCatEdit" title="Yopish">✕</button>
+        </div>
+
+        <form id="categoryEditForm" class="sheet-form">
+          <input type="hidden" id="editCatOriginalId" value="" />
+
+          <div class="form-field">
+            <label for="inpCatName">Toifa nomi (Qisqa)</label>
+            <input 
+              type="text" 
+              id="inpCatName" 
+              class="form-input" 
+              placeholder="Masalan: Kredit, Uy hayvonlari, Sayohat..." 
+              required 
+              maxlength="24"
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-field">
+            <label for="inpCatDesc">Tavsif yoki namunalar (Izoh)</label>
+            <input 
+              type="text" 
+              id="inpCatDesc" 
+              class="form-input" 
+              placeholder="Masalan: Bank to‘lovlari, oylik foizlar" 
+              autocomplete="off"
+            />
+          </div>
+
+          <div class="form-field">
+            <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 4px;">
+              <label for="inpCatEmoji" style="margin-bottom: 0;">Belgi (Emoji)</label>
+              <span id="selectedEmojiPreview" style="font-size: 1.35rem; line-height: 1;">🏷️</span>
+            </div>
+            <input 
+              type="text" 
+              id="inpCatEmoji" 
+              class="form-input" 
+              placeholder="Emoji kiriting yoki quyidan tanlang" 
+              style="text-align: center; font-size: 1.25rem;" 
+              maxlength="4"
+              value="🏷️"
+            />
+            
+            <!-- Tezkor emoji tanlagich -->
+            <div class="emoji-picker-container" id="emojiPickerGrid">
+              <!-- Emojilar -->
+            </div>
+          </div>
+
+          <div class="form-field">
+            <label>Belgi orqa fon rangi</label>
+            <div class="color-picker-palette" id="colorPickerGrid">
+              <!-- Ranglar -->
+            </div>
+            <input type="hidden" id="inpCatBgColor" value="#ffe8d6" />
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 8px;">
+            <button type="button" class="btn-cancel-edit" id="btnCancelCatEdit">Bekor qilish</button>
+            <button type="submit" class="btn-save-expense" style="flex: 2; margin-top: 0;" id="btnSaveCategory">
+              <span>✓</span> Saqlash
+            </button>
+          </div>
         </form>
       </div>
     </div>
@@ -1311,94 +1580,187 @@
     } catch (e) {}
 
     // ==========================================================================
-    // TO'LIQ 13 TA KATEGORIYA METAMA'LUMOTLARI
+    // TOIFALAR TIZIMI (STANDART VA FOYDALANUVCHI TOIFALARI)
     // ==========================================================================
-    const CATEGORY_META = {
-      'Oziq-ovqat': {
+    const CATEGORIES_STORAGE_KEY = 'oila_categories_v2';
+
+    const DEFAULT_CATEGORIES = [
+      {
+        id: 'cat_food',
+        name: 'Oziq-ovqat',
+        label: 'Oziq-ovqat va bozorlik',
         icon: '🍔',
         bg: '#ffe8d6',
-        label: 'Oziq-ovqat va bozorlik',
         desc: 'Supermarket, bozorlik, go‘sht, meva-sabzavot, non'
       },
-      'Kommunal': {
+      {
+        id: 'cat_communal',
+        name: 'Kommunal',
+        label: 'Kommunal xizmatlar',
         icon: '💡',
         bg: '#e0f2fe',
-        label: 'Kommunal xizmatlar',
         desc: 'Gaz, elektr energiyasi, sovuq/issiq suv, chiqindi, isitish'
       },
-      'Aloqa va internet': {
+      {
+        id: 'cat_net',
+        name: 'Aloqa va internet',
+        label: 'Aloqa va internet',
         icon: '🌐',
         bg: '#e0e7ff',
-        label: 'Aloqa va internet',
         desc: 'Uy interneti, mobil tariflar, YouTube, Telegram Premium obunalar'
       },
-      'Transport': {
+      {
+        id: 'cat_transport',
+        name: 'Transport',
+        label: 'Transport va avto',
         icon: '🚗',
         bg: '#ede9fe',
-        label: 'Transport va avto',
         desc: 'Benzin, moy, texnik xizmat, avtoyuvish, jarimalar, taksi'
       },
-      'Ta\'lim': {
+      {
+        id: 'cat_education',
+        name: 'Ta\'lim',
+        label: 'Ta\'lim va to‘garaklar',
         icon: '📚',
         bg: '#fef3c7',
-        label: 'Ta\'lim va to‘garaklar',
         desc: 'Maktab, bog‘cha to‘lovlari, repetitorlar, o‘quv kurslari, qurollar'
       },
-      'Sog‘liq': {
+      {
+        id: 'cat_health',
+        name: 'Sog‘liq',
+        label: 'Sog‘liqni saqlash',
         icon: '💊',
         bg: '#fce7f3',
-        label: 'Sog‘liqni saqlash',
         desc: 'Dorixona, shifokor ko‘rigi, tish davolatish, vitaminlar'
       },
-      'Bolalar': {
+      {
+        id: 'cat_kids',
+        name: 'Bolalar',
+        label: 'Bolalar xarajatlari',
         icon: '👶',
         bg: '#ffedd5',
-        label: 'Bolalar xarajatlari',
         desc: 'Tagliklar (pampers), bolalar ovqati, o‘yinchoqlar'
       },
-      'Xobbi va sport': {
+      {
+        id: 'cat_hobby',
+        name: 'Xobbi va sport',
+        label: 'Xobbi va sport',
         icon: '⚽',
         bg: '#dcfce7',
-        label: 'Xobbi va sport',
         desc: 'Fitnes zali, sport anjomlari, kitoblar, sevimli mashg‘ulotlar'
       },
-      'Dam olish': {
+      {
+        id: 'cat_entertainment',
+        name: 'Dam olish',
+        label: 'Ko‘ngilochar va dam olish',
         icon: '☕',
         bg: '#fef08a',
-        label: 'Ko‘ngilochar va dam olish',
         desc: 'Kafelar, kinoteatr, istirohat bog‘lari, oilaviy sayrlar'
       },
-      'Kiyim va parvarish': {
+      {
+        id: 'cat_clothes',
+        name: 'Kiyim va parvarish',
+        label: 'Kiyim va shaxsiy parvarish',
         icon: '👕',
         bg: '#fae8ff',
-        label: 'Kiyim va shaxsiy parvarish',
         desc: 'Mavsumiy kiyimlar, poyabzal, sartaroshxona, kosmetika'
       },
-      'To‘y va sovg‘alar': {
+      {
+        id: 'cat_wedding',
+        name: 'To‘y va sovg‘alar',
+        label: 'To‘y-ma‘raka va sovg‘alar',
         icon: '🎁',
         bg: '#ffe4e6',
-        label: 'To‘y-ma‘raka va sovg‘alar',
         desc: 'To‘ylar, tug‘ilgan kunlar, qarindoshlar yo‘qlovi, ehsonlar'
       },
-      'Ta‘mirlash': {
+      {
+        id: 'cat_repair',
+        name: 'Ta‘mirlash',
+        label: 'Kutilmagan / Ta‘mirlash',
         icon: '🔧',
         bg: '#f1f5f9',
-        label: 'Kutilmagan / Ta‘mirlash',
         desc: 'Uy anjomlari, maishiy texnika buzilganda tuzatish xarajatlari'
       },
-      'Boshqa': {
+      {
+        id: 'cat_other',
+        name: 'Boshqa',
+        label: 'Boshqa xarajatlar',
         icon: '✨',
         bg: '#ccfbf1',
-        label: 'Boshqa xarajatlar',
         desc: 'Mayda va tasniflanmagan boshqa kundalik sarflar'
       }
-    };
+    ];
+
+    const PRESET_EMOJIS = [
+      '🍔', '💡', '🌐', '🚗', '📚', '💊', '👶', '⚽', 
+      '☕', '👕', '🎁', '🔧', '💳', '✈️', '🏠', '🐱', 
+      '🎮', '💻', '🌾', '🧾', '💰', '🎓', '🍕', '🛒', 
+      '🏖️', '🛠️', '🎯', '🚀', '💍', '🏥', '💈', '🎨'
+    ];
+
+    const PRESET_COLORS = [
+      '#ffe8d6', '#e0f2fe', '#e0e7ff', '#ede9fe', 
+      '#fef3c7', '#fce7f3', '#ffedd5', '#dcfce7', 
+      '#fef08a', '#fae8ff', '#ffe4e6', '#ccfbf1', 
+      '#f1f5f9', '#fee2e2', '#e2e8f0', '#d1fae5'
+    ];
+
+    let userCategories = loadCategoriesStorage();
+    let CATEGORY_META = {};
+
+    function rebuildCategoryMeta() {
+      CATEGORY_META = {};
+      userCategories.forEach(c => {
+        CATEGORY_META[c.name] = {
+          icon: c.icon || '🏷️',
+          bg: c.bg || '#f1f5f9',
+          label: c.label || c.name,
+          desc: c.desc || ''
+        };
+      });
+    }
+
+    function loadCategoriesStorage() {
+      try {
+        const saved = localStorage.getItem(CATEGORIES_STORAGE_KEY);
+        if (saved) {
+          const parsed = JSON.parse(saved);
+          if (Array.isArray(parsed) && parsed.length > 0) return parsed;
+        }
+      } catch (e) {
+        console.warn("Toifalar xotirasini o'qishda ogohlantirish:", e);
+      }
+      return JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
+    }
+
+    function saveCategoriesStorage() {
+      try {
+        const jsonStr = JSON.stringify(userCategories);
+        localStorage.setItem(CATEGORIES_STORAGE_KEY, jsonStr);
+        if (tg?.CloudStorage?.setItem) {
+          try {
+            tg.CloudStorage.setItem(CATEGORIES_STORAGE_KEY, jsonStr, () => {});
+          } catch (cloudErr) {}
+        }
+      } catch (e) {
+        console.error("Toifalarni saqlashda xatolik:", e);
+      }
+      rebuildCategoryMeta();
+    }
+
+    rebuildCategoryMeta();
 
     // Moslashtiruvchi yordamchi (Eski va yangi nomlarni moslashtirish)
     function getCategoryInfo(catName) {
       if (CATEGORY_META[catName]) return CATEGORY_META[catName];
-      if (catName === 'Sog‘liq/Dori') return CATEGORY_META['Sog‘liq'];
-      return CATEGORY_META['Boshqa'];
+      if (catName === 'Sog‘liq/Dori' && CATEGORY_META['Sog‘liq']) return CATEGORY_META['Sog‘liq'];
+      if (CATEGORY_META['Boshqa']) return CATEGORY_META['Boshqa'];
+      return {
+        icon: '🏷️',
+        bg: '#f1f5f9',
+        label: catName || 'Noma\'lum',
+        desc: ''
+      };
     }
 
     const STORAGE_KEY = 'oila_expenses_mobile_tabs_v2';
@@ -1518,6 +1880,31 @@
     const btnClearAllHistory = document.getElementById('btnClearAllHistory');
     const btnRestoreSample = document.getElementById('btnRestoreSample');
     const btnClearAllSettings = document.getElementById('btnClearAllSettings');
+    const categoryChips = document.getElementById('categoryChips');
+
+    // Toifalarni boshqarish modallari va tugmalari
+    const categoryManagerModal = document.getElementById('categoryManagerModal');
+    const btnCloseCatManager = document.getElementById('btnCloseCatManager');
+    const btnAddNewCategory = document.getElementById('btnAddNewCategory');
+    const btnResetDefaultCategories = document.getElementById('btnResetDefaultCategories');
+    const categoryManagerList = document.getElementById('categoryManagerList');
+
+    const categoryEditModal = document.getElementById('categoryEditModal');
+    const catEditModalTitle = document.getElementById('catEditModalTitle');
+    const btnCloseCatEdit = document.getElementById('btnCloseCatEdit');
+    const categoryEditForm = document.getElementById('categoryEditForm');
+    const editCatOriginalId = document.getElementById('editCatOriginalId');
+    const inpCatName = document.getElementById('inpCatName');
+    const inpCatDesc = document.getElementById('inpCatDesc');
+    const inpCatEmoji = document.getElementById('inpCatEmoji');
+    const selectedEmojiPreview = document.getElementById('selectedEmojiPreview');
+    const emojiPickerGrid = document.getElementById('emojiPickerGrid');
+    const colorPickerGrid = document.getElementById('colorPickerGrid');
+    const inpCatBgColor = document.getElementById('inpCatBgColor');
+    const btnCancelCatEdit = document.getElementById('btnCancelCatEdit');
+
+    const btnOpenCategoryManager = document.getElementById('btnOpenCategoryManager');
+    const btnQuickManageFromAddModal = document.getElementById('btnQuickManageFromAddModal');
 
     // Storage
     function loadStorage() {
@@ -1875,16 +2262,374 @@
       });
     });
 
-    document.querySelectorAll('.chip-btn').forEach(btn => {
-      btn.addEventListener('click', (e) => {
+    // Dinamik Kategoriya chiplari (Tarix sahifasida)
+    if (categoryChips) {
+      categoryChips.addEventListener('click', (e) => {
+        const btn = e.target.closest('.chip-btn');
+        if (!btn) return;
         e.preventDefault();
         triggerHaptic('light');
-        document.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
+        categoryChips.querySelectorAll('.chip-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
         currentCategoryFilter = btn.getAttribute('data-cat') || 'all';
         render();
       });
-    });
+    }
+
+    // ==========================================================================
+    // DINAMIK TOIFALAR RENDERI VA BOSHQARUVI
+    // ==========================================================================
+    function renderCategorySelectors() {
+      // 1. Yangi xarajat oynasidagi toifalar paneli (#catGridSelector)
+      if (catGridSelector) {
+        catGridSelector.innerHTML = '';
+        
+        // Agar tanlangan toifa ro'yxatda bo'lmasa, birinchisini tanlash
+        if (!userCategories.some(c => c.name === selectedCategoryInModal) && userCategories.length > 0) {
+          selectedCategoryInModal = userCategories[0].name;
+        }
+
+        userCategories.forEach(cat => {
+          const item = document.createElement('div');
+          item.className = 'cat-choice-item' + (cat.name === selectedCategoryInModal ? ' selected' : '');
+          item.setAttribute('data-value', cat.name);
+          item.innerHTML = `
+            <span class="cat-choice-icon">${cat.icon || '🏷️'}</span>
+            <span class="cat-choice-name">${escapeHtml(cat.name)}</span>
+          `;
+          catGridSelector.appendChild(item);
+        });
+
+        // "+ Yangi toifa" maxsus kartasi
+        const addCard = document.createElement('div');
+        addCard.className = 'cat-choice-item cat-add-new-card';
+        addCard.id = 'btnGridAddNewCat';
+        addCard.innerHTML = `
+          <span class="cat-choice-icon">➕</span>
+          <span class="cat-choice-name" style="color: var(--forest-dark); font-weight: 800;">Yangi toifa</span>
+        `;
+        catGridSelector.appendChild(addCard);
+      }
+
+      // 2. Hint matnini yangilash
+      if (catHintText) {
+        const meta = getCategoryInfo(selectedCategoryInModal);
+        catHintText.textContent = meta.desc || meta.label;
+      }
+
+      // 3. Tarix sahifasidagi filter chiplari (#categoryChips)
+      if (categoryChips) {
+        categoryChips.innerHTML = '';
+        
+        // Barchasi chipi
+        const allBtn = document.createElement('button');
+        allBtn.type = 'button';
+        allBtn.className = 'chip-btn' + (currentCategoryFilter === 'all' ? ' active' : '');
+        allBtn.setAttribute('data-cat', 'all');
+        allBtn.textContent = '☰ Barchasi';
+        categoryChips.appendChild(allBtn);
+
+        // Har bir toifa chipi
+        userCategories.forEach(cat => {
+          const chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'chip-btn' + (currentCategoryFilter === cat.name ? ' active' : '');
+          chip.setAttribute('data-cat', cat.name);
+          chip.textContent = `${cat.icon || '🏷️'} ${cat.name}`;
+          categoryChips.appendChild(chip);
+        });
+      }
+    }
+
+    // Toifalar ro'yxati (Manager modalida)
+    function renderCategoryManagerList() {
+      if (!categoryManagerList) return;
+      categoryManagerList.innerHTML = '';
+
+      userCategories.forEach(cat => {
+        const row = document.createElement('div');
+        row.className = 'cat-manager-row';
+        row.innerHTML = `
+          <div class="cat-manager-left">
+            <div class="cat-manager-icon" style="background-color: ${cat.bg || '#f1f5f9'};">
+              ${cat.icon || '🏷️'}
+            </div>
+            <div class="cat-manager-texts">
+              <div class="cat-manager-title">${escapeHtml(cat.name)}</div>
+              <div class="cat-manager-desc">${escapeHtml(cat.desc || cat.label || 'Tavsif berilmagan')}</div>
+            </div>
+          </div>
+          <div class="cat-manager-actions">
+            <button type="button" class="btn-cat-action edit" data-id="${cat.id}" title="Tahrirlash">✏️</button>
+            <button type="button" class="btn-cat-action delete" data-id="${cat.id}" title="O‘chirish">🗑️</button>
+          </div>
+        `;
+        categoryManagerList.appendChild(row);
+      });
+    }
+
+    // Modalni ochish / yopish
+    function openCategoryManager() {
+      triggerHaptic('medium');
+      renderCategoryManagerList();
+      if (categoryManagerModal) categoryManagerModal.classList.add('open');
+    }
+
+    function closeCategoryManager() {
+      triggerHaptic('light');
+      if (categoryManagerModal) categoryManagerModal.classList.remove('open');
+    }
+
+    function openCategoryEdit(catId = null) {
+      triggerHaptic('light');
+      const isEdit = Boolean(catId);
+      const cat = isEdit ? userCategories.find(c => c.id === catId) : null;
+
+      if (catEditModalTitle) {
+        catEditModalTitle.textContent = isEdit ? "Toifani tahrirlash" : "Yangi toifa qo‘shish";
+      }
+
+      if (editCatOriginalId) editCatOriginalId.value = isEdit ? cat.id : '';
+      if (inpCatName) inpCatName.value = isEdit ? cat.name : '';
+      if (inpCatDesc) inpCatDesc.value = isEdit ? (cat.desc || '') : '';
+      
+      const currentEmoji = isEdit ? (cat.icon || '🏷️') : '🏷️';
+      if (inpCatEmoji) inpCatEmoji.value = currentEmoji;
+      if (selectedEmojiPreview) selectedEmojiPreview.textContent = currentEmoji;
+
+      const currentBg = isEdit ? (cat.bg || '#ffe8d6') : '#ffe8d6';
+      if (inpCatBgColor) inpCatBgColor.value = currentBg;
+
+      renderEmojiPalette(currentEmoji);
+      renderColorPalette(currentBg);
+
+      if (categoryEditModal) categoryEditModal.classList.add('open');
+      if (inpCatName) inpCatName.focus();
+    }
+
+    function closeCategoryEdit() {
+      triggerHaptic('light');
+      if (categoryEditModal) categoryEditModal.classList.remove('open');
+    }
+
+    // Emoji palitrasi
+    function renderEmojiPalette(selectedEmoji) {
+      if (!emojiPickerGrid) return;
+      emojiPickerGrid.innerHTML = '';
+      PRESET_EMOJIS.forEach(emo => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'emoji-choice-btn' + (emo === selectedEmoji ? ' selected' : '');
+        btn.textContent = emo;
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          triggerHaptic('light');
+          if (inpCatEmoji) inpCatEmoji.value = emo;
+          if (selectedEmojiPreview) selectedEmojiPreview.textContent = emo;
+          emojiPickerGrid.querySelectorAll('.emoji-choice-btn').forEach(b => b.classList.remove('selected'));
+          btn.classList.add('selected');
+        });
+        emojiPickerGrid.appendChild(btn);
+      });
+    }
+
+    // Ranglar palitrasi
+    function renderColorPalette(selectedColor) {
+      if (!colorPickerGrid) return;
+      colorPickerGrid.innerHTML = '';
+      PRESET_COLORS.forEach(col => {
+        const dot = document.createElement('div');
+        dot.className = 'color-dot-choice' + (col.toLowerCase() === (selectedColor || '').toLowerCase() ? ' selected' : '');
+        dot.style.backgroundColor = col;
+        if (col.toLowerCase() === (selectedColor || '').toLowerCase()) {
+          dot.textContent = '✓';
+        }
+        dot.addEventListener('click', (e) => {
+          e.preventDefault();
+          triggerHaptic('light');
+          if (inpCatBgColor) inpCatBgColor.value = col;
+          colorPickerGrid.querySelectorAll('.color-dot-choice').forEach(d => {
+            d.classList.remove('selected');
+            d.textContent = '';
+          });
+          dot.classList.add('selected');
+          dot.textContent = '✓';
+        });
+        colorPickerGrid.appendChild(dot);
+      });
+    }
+
+    if (inpCatEmoji) {
+      inpCatEmoji.addEventListener('input', () => {
+        const val = inpCatEmoji.value.trim();
+        if (selectedEmojiPreview) selectedEmojiPreview.textContent = val || '🏷️';
+      });
+    }
+
+    // Toifani saqlash (Yangi qo'shish yoki tahrirlash)
+    if (categoryEditForm) {
+      categoryEditForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const origId = editCatOriginalId ? editCatOriginalId.value : '';
+        const name = inpCatName ? inpCatName.value.trim() : '';
+        const desc = inpCatDesc ? inpCatDesc.value.trim() : '';
+        const icon = (inpCatEmoji && inpCatEmoji.value.trim()) ? inpCatEmoji.value.trim() : '🏷️';
+        const bg = inpCatBgColor ? inpCatBgColor.value : '#ffe8d6';
+
+        if (!name) {
+          alert("Iltimos, toifa nomini kiriting");
+          return;
+        }
+
+        // Nom takrorlanmasligini tekshirish
+        const existing = userCategories.find(c => c.name.toLowerCase() === name.toLowerCase() && c.id !== origId);
+        if (existing) {
+          alert(`"${name}" nomli toifa allaqachon mavjud! Iltimos, boshqa nom bering.`);
+          return;
+        }
+
+        if (origId) {
+          // Mavjud toifani tahrirlash
+          const catIndex = userCategories.findIndex(c => c.id === origId);
+          if (catIndex !== -1) {
+            const oldName = userCategories[catIndex].name;
+            userCategories[catIndex].name = name;
+            userCategories[catIndex].label = name;
+            userCategories[catIndex].desc = desc;
+            userCategories[catIndex].icon = icon;
+            userCategories[catIndex].bg = bg;
+
+            // Xarajatlar ro'yxatida ham eski nomni yangisiga almashtirish
+            if (oldName !== name) {
+              expenses.forEach(it => {
+                if (it.category === oldName) {
+                  it.category = name;
+                  it.subtitle = name;
+                }
+              });
+              saveStorage();
+            }
+
+            if (selectedCategoryInModal === oldName) {
+              selectedCategoryInModal = name;
+            }
+            if (currentCategoryFilter === oldName) {
+              currentCategoryFilter = name;
+            }
+          }
+        } else {
+          // Yangi toifa yaratish
+          const newId = 'cat_' + Date.now();
+          const newCat = {
+            id: newId,
+            name: name,
+            label: name,
+            icon: icon,
+            bg: bg,
+            desc: desc
+          };
+          userCategories.push(newCat);
+          selectedCategoryInModal = name;
+        }
+
+        saveCategoriesStorage();
+        renderCategorySelectors();
+        renderCategoryManagerList();
+        render();
+
+        triggerHaptic('success');
+        closeCategoryEdit();
+      });
+    }
+
+    // Toifalar ro'yxatidagi harakatlar (Tahrirlash va O'chirish)
+    if (categoryManagerList) {
+      categoryManagerList.addEventListener('click', (e) => {
+        const editBtn = e.target.closest('.btn-cat-action.edit');
+        const delBtn = e.target.closest('.btn-cat-action.delete');
+
+        if (editBtn) {
+          const id = editBtn.getAttribute('data-id');
+          if (id) openCategoryEdit(id);
+          return;
+        }
+
+        if (delBtn) {
+          const id = delBtn.getAttribute('data-id');
+          const cat = userCategories.find(c => c.id === id);
+          if (!cat) return;
+
+          if (userCategories.length <= 1) {
+            alert("Kamida bitta xarajat toifasi qolishi shart!");
+            return;
+          }
+
+          triggerHaptic('warning');
+          const confirmed = confirm(`"${cat.name}" toifasini o‘chirmoqchimisiz?\n\nUshbu toifadagi xarajatlar avtomatik ravishda "Boshqa" toifasiga o‘tkaziladi.`);
+          if (confirmed) {
+            const fallbackName = userCategories.find(c => c.id !== id && c.name === 'Boshqa')?.name || userCategories.find(c => c.id !== id)?.name || 'Boshqa';
+            expenses.forEach(it => {
+              if (it.category === cat.name) {
+                it.category = fallbackName;
+              }
+            });
+            saveStorage();
+
+            userCategories = userCategories.filter(c => c.id !== id);
+            if (selectedCategoryInModal === cat.name) {
+              selectedCategoryInModal = fallbackName;
+            }
+            if (currentCategoryFilter === cat.name) {
+              currentCategoryFilter = 'all';
+            }
+
+            saveCategoriesStorage();
+            renderCategorySelectors();
+            renderCategoryManagerList();
+            render();
+            triggerHaptic('success');
+          }
+        }
+      });
+    }
+
+    // Standart toifalarni tiklash
+    if (btnResetDefaultCategories) {
+      btnResetDefaultCategories.addEventListener('click', () => {
+        triggerHaptic('warning');
+        if (confirm("Barcha toifalarni standart holatga (13 ta toifa) qaytarasizmi?")) {
+          userCategories = JSON.parse(JSON.stringify(DEFAULT_CATEGORIES));
+          selectedCategoryInModal = 'Oziq-ovqat';
+          currentCategoryFilter = 'all';
+          saveCategoriesStorage();
+          renderCategorySelectors();
+          renderCategoryManagerList();
+          render();
+          triggerHaptic('success');
+        }
+      });
+    }
+
+    // Modal oynalarni ochish/yopish tugmalari
+    if (btnOpenCategoryManager) btnOpenCategoryManager.addEventListener('click', openCategoryManager);
+    if (btnQuickManageFromAddModal) btnQuickManageFromAddModal.addEventListener('click', openCategoryManager);
+    if (btnAddNewCategory) btnAddNewCategory.addEventListener('click', () => openCategoryEdit());
+    
+    if (btnCloseCatManager) btnCloseCatManager.addEventListener('click', closeCategoryManager);
+    if (btnCloseCatEdit) btnCloseCatEdit.addEventListener('click', closeCategoryEdit);
+    if (btnCancelCatEdit) btnCancelCatEdit.addEventListener('click', closeCategoryEdit);
+
+    if (categoryManagerModal) {
+      categoryManagerModal.addEventListener('click', (e) => {
+        if (e.target === categoryManagerModal) closeCategoryManager();
+      });
+    }
+
+    if (categoryEditModal) {
+      categoryEditModal.addEventListener('click', (e) => {
+        if (e.target === categoryEditModal) closeCategoryEdit();
+      });
+    }
 
     // ==========================================================================
     // O'CHIRISH TUGMALARI (EVENT DELEGATION)
@@ -1913,6 +2658,7 @@
     function openModal() {
       triggerHaptic('medium');
       if (inpDate) inpDate.value = getFormattedDate(0);
+      renderCategorySelectors();
       if (addExpenseModal) addExpenseModal.classList.add('open');
       if (inpTitle) inpTitle.focus();
     }
@@ -1934,16 +2680,29 @@
     }
 
     window.addEventListener('keydown', (e) => {
-      if (e.key === 'Escape' && addExpenseModal?.classList.contains('open')) {
-        closeModal();
+      if (e.key === 'Escape') {
+        if (categoryEditModal?.classList.contains('open')) {
+          closeCategoryEdit();
+        } else if (categoryManagerModal?.classList.contains('open')) {
+          closeCategoryManager();
+        } else if (addExpenseModal?.classList.contains('open')) {
+          closeModal();
+        }
       }
     });
 
     // Modal ichida kategoriya tanlash va izohini yangilash
     if (catGridSelector) {
       catGridSelector.addEventListener('click', (e) => {
+        // Yangi toifa qo'shish kartasi bosilsa
+        const addCard = e.target.closest('#btnGridAddNewCat');
+        if (addCard) {
+          openCategoryEdit();
+          return;
+        }
+
         const item = e.target.closest('.cat-choice-item');
-        if (!item) return;
+        if (!item || item.classList.contains('cat-add-new-card')) return;
         triggerHaptic('light');
         document.querySelectorAll('.cat-choice-item').forEach(el => el.classList.remove('selected'));
         item.classList.add('selected');
@@ -2037,7 +2796,8 @@
       });
     }
 
-    // Dastlabki render
+    // Dastlabki toifalar va render
+    renderCategorySelectors();
     render();
   </script>
 </body>
