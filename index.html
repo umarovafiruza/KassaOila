@@ -457,6 +457,250 @@
     }
 
     /* ==========================================================================
+       OYLIK OILAVIY BUDJET KARTASI (BUDGET CARD)
+       ========================================================================== */
+    .budget-card {
+      background: var(--bg-card);
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-xl);
+      padding: 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.03);
+      transition: all 0.2s ease;
+    }
+
+    /* Budjet o'rnatilmagan holat */
+    .budget-card.empty-budget {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      padding: 14px 16px;
+      background: linear-gradient(135deg, #ffffff 0%, #f6faf5 100%);
+      border: 1px dashed #86efac;
+    }
+
+    .budget-empty-content {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .budget-icon-circle {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      background: #eef8ee;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+
+    .budget-empty-info .budget-title {
+      font-size: 0.92rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+    }
+
+    .budget-empty-info .budget-desc {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    .btn-set-budget {
+      background: var(--forest-dark);
+      color: var(--lime-accent);
+      border: none;
+      padding: 8px 14px;
+      border-radius: var(--radius-pill);
+      font-size: 0.78rem;
+      font-weight: 700;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+      white-space: nowrap;
+      flex-shrink: 0;
+      transition: transform 0.1s, opacity 0.15s;
+    }
+
+    .btn-set-budget:active {
+      transform: scale(0.95);
+      opacity: 0.9;
+    }
+
+    /* Budjet o'rnatilgan to'liq holat */
+    .budget-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+    }
+
+    .budget-header-left {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .budget-header-title {
+      font-size: 0.9rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+    }
+
+    .budget-status-pill {
+      font-size: 0.68rem;
+      font-weight: 700;
+      padding: 3px 8px;
+      border-radius: var(--radius-pill);
+    }
+
+    .budget-status-pill.good {
+      background: #dcfce7;
+      color: #15803d;
+    }
+
+    .budget-status-pill.warning {
+      background: #fef3c7;
+      color: #b45309;
+    }
+
+    .budget-status-pill.danger {
+      background: #fee2e2;
+      color: #b91c1c;
+    }
+
+    .btn-edit-budget {
+      background: #f3f6f1;
+      border: 1px solid var(--border-subtle);
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      transition: transform 0.1s;
+    }
+
+    .btn-edit-budget:active {
+      transform: scale(0.9);
+    }
+
+    .budget-amounts-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 8px;
+    }
+
+    .budget-remain-group .budget-remain-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .budget-remain-group .budget-remain-val {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+      letter-spacing: -0.02em;
+    }
+
+    .budget-remain-group .budget-remain-val.over {
+      color: var(--danger);
+    }
+
+    .budget-total-group {
+      text-align: right;
+    }
+
+    .budget-total-group .budget-total-label {
+      font-size: 0.72rem;
+      font-weight: 600;
+      color: var(--text-muted);
+    }
+
+    .budget-total-group .budget-total-val {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-main);
+    }
+
+    .budget-progress-track {
+      width: 100%;
+      height: 8px;
+      background: #eef2eb;
+      border-radius: var(--radius-pill);
+      overflow: hidden;
+      margin-bottom: 8px;
+      position: relative;
+    }
+
+    .budget-progress-fill {
+      height: 100%;
+      border-radius: var(--radius-pill);
+      transition: width 0.4s cubic-bezier(0.16, 1, 0.3, 1), background-color 0.3s;
+    }
+
+    .budget-progress-fill.good {
+      background: linear-gradient(90deg, #10b981 0%, #16a34a 100%);
+    }
+
+    .budget-progress-fill.warning {
+      background: linear-gradient(90deg, #f59e0b 0%, #d97706 100%);
+    }
+
+    .budget-progress-fill.danger {
+      background: linear-gradient(90deg, #ef4444 0%, #dc2626 100%);
+    }
+
+    .budget-footer-sub {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .budget-over-alert {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      margin-top: 10px;
+      padding: 8px 12px;
+      background: #fef2f2;
+      border: 1px solid #fecaca;
+      border-radius: var(--radius-md);
+      font-size: 0.76rem;
+      font-weight: 700;
+      color: #b91c1c;
+    }
+
+    .btn-quick-budget {
+      background: #f3f5ee;
+      border: 1px solid var(--border-subtle);
+      border-radius: var(--radius-pill);
+      padding: 5px 12px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--forest-dark);
+      cursor: pointer;
+    }
+
+    .btn-quick-budget:active {
+      transform: scale(0.95);
+      background: #e2e8dc;
+    }
+
+    /* ==========================================================================
        6. TRANZATSIYALAR RO'YXATI
        ========================================================================== */
     .transaction-group {
@@ -1414,6 +1658,11 @@
           <span class="btn-quick-add-arrow">➔</span>
         </button>
 
+        <!-- Maxsus Oylik Oilaviy Budjet kartochkasi -->
+        <div class="budget-card" id="familyBudgetCard">
+          <!-- JS orqali dinamik to'ldiriladi -->
+        </div>
+
         <!-- So'nggi xarajatlar qismi -->
         <div class="section-header">
           <h2 class="section-title">So‘nggi xarajatlar</h2>
@@ -1544,6 +1793,17 @@
               <div>
                 <div class="settings-title">Toifalarni boshqarish</div>
                 <div class="settings-desc">Kategoriyalarni tahrirlash, yangi qo‘shish va o‘chirish</div>
+              </div>
+            </div>
+            <span style="font-weight: 700; color: var(--forest-dark);">➔</span>
+          </div>
+
+          <div class="settings-item" id="btnSettingsBudget">
+            <div class="settings-left">
+              <span class="settings-icon">💰</span>
+              <div>
+                <div class="settings-title">Oylik oilaviy budjet</div>
+                <div class="settings-desc" id="settingsBudgetDesc">Limit belgilanmagan</div>
               </div>
             </div>
             <span style="font-weight: 700; color: var(--forest-dark);">➔</span>
@@ -1803,6 +2063,55 @@
           <div style="display: flex; gap: 8px; margin-top: 8px;">
             <button type="button" class="btn-cancel-edit" id="btnCancelCatEdit">Bekor qilish</button>
             <button type="submit" class="btn-save-expense" style="flex: 2; margin-top: 0;" id="btnSaveCategory">
+              <span>✓</span> Saqlash
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+
+    <!-- ==========================================================================
+         OYLIK OILAVIY BUDJETNI SOZLASH MODAL OYNASI (BUDGET MODAL)
+         ========================================================================== -->
+    <div class="modal-overlay" id="budgetModal">
+      <div class="modal-sheet">
+        <div class="sheet-handle"></div>
+        <div class="sheet-header">
+          <div>
+            <span class="sheet-title">Oylik oilaviy budjet</span>
+            <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 2px;">
+              Har oy uchun umumiy xarajat limitini belgilang
+            </div>
+          </div>
+          <button type="button" class="btn-close-sheet" id="btnCloseBudgetModal" title="Yopish">✕</button>
+        </div>
+
+        <form id="budgetForm" class="sheet-form">
+          <div class="form-field">
+            <label for="inpBudgetAmount">Oylik budjet miqdori (so‘mda)</label>
+            <input 
+              type="text" 
+              inputmode="numeric" 
+              id="inpBudgetAmount" 
+              class="form-input" 
+              placeholder="Masalan: 10,000,000" 
+              style="font-size: 1.25rem; font-weight: 800; color: var(--forest-dark);"
+              required
+            />
+            <div class="quick-amounts">
+              <button type="button" class="btn-quick-budget" data-amount="3000000">3 mln</button>
+              <button type="button" class="btn-quick-budget" data-amount="5000000">5 mln</button>
+              <button type="button" class="btn-quick-budget" data-amount="10000000">10 mln</button>
+              <button type="button" class="btn-quick-budget" data-amount="15000000">15 mln</button>
+              <button type="button" class="btn-quick-budget" data-amount="20000000">20 mln</button>
+            </div>
+          </div>
+
+          <div style="display: flex; gap: 8px; margin-top: 6px;">
+            <button type="button" class="btn-delete-expense-modal" id="btnClearBudget" style="display: none;">
+              🗑️ O‘chirish
+            </button>
+            <button type="submit" class="btn-save-expense" style="flex: 2; margin-top: 0;" id="btnSaveBudget">
               <span>✓</span> Saqlash
             </button>
           </div>
@@ -2096,6 +2405,19 @@
     const monthLabelText = document.getElementById('monthLabelText');
     const monthSubTotal = document.getElementById('monthSubTotal');
 
+    // Oilaviy budjet sozlamalari va DOM elementlari
+    const BUDGET_STORAGE_KEY = 'oila_monthly_budget_v1';
+    let monthlyBudget = loadBudgetStorage();
+
+    const familyBudgetCard = document.getElementById('familyBudgetCard');
+    const budgetModal = document.getElementById('budgetModal');
+    const btnCloseBudgetModal = document.getElementById('btnCloseBudgetModal');
+    const budgetForm = document.getElementById('budgetForm');
+    const inpBudgetAmount = document.getElementById('inpBudgetAmount');
+    const btnClearBudget = document.getElementById('btnClearBudget');
+    const btnSettingsBudget = document.getElementById('btnSettingsBudget');
+    const settingsBudgetDesc = document.getElementById('settingsBudgetDesc');
+
     // Modallar va forma elementlari
     const addExpenseModal = document.getElementById('addExpenseModal');
     const expenseModalTitle = document.getElementById('expenseModalTitle');
@@ -2216,6 +2538,147 @@
       return dateStr;
     }
 
+    // ==========================================================================
+    // OYLIK OILAVIY BUDJET FUNKSIYALARI
+    // ==========================================================================
+    function loadBudgetStorage() {
+      try {
+        const saved = localStorage.getItem(BUDGET_STORAGE_KEY);
+        if (saved) {
+          const parsed = parseInt(saved, 10);
+          if (!isNaN(parsed) && parsed > 0) return parsed;
+        }
+      } catch (e) {
+        console.warn("Budjet storage o'qishda ogohlantirish:", e);
+      }
+      return 0;
+    }
+
+    function saveBudgetStorage(val) {
+      try {
+        monthlyBudget = parseInt(val, 10) || 0;
+        localStorage.setItem(BUDGET_STORAGE_KEY, String(monthlyBudget));
+        if (tg?.CloudStorage?.setItem) {
+          try {
+            tg.CloudStorage.setItem(BUDGET_STORAGE_KEY, String(monthlyBudget), () => {});
+          } catch (cloudErr) {}
+        }
+      } catch (e) {
+        console.error("Budjet yozishda xatolik:", e);
+      }
+    }
+
+    function openBudgetModal() {
+      triggerHaptic('medium');
+      if (inpBudgetAmount) {
+        inpBudgetAmount.value = monthlyBudget > 0 ? formatAmountWithCommas(monthlyBudget) : '';
+      }
+      if (btnClearBudget) {
+        btnClearBudget.style.display = monthlyBudget > 0 ? 'block' : 'none';
+      }
+      if (budgetModal) budgetModal.classList.add('open');
+      setTimeout(() => {
+        if (inpBudgetAmount) inpBudgetAmount.focus();
+      }, 100);
+    }
+
+    function closeBudgetModal() {
+      triggerHaptic('light');
+      if (budgetModal) budgetModal.classList.remove('open');
+    }
+
+    function renderBudgetCard() {
+      if (!familyBudgetCard) return;
+
+      if (settingsBudgetDesc) {
+        settingsBudgetDesc.textContent = monthlyBudget > 0 
+          ? `${formatNumber(monthlyBudget)} so‘m belgilangan` 
+          : "Limit belgilanmagan";
+      }
+
+      // Joriy kalendar oydagi xarajatlar
+      const now = new Date();
+      const currentYM = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}`;
+      const curMonthExpenses = expenses.filter(it => it.dateStr && it.dateStr.startsWith(currentYM));
+      const curMonthSpent = curMonthExpenses.reduce((s, it) => s + Number(it.amount), 0);
+
+      if (!monthlyBudget || monthlyBudget <= 0) {
+        familyBudgetCard.className = 'budget-card empty-budget';
+        familyBudgetCard.innerHTML = `
+          <div class="budget-empty-content">
+            <div class="budget-icon-circle">💰</div>
+            <div class="budget-empty-info">
+              <div class="budget-title">Oylik oilaviy budjet</div>
+              <div class="budget-desc">Oylik xarajatlar limitingizni belgilang</div>
+            </div>
+          </div>
+          <button type="button" class="btn-set-budget" id="btnSetBudgetCard">
+            <span>+</span> Belgilash
+          </button>
+        `;
+        const btnSet = document.getElementById('btnSetBudgetCard');
+        if (btnSet) btnSet.addEventListener('click', openBudgetModal);
+        return;
+      }
+
+      familyBudgetCard.className = 'budget-card';
+      const remaining = monthlyBudget - curMonthSpent;
+      const isOver = remaining < 0;
+      const overAmount = Math.abs(remaining);
+      const percent = Math.min(Math.round((curMonthSpent / monthlyBudget) * 100), 100);
+
+      let statusClass = 'good';
+      let statusText = 'Meyorda';
+      if (isOver) {
+        statusClass = 'danger';
+        statusText = 'Oshib ketdi';
+      } else if (percent >= 80) {
+        statusClass = 'warning';
+        statusText = 'Limitga yaqin';
+      }
+
+      familyBudgetCard.innerHTML = `
+        <div class="budget-header">
+          <div class="budget-header-left">
+            <span style="font-size: 1.1rem;">💰</span>
+            <span class="budget-header-title">Oylik oilaviy budjet</span>
+            <span class="budget-status-pill ${statusClass}">${statusText}</span>
+          </div>
+          <button type="button" class="btn-edit-budget" id="btnEditBudgetCard" title="Budjetni o‘zgartirish">✏️</button>
+        </div>
+
+        <div class="budget-amounts-row">
+          <div class="budget-remain-group">
+            <div class="budget-remain-label">${isOver ? 'Ortiqcha sarf:' : 'Qolgan mablag‘:'}</div>
+            <div class="budget-remain-val ${isOver ? 'over' : ''}">${isOver ? '-' + formatNumber(overAmount) : formatNumber(remaining)} so‘m</div>
+          </div>
+          <div class="budget-total-group">
+            <div class="budget-total-label">Oylik reja:</div>
+            <div class="budget-total-val">${formatNumber(monthlyBudget)} so‘m</div>
+          </div>
+        </div>
+
+        <div class="budget-progress-track">
+          <div class="budget-progress-fill ${statusClass}" style="width: ${percent}%;"></div>
+        </div>
+
+        <div class="budget-footer-sub">
+          <span>Sarflandi: ${formatNumber(curMonthSpent)} so‘m (${percent}%)</span>
+          <span>${isOver ? 'Limit tugadi' : `${100 - percent}% qoldi`}</span>
+        </div>
+
+        ${isOver ? `
+          <div class="budget-over-alert">
+            <span>⚠️</span>
+            <span>Belgilangan budjetdan ${formatNumber(overAmount)} so‘m oshib ketdi!</span>
+          </div>
+        ` : ''}
+      `;
+
+      const btnEdit = document.getElementById('btnEditBudgetCard');
+      if (btnEdit) btnEdit.addEventListener('click', openBudgetModal);
+    }
+
     function getFilteredExpenses(forHistory = false) {
       const todayStr = getFormattedDate(0);
       const currentYM = `${new Date().getFullYear()}-${String(new Date().getMonth() + 1).padStart(2, '0')}`;
@@ -2319,13 +2782,16 @@
           btnAllMonths.classList.toggle('active', selectedMonthMode === 'all');
         }
 
-        // 3. Asosiy sahifadagi so'nggi xarajatlar
+        // 3. Oylik oilaviy budjet kartochkasi
+        renderBudgetCard();
+
+        // 4. Asosiy sahifadagi so'nggi xarajatlar
         renderRecentTransactions(expenses.slice(0, 4));
 
-        // 4. Tarix sahifasidagi barcha xarajatlar
+        // 5. Tarix sahifasidagi barcha xarajatlar
         renderFullHistory(historyFiltered);
 
-        // 5. Statistika sahifasi
+        // 6. Statistika sahifasi
         renderAnalytics();
       } catch (err) {
         console.error("Render xatoligi:", err);
@@ -3178,9 +3644,67 @@
       });
     }
 
+    // Budjet modali hodisalari
+    if (btnSettingsBudget) btnSettingsBudget.addEventListener('click', openBudgetModal);
+    if (btnCloseBudgetModal) btnCloseBudgetModal.addEventListener('click', closeBudgetModal);
+
+    if (budgetModal) {
+      budgetModal.addEventListener('click', (e) => {
+        if (e.target === budgetModal) closeBudgetModal();
+      });
+    }
+
+    if (inpBudgetAmount) {
+      inpBudgetAmount.addEventListener('input', () => {
+        inpBudgetAmount.value = formatAmountWithCommas(inpBudgetAmount.value);
+      });
+    }
+
+    document.querySelectorAll('.btn-quick-budget').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerHaptic('light');
+        const amt = btn.getAttribute('data-amount');
+        if (amt && inpBudgetAmount) {
+          inpBudgetAmount.value = formatAmountWithCommas(amt);
+        }
+      });
+    });
+
+    if (budgetForm) {
+      budgetForm.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const amt = inpBudgetAmount ? parseAmountFromFormatted(inpBudgetAmount.value) : 0;
+        if (amt <= 0) {
+          alert("Iltimos, to‘g‘ri budjet miqdorini kiriting");
+          if (inpBudgetAmount) inpBudgetAmount.focus();
+          return;
+        }
+        saveBudgetStorage(amt);
+        triggerHaptic('success');
+        renderBudgetCard();
+        closeBudgetModal();
+      });
+    }
+
+    if (btnClearBudget) {
+      btnClearBudget.addEventListener('click', (e) => {
+        e.preventDefault();
+        triggerHaptic('warning');
+        if (confirm("Oylik oilaviy budjetni o‘chirmoqchimisiz?")) {
+          saveBudgetStorage(0);
+          triggerHaptic('success');
+          renderBudgetCard();
+          closeBudgetModal();
+        }
+      });
+    }
+
     window.addEventListener('keydown', (e) => {
       if (e.key === 'Escape') {
-        if (categoryEditModal?.classList.contains('open')) {
+        if (budgetModal?.classList.contains('open')) {
+          closeBudgetModal();
+        } else if (categoryEditModal?.classList.contains('open')) {
           closeCategoryEdit();
         } else if (categoryManagerModal?.classList.contains('open')) {
           closeCategoryManager();
