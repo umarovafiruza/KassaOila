@@ -855,11 +855,11 @@
 
     .btn-delete-expense-modal {
       flex: 1;
-      height: 48px;
+      height: 50px;
       background-color: #fef2f2;
       color: var(--danger);
-      border: 1px solid #fecaca;
-      border-radius: var(--radius-md);
+      border: 1.5px solid #fecaca;
+      border-radius: var(--radius-lg);
       font-size: 0.88rem;
       font-weight: 700;
       cursor: pointer;
@@ -872,6 +872,7 @@
 
     .btn-delete-expense-modal:active {
       background-color: #fee2e2;
+      transform: scale(0.97);
     }
 
     .empty-state-card {
@@ -1180,8 +1181,9 @@
       left: 0;
       right: 0;
       bottom: 0;
-      background-color: rgba(19, 36, 27, 0.55);
-      backdrop-filter: blur(4px);
+      background-color: rgba(12, 28, 19, 0.65);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
       z-index: 100;
       display: flex;
       align-items: flex-end;
@@ -1200,13 +1202,15 @@
       max-width: 480px;
       margin: 0 auto;
       background-color: #ffffff;
-      border-top-left-radius: 28px;
-      border-top-right-radius: 28px;
-      padding: 18px 18px calc(24px + env(safe-area-inset-bottom, 16px));
+      border-top-left-radius: 32px;
+      border-top-right-radius: 32px;
+      border-top: 1px solid rgba(255, 255, 255, 0.7);
+      padding: 18px 20px calc(24px + env(safe-area-inset-bottom, 16px));
       transform: translateY(100%);
       transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
       max-height: 88vh;
       overflow-y: auto;
+      box-shadow: 0 -12px 48px rgba(12, 28, 19, 0.22);
     }
 
     .modal-overlay.open .modal-sheet {
@@ -1214,91 +1218,197 @@
     }
 
     .sheet-handle {
-      width: 40px;
-      height: 4px;
-      background-color: #d1d5db;
+      width: 44px;
+      height: 5px;
+      background-color: #cbd5cb;
       border-radius: var(--radius-pill);
-      margin: 0 auto 14px;
+      margin: 0 auto 16px;
     }
 
     .sheet-header {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      margin-bottom: 16px;
+      margin-bottom: 18px;
+    }
+
+    .sheet-header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sheet-title-badge {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: #eef5ee;
+      border: 1px solid #dbe6dc;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+      box-shadow: 0 2px 6px rgba(20, 51, 36, 0.05);
     }
 
     .sheet-title {
-      font-size: 1.1rem;
+      font-size: 1.15rem;
       font-weight: 800;
-      color: var(--text-main);
+      color: var(--forest-dark);
+      letter-spacing: -0.02em;
+      line-height: 1.2;
+    }
+
+    .sheet-subtitle {
+      font-size: 0.74rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      margin-top: 2px;
+      line-height: 1.3;
     }
 
     .btn-close-sheet {
-      background: #f3f4f6;
-      border: none;
-      width: 32px;
-      height: 32px;
+      background: #f2f5f1;
+      border: 1px solid #e1e7de;
+      width: 34px;
+      height: 34px;
       border-radius: 50%;
-      font-size: 1.1rem;
+      font-size: 1rem;
+      font-weight: 700;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       color: var(--text-muted);
+      transition: all 0.15s ease;
+      flex-shrink: 0;
+    }
+
+    .btn-close-sheet:active {
+      background-color: #e2e8e0;
+      color: var(--forest-dark);
+      transform: scale(0.92);
     }
 
     .sheet-form {
       display: flex;
       flex-direction: column;
-      gap: 14px;
+      gap: 16px;
     }
 
     .form-field {
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      gap: 6px;
     }
 
     .form-field label {
       font-size: 0.78rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: var(--forest-dark);
+    }
+
+    /* Hero Amount Input Styling */
+    .hero-input-wrapper {
+      position: relative;
+      display: flex;
+      align-items: center;
+      background: #f8faf7;
+      border: 1.5px solid var(--border-subtle);
+      border-radius: var(--radius-lg);
+      padding: 0 16px;
+      transition: all 0.2s ease;
+    }
+
+    .hero-input-wrapper:focus-within {
+      background: #ffffff;
+      border-color: var(--forest-dark);
+      box-shadow: 0 0 0 4px rgba(210, 253, 56, 0.45);
+    }
+
+    .amount-input-hero {
+      flex: 1;
+      height: 54px;
+      border: none;
+      background: transparent;
+      font-size: 1.55rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+      font-family: inherit;
+      outline: none;
+      padding-right: 8px;
+      letter-spacing: -0.02em;
+    }
+
+    .amount-input-hero::placeholder {
+      color: #a8b8ac;
+      font-weight: 600;
+    }
+
+    .hero-input-suffix {
+      font-size: 0.88rem;
+      font-weight: 800;
+      color: var(--forest-dark);
+      background: var(--lime-accent);
+      padding: 4px 10px;
+      border-radius: var(--radius-pill);
+      user-select: none;
+      letter-spacing: -0.01em;
     }
 
     .form-input {
-      height: 46px;
+      height: 48px;
       border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-      background-color: #fafbfc;
+      border: 1.5px solid var(--border-subtle);
+      background-color: #f9fbf8;
       padding: 0 14px;
-      font-size: 0.95rem;
+      font-size: 0.92rem;
       font-family: inherit;
       color: var(--text-main);
       outline: none;
+      transition: all 0.2s ease;
     }
 
     .form-input:focus {
       border-color: var(--forest-dark);
       background-color: #ffffff;
+      box-shadow: 0 0 0 3px rgba(210, 253, 56, 0.4);
     }
 
     .quick-amounts {
       display: flex;
-      gap: 6px;
-      margin-top: 4px;
+      gap: 7px;
+      margin-top: 8px;
+      overflow-x: auto;
+      padding-bottom: 2px;
+      scrollbar-width: none;
     }
 
-    .btn-quick-sum {
+    .quick-amounts::-webkit-scrollbar {
+      display: none;
+    }
+
+    .btn-quick-sum, .btn-quick-budget {
       flex: 1;
-      padding: 6px 0;
-      border: 1px solid var(--border-subtle);
-      background: #f8faf7;
-      border-radius: var(--radius-sm);
-      font-size: 0.75rem;
+      white-space: nowrap;
+      padding: 7px 10px;
+      border: 1px solid #dce4da;
+      background: #f4f7f2;
+      border-radius: var(--radius-pill);
+      font-size: 0.74rem;
       font-weight: 700;
       color: var(--forest-dark);
       cursor: pointer;
+      transition: all 0.15s ease;
+      text-align: center;
+    }
+
+    .btn-quick-sum:active, .btn-quick-budget:active {
+      background: var(--lime-accent);
+      color: var(--lime-text);
+      border-color: #bcdb35;
+      transform: scale(0.95);
     }
 
     /* Kategoriya tanlash (Grid) */
@@ -1306,67 +1416,124 @@
       display: grid;
       grid-template-columns: repeat(3, 1fr);
       gap: 8px;
-      max-height: 220px;
+      max-height: 210px;
       overflow-y: auto;
-      padding: 2px;
+      padding: 3px 2px;
     }
 
     .cat-choice-item {
       display: flex;
       flex-direction: column;
       align-items: center;
-      gap: 4px;
-      padding: 8px 4px;
+      gap: 5px;
+      padding: 10px 6px;
       border: 1.5px solid var(--border-subtle);
       border-radius: var(--radius-md);
-      background-color: #fafbfc;
+      background-color: #fafbf9;
       cursor: pointer;
       text-align: center;
-      transition: all 0.15s ease;
+      transition: all 0.18s cubic-bezier(0.16, 1, 0.3, 1);
+      position: relative;
+    }
+
+    .cat-choice-item:active {
+      transform: scale(0.96);
     }
 
     .cat-choice-item.selected {
       border-color: var(--forest-dark);
-      background-color: #f0f7f2;
+      background-color: #f1f8f3;
+      box-shadow: 0 0 0 2px var(--forest-dark);
+    }
+
+    .cat-choice-item.selected::after {
+      content: "✓";
+      position: absolute;
+      top: 5px;
+      right: 5px;
+      font-size: 0.65rem;
+      font-weight: 900;
+      width: 16px;
+      height: 16px;
+      background: var(--lime-accent);
+      color: var(--forest-dark);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      line-height: 1;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
     }
 
     .cat-choice-icon {
-      font-size: 1.35rem;
+      font-size: 1.4rem;
+      line-height: 1;
+      filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.06));
     }
 
     .cat-choice-name {
-      font-size: 0.7rem;
+      font-size: 0.72rem;
       font-weight: 700;
       color: var(--text-main);
-      line-height: 1.2;
+      line-height: 1.25;
     }
 
     /* Tanlangan toifa namunasi / yo'nalishi (Hint) */
     .cat-hint-box {
-      font-size: 0.73rem;
-      color: var(--text-muted);
-      background-color: #f6f8f4;
-      padding: 6px 10px;
-      border-radius: var(--radius-sm);
-      border: 1px dashed var(--border-subtle);
-      margin-top: 4px;
-      line-height: 1.35;
+      font-size: 0.74rem;
+      color: #4b6353;
+      background-color: #f1f6f1;
+      padding: 8px 12px;
+      border-radius: var(--radius-md);
+      border: 1px dashed #bfd5c3;
+      margin-top: 6px;
+      line-height: 1.4;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .cat-hint-box::before {
+      content: "💡";
+      font-size: 0.9rem;
+      flex-shrink: 0;
     }
 
     .btn-save-expense {
-      height: 48px;
-      background-color: var(--forest-dark);
+      height: 50px;
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #1c4530 100%);
       color: #ffffff;
       border: none;
-      border-radius: var(--radius-md);
+      border-radius: var(--radius-lg);
       font-size: 0.95rem;
-      font-weight: 700;
+      font-weight: 800;
+      letter-spacing: -0.01em;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
       gap: 8px;
       margin-top: 6px;
+      box-shadow: 0 4px 14px rgba(20, 51, 36, 0.22);
+      transition: all 0.15s ease;
+    }
+
+    .btn-save-expense span {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: var(--lime-accent);
+      color: var(--forest-dark);
+      font-size: 0.75rem;
+      font-weight: 900;
+    }
+
+    .btn-save-expense:active {
+      transform: scale(0.97);
+      box-shadow: 0 2px 8px rgba(20, 51, 36, 0.15);
     }
 
     /* ==========================================================================
@@ -1378,17 +1545,20 @@
       color: var(--forest-dark);
       font-size: 0.72rem;
       font-weight: 700;
-      padding: 3px 8px;
+      padding: 4px 10px;
       border-radius: var(--radius-pill);
       cursor: pointer;
       display: inline-flex;
       align-items: center;
       gap: 4px;
-      transition: background-color 0.15s ease;
+      transition: all 0.15s ease;
     }
 
     .btn-quick-cat-action:active {
-      background-color: #dbebe0;
+      background-color: var(--lime-accent);
+      color: var(--forest-dark);
+      border-color: #bcdb35;
+      transform: scale(0.95);
     }
 
     .cat-add-new-card {
@@ -1402,36 +1572,38 @@
 
     .btn-add-cat-primary {
       flex: 1;
-      height: 42px;
-      background-color: var(--forest-dark);
+      height: 46px;
+      background: linear-gradient(135deg, var(--forest-dark) 0%, #1c4530 100%);
       color: #ffffff;
       border: none;
       border-radius: var(--radius-md);
-      font-size: 0.85rem;
+      font-size: 0.88rem;
       font-weight: 700;
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 6px;
+      gap: 8px;
       cursor: pointer;
+      box-shadow: 0 4px 12px rgba(20, 51, 36, 0.15);
+      transition: all 0.15s ease;
     }
 
-    .btn-restore-cats-subtle {
-      width: 42px;
-      height: 42px;
-      border: 1px solid var(--border-subtle);
-      background: #fafbfc;
-      border-radius: var(--radius-md);
-      display: flex;
+    .btn-add-cat-primary span {
+      display: inline-flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.1rem;
-      cursor: pointer;
-      color: var(--text-muted);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: var(--lime-accent);
+      color: var(--forest-dark);
+      font-size: 0.72rem;
+      font-weight: 900;
     }
 
-    .btn-restore-cats-subtle:active, .btn-add-cat-primary:active {
-      opacity: 0.85;
+    .btn-add-cat-primary:active {
+      transform: scale(0.97);
+      opacity: 0.9;
     }
 
     .cat-manager-list {
@@ -1448,27 +1620,34 @@
       align-items: center;
       justify-content: space-between;
       padding: 10px 12px;
-      background-color: #fafbfc;
-      border: 1px solid var(--border-subtle);
+      background-color: #ffffff;
+      border: 1.5px solid var(--border-subtle);
       border-radius: var(--radius-md);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.02);
+      transition: all 0.15s ease;
+    }
+
+    .cat-manager-row:active {
+      background-color: #f8faf7;
     }
 
     .cat-manager-left {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       min-width: 0;
     }
 
     .cat-manager-icon {
-      width: 38px;
-      height: 38px;
+      width: 40px;
+      height: 40px;
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 1.25rem;
+      font-size: 1.3rem;
       flex-shrink: 0;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
     }
 
     .cat-manager-texts {
@@ -1481,7 +1660,7 @@
     .cat-manager-title {
       font-size: 0.88rem;
       font-weight: 700;
-      color: var(--text-main);
+      color: var(--forest-dark);
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -1504,94 +1683,117 @@
     }
 
     .btn-cat-action {
-      width: 32px;
-      height: 32px;
-      border: 1px solid var(--border-subtle);
-      background-color: #ffffff;
+      width: 34px;
+      height: 34px;
+      border: 1px solid #dce4da;
+      background-color: #f7faf6;
       border-radius: 50%;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.82rem;
+      font-size: 0.85rem;
       cursor: pointer;
-      color: var(--text-main);
+      color: var(--forest-dark);
+      transition: all 0.15s ease;
     }
 
     .btn-cat-action:active {
-      background-color: #f1f3f0;
+      background-color: #e6ede4;
+      transform: scale(0.92);
+    }
+
+    .btn-cat-action.delete {
+      color: var(--danger);
+      background-color: #fff5f5;
+      border-color: #fed7d7;
     }
 
     .btn-cat-action.delete:active {
-      color: var(--danger);
-      border-color: #fca5a5;
       background-color: var(--danger-bg);
+      border-color: #fca5a5;
     }
 
     .emoji-picker-container {
       display: grid;
       grid-template-columns: repeat(8, 1fr);
       gap: 6px;
-      background-color: #fafbfc;
-      padding: 8px;
+      background-color: #f7faf6;
+      padding: 10px;
       border-radius: var(--radius-md);
-      border: 1px solid var(--border-subtle);
-      max-height: 120px;
+      border: 1.5px solid var(--border-subtle);
+      max-height: 130px;
       overflow-y: auto;
     }
 
     .emoji-choice-btn {
       width: 100%;
       aspect-ratio: 1;
-      border: none;
-      background: none;
-      font-size: 1.2rem;
+      border: 1px solid #e5ede3;
+      background: #ffffff;
+      font-size: 1.25rem;
       cursor: pointer;
       border-radius: var(--radius-sm);
       display: flex;
       align-items: center;
       justify-content: center;
+      transition: all 0.12s ease;
     }
 
     .emoji-choice-btn:active, .emoji-choice-btn.selected {
-      background-color: #dcece1;
+      background-color: var(--lime-accent);
+      border-color: #bcdb35;
+      transform: scale(1.08);
     }
 
     .color-picker-palette {
       display: flex;
       flex-wrap: wrap;
-      gap: 8px;
-      padding: 4px 0;
+      gap: 9px;
+      padding: 6px 2px;
     }
 
     .color-dot-choice {
-      width: 30px;
-      height: 30px;
+      width: 32px;
+      height: 32px;
       border-radius: 50%;
       border: 2px solid #ffffff;
-      box-shadow: 0 0 0 1px #d1d5db;
+      box-shadow: 0 0 0 1.5px #cbd8cd;
       cursor: pointer;
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 0.75rem;
-      font-weight: 700;
+      font-size: 0.8rem;
+      font-weight: 800;
       color: var(--forest-dark);
+      transition: transform 0.15s ease, box-shadow 0.15s ease;
+    }
+
+    .color-dot-choice:active {
+      transform: scale(0.92);
     }
 
     .color-dot-choice.selected {
-      box-shadow: 0 0 0 2px var(--forest-dark);
+      box-shadow: 0 0 0 2.5px var(--forest-dark);
+      transform: scale(1.08);
     }
 
     .btn-cancel-edit {
       flex: 1;
-      height: 48px;
-      border: 1px solid var(--border-subtle);
-      background-color: #f9fafb;
-      border-radius: var(--radius-md);
+      height: 50px;
+      border: 1.5px solid var(--border-subtle);
+      background-color: #f6f8f5;
+      border-radius: var(--radius-lg);
       font-size: 0.9rem;
       font-weight: 700;
       color: var(--text-muted);
       cursor: pointer;
+      transition: all 0.15s ease;
+    }
+
+    .btn-cancel-edit:active {
+      background-color: #e9eee7;
+      color: var(--forest-dark);
+      transform: scale(0.97);
     }
   </style>
 </head>
@@ -1887,25 +2089,33 @@
       <div class="modal-sheet">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
-          <span class="sheet-title" id="expenseModalTitle">Yangi xarajat</span>
+          <div class="sheet-header-left">
+            <div class="sheet-title-badge">💸</div>
+            <div>
+              <span class="sheet-title" id="expenseModalTitle">Yangi xarajat</span>
+              <div class="sheet-subtitle">Xarajat summasi va tafsilotlarini kiriting</div>
+            </div>
+          </div>
           <button type="button" class="btn-close-sheet" id="btnCloseModal" title="Yopish">✕</button>
         </div>
 
         <form id="newExpenseForm" class="sheet-form">
           <input type="hidden" id="editExpenseId" value="" />
 
-          <!-- 1. BIRINCHI BO'LIB SUMMA (VERGUL BILAN AJRATILGAN) -->
+          <!-- 1. BIRINCHI BO'LIB SUMMA (HERO INPUT BILAN) -->
           <div class="form-field">
             <label for="inpAmount">Summa (so‘mda)</label>
-            <input 
-              type="text" 
-              inputmode="numeric"
-              id="inpAmount" 
-              class="form-input" 
-              placeholder="Masalan: 50,000" 
-              required
-              style="font-size: 1.25rem; font-weight: 800; color: var(--forest-dark);"
-            />
+            <div class="hero-input-wrapper">
+              <input 
+                type="text" 
+                inputmode="numeric"
+                id="inpAmount" 
+                class="amount-input-hero" 
+                placeholder="50,000" 
+                required
+              />
+              <span class="hero-input-suffix">so‘m</span>
+            </div>
             <div class="quick-amounts">
               <button type="button" class="btn-quick-sum" data-add="10000">+10 ming</button>
               <button type="button" class="btn-quick-sum" data-add="50000">+50 ming</button>
@@ -1971,10 +2181,11 @@
       <div class="modal-sheet" style="max-height: 86vh;">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
-          <div>
-            <span class="sheet-title">Toifalarni boshqarish</span>
-            <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 2px;">
-              Xarajat toifalarini o‘zingizga moslang
+          <div class="sheet-header-left">
+            <div class="sheet-title-badge">🏷️</div>
+            <div>
+              <span class="sheet-title">Toifalarni boshqarish</span>
+              <div class="sheet-subtitle">Xarajat toifalarini o‘zingizga moslang</div>
             </div>
           </div>
           <button type="button" class="btn-close-sheet" id="btnCloseCatManager" title="Yopish">✕</button>
@@ -2000,7 +2211,13 @@
       <div class="modal-sheet" style="max-height: 90vh;">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
-          <span class="sheet-title" id="catEditModalTitle">Yangi toifa qo‘shish</span>
+          <div class="sheet-header-left">
+            <div class="sheet-title-badge">✨</div>
+            <div>
+              <span class="sheet-title" id="catEditModalTitle">Yangi toifa qo‘shish</span>
+              <div class="sheet-subtitle">Nomi, belgisi va rangini belgilang</div>
+            </div>
+          </div>
           <button type="button" class="btn-close-sheet" id="btnCloseCatEdit" title="Yopish">✕</button>
         </div>
 
@@ -2077,10 +2294,11 @@
       <div class="modal-sheet">
         <div class="sheet-handle"></div>
         <div class="sheet-header">
-          <div>
-            <span class="sheet-title">Oylik oilaviy budjet</span>
-            <div style="font-size: 0.74rem; color: var(--text-muted); margin-top: 2px;">
-              Har oy uchun umumiy xarajat limitini belgilang
+          <div class="sheet-header-left">
+            <div class="sheet-title-badge">💰</div>
+            <div>
+              <span class="sheet-title">Oylik oilaviy budjet</span>
+              <div class="sheet-subtitle">Har oy uchun umumiy xarajat limitini belgilang</div>
             </div>
           </div>
           <button type="button" class="btn-close-sheet" id="btnCloseBudgetModal" title="Yopish">✕</button>
@@ -2089,15 +2307,17 @@
         <form id="budgetForm" class="sheet-form">
           <div class="form-field">
             <label for="inpBudgetAmount">Oylik budjet miqdori (so‘mda)</label>
-            <input 
-              type="text" 
-              inputmode="numeric" 
-              id="inpBudgetAmount" 
-              class="form-input" 
-              placeholder="Masalan: 10,000,000" 
-              style="font-size: 1.25rem; font-weight: 800; color: var(--forest-dark);"
-              required
-            />
+            <div class="hero-input-wrapper">
+              <input 
+                type="text" 
+                inputmode="numeric" 
+                id="inpBudgetAmount" 
+                class="amount-input-hero" 
+                placeholder="10,000,000" 
+                required
+              />
+              <span class="hero-input-suffix">so‘m</span>
+            </div>
             <div class="quick-amounts">
               <button type="button" class="btn-quick-budget" data-amount="3000000">3 mln</button>
               <button type="button" class="btn-quick-budget" data-amount="5000000">5 mln</button>
