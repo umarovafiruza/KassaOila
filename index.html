@@ -2577,6 +2577,17 @@
             <span style="font-weight: 700; color: var(--forest-dark);">➔</span>
           </div>
 
+          <div class="settings-item" id="btnSyncCloudStorage">
+            <div class="settings-left">
+              <span class="settings-icon">☁️</span>
+              <div>
+                <div class="settings-title">Telegram buluti bilan sinxronlash</div>
+                <div class="settings-desc" id="syncStatusDesc">Barcha qurilmalardagi ma'lumotlarni bir xil qilish</div>
+              </div>
+            </div>
+            <span style="font-size: 0.8rem; font-weight: 700; color: #16a34a;" id="syncStatusBadge">Sinxron ✓</span>
+          </div>
+
           <div class="settings-item" id="btnClearAllSettings">
             <div class="settings-left">
               <span class="settings-icon">🗑️</span>
@@ -3549,6 +3560,260 @@
       }, 2500);
     }
 
+    // ==========================================================================
+    // TELEGRAM CLOUD STORAGE & QURILMALARARO SINXRONLASH TIZIMI
+    // ==========================================================================
+    const DELETED_IDS_STORAGE_KEY = 'oila_deleted_tx_ids_v1';
+    const CLOUD_CHUNK_SIZE = 3500;
+
+    function cloudGetItem(key) {
+      return new Promise((resolve) => {
+        if (!tg?.CloudStorage?.getItem) return resolve(null);
+        try {
+          tg.CloudStorage.getItem(key, (err, val) => {
+            if (err || val === undefined || val === null || val === '') resolve(null);
+            else resolve(val);
+          });
+        } catch (e) {
+          resolve(null);
+        }
+      });
+    }
+
+    function cloudGetItems(keys) {
+      return new Promise((resolve) => {
+        if (!tg?.CloudStorage?.getItems) return resolve({});
+        try {
+          tg.CloudStorage.getItems(keys, (err, values) => {
+            if (err || !values) resolve({});
+            else resolve(values);
+          });
+        } catch (e) {
+          resolve({});
+        }
+      });
+    }
+
+    function cloudSetItem(key, value) {
+      return new Promise((resolve) => {
+        if (!tg?.CloudStorage?.setItem) return resolve(false);
+        try {
+          tg.CloudStorage.setItem(key, String(value), (err, success) => {
+            if (err) resolve(false);
+            else resolve(true);
+          });
+        } catch (e) {
+          resolve(false);
+        }
+      });
+    }
+
+    // O'chirilgan yozuvlar izi (Tombstone - o'chirilgan yozuv qayta tiklanib ketmasligi uchun)
+    function loadDeletedIds() {
+      try {
+        const raw = localStorage.getItem(DELETED_IDS_STORAGE_KEY);
+        if (raw) return new Set(JSON.parse(raw));
+      } catch (e) {}
+      return new Set();
+    }
+
+    let deletedTxIds = loadDeletedIds();
+
+    function trackDeletedId(id) {
+      if (!id) return;
+      deletedTxIds.add(String(id));
+      try {
+        if (deletedTxIds.size > 300) {
+          const arr = Array.from(deletedTxIds);
+          deletedTxIds = new Set(arr.slice(arr.length - 300));
+        }
+        const jsonStr = JSON.stringify(Array.from(deletedTxIds));
+        localStorage.setItem(DELETED_IDS_STORAGE_KEY, jsonStr);
+        cloudSetItem(DELETED_IDS_STORAGE_KEY, jsonStr);
+      } catch (e) {}
+    }
+
+    // Katta hajmdagi ma'lumotlarni Telegram CloudStorage-ga xavfsiz (chunked) yozish
+    async function cloudSaveExpenses(items) {
+      if (!tg?.CloudStorage?.setItem) return;
+      try {
+        const jsonStr = JSON.stringify(items || []);
+        await cloudSetItem(STORAGE_KEY + '_updated', String(Date.now()));
+
+        if (jsonStr.length <= CLOUD_CHUNK_SIZE) {
+          await cloudSetItem(STORAGE_KEY, jsonStr);
+          await cloudSetItem(STORAGE_KEY + '_chunks', '1');
+        } else {
+          const numChunks = Math.ceil(jsonStr.length / CLOUD_CHUNK_SIZE);
+          await cloudSetItem(STORAGE_KEY + '_chunks', String(numChunks));
+          for (let i = 0; i < numChunks; i++) {
+            const chunk = jsonStr.slice(i * CLOUD_CHUNK_SIZE, (i + 1) * CLOUD_CHUNK_SIZE);
+            await cloudSetItem(STORAGE_KEY + '_c' + i, chunk);
+          }
+        }
+      } catch (err) {
+        console.warn("CloudSave xatolik:", err);
+      }
+    }
+
+    // Telegram CloudStorage-dan ma'lumotlarni xavfsiz o'qish (chunked)
+    async function cloudLoadExpenses() {
+      if (!tg?.CloudStorage?.getItems) return null;
+      try {
+        const meta = await cloudGetItems([STORAGE_KEY, STORAGE_KEY + '_chunks', STORAGE_KEY + '_updated']);
+        const chunkCount = parseInt(meta[STORAGE_KEY + '_chunks'] || '0', 10);
+        let rawJson = null;
+
+        if (chunkCount > 1) {
+          const chunkKeys = [];
+          for (let i = 0; i < chunkCount; i++) chunkKeys.push(STORAGE_KEY + '_c' + i);
+          const chunkValues = await cloudGetItems(chunkKeys);
+          let combined = '';
+          for (let i = 0; i < chunkCount; i++) combined += (chunkValues[STORAGE_KEY + '_c' + i] || '');
+          rawJson = combined;
+        } else if (meta[STORAGE_KEY]) {
+          rawJson = meta[STORAGE_KEY];
+        }
+
+        if (rawJson) {
+          const parsed = JSON.parse(rawJson);
+          if (Array.isArray(parsed)) return parsed;
+        }
+      } catch (e) {
+        console.warn("CloudLoad xatolik:", e);
+      }
+      return null;
+    }
+
+    // Qurilmalararo ma'lumotlarni birlashtirish (Merge)
+    function mergeExpensesWithCloud(localList, cloudList, deletedSet) {
+      const map = new Map();
+      (cloudList || []).forEach(item => {
+        if (item && item.id && !deletedSet.has(String(item.id))) {
+          map.set(String(item.id), item);
+        }
+      });
+      (localList || []).forEach(item => {
+        if (item && item.id && !deletedSet.has(String(item.id))) {
+          map.set(String(item.id), item);
+        }
+      });
+      const merged = Array.from(map.values());
+      merged.sort((a, b) => {
+        const dDiff = String(b.dateStr || '').localeCompare(String(a.dateStr || ''));
+        if (dDiff !== 0) return dDiff;
+        return Number(b.id || 0) - Number(a.id || 0);
+      });
+      return merged;
+    }
+
+    // Master Sinxronlash funksiyasi
+    let isCloudSyncInProgress = false;
+
+    async function syncWithTelegramCloud(isManual = false) {
+      if (!tg?.CloudStorage?.getItems || isCloudSyncInProgress) return;
+      isCloudSyncInProgress = true;
+
+      const syncBadge = document.getElementById('syncStatusBadge');
+      if (syncBadge && isManual) {
+        syncBadge.textContent = "Sinxronlanmoqda...";
+        syncBadge.style.color = "#f59e0b";
+      }
+
+      try {
+        // 1. O'chirilgan yozuvlar izini sinxronlash
+        const cloudDelRaw = await cloudGetItem(DELETED_IDS_STORAGE_KEY);
+        if (cloudDelRaw) {
+          try {
+            const arr = JSON.parse(cloudDelRaw);
+            if (Array.isArray(arr)) {
+              arr.forEach(id => deletedTxIds.add(String(id)));
+              localStorage.setItem(DELETED_IDS_STORAGE_KEY, JSON.stringify(Array.from(deletedTxIds)));
+            }
+          } catch (e) {}
+        }
+
+        // 2. Transaksiyalarni (kirim/chiqimlarni) sinxronlash
+        const cloudExpenses = await cloudLoadExpenses();
+        let changed = false;
+
+        if (cloudExpenses && Array.isArray(cloudExpenses)) {
+          const merged = mergeExpensesWithCloud(expenses, cloudExpenses, deletedTxIds);
+          if (JSON.stringify(merged) !== JSON.stringify(expenses)) {
+            expenses = merged;
+            localStorage.setItem(STORAGE_KEY, JSON.stringify(expenses));
+            changed = true;
+          }
+          if (merged.length > cloudExpenses.length) {
+            cloudSaveExpenses(merged);
+          }
+        } else if (expenses.length > 0) {
+          await cloudSaveExpenses(expenses);
+        }
+
+        // 3. Toifalarni sinxronlash
+        const cloudCatsRaw = await cloudGetItem(CATEGORIES_STORAGE_KEY);
+        if (cloudCatsRaw) {
+          try {
+            const cloudCats = JSON.parse(cloudCatsRaw);
+            if (Array.isArray(cloudCats) && cloudCats.length > 0) {
+              let catChanged = false;
+              cloudCats.forEach(cc => {
+                if (cc && cc.name && !userCategories.some(uc => uc.name === cc.name)) {
+                  userCategories.push(cc);
+                  catChanged = true;
+                }
+              });
+              if (catChanged) {
+                localStorage.setItem(CATEGORIES_STORAGE_KEY, JSON.stringify(userCategories));
+                rebuildCategoryMeta();
+                renderCategorySelectors();
+                renderCategoryManagerList();
+              }
+            }
+          } catch (e) {}
+        } else if (userCategories.length > 0) {
+          await cloudSetItem(CATEGORIES_STORAGE_KEY, JSON.stringify(userCategories));
+        }
+
+        // 4. Budjetni sinxronlash
+        const cloudBudgetRaw = await cloudGetItem(BUDGET_STORAGE_KEY);
+        if (cloudBudgetRaw) {
+          const cb = parseInt(cloudBudgetRaw, 10);
+          if (!isNaN(cb) && cb > 0 && cb !== monthlyBudget) {
+            monthlyBudget = cb;
+            localStorage.setItem(BUDGET_STORAGE_KEY, String(cb));
+            renderBudgetCard();
+            renderSettingsBudget();
+          }
+        } else if (monthlyBudget > 0) {
+          await cloudSetItem(BUDGET_STORAGE_KEY, String(monthlyBudget));
+        }
+
+        if (changed) {
+          render();
+          renderBudgetCard();
+        }
+
+        if (syncBadge) {
+          syncBadge.textContent = "Sinxron ✓";
+          syncBadge.style.color = "#16a34a";
+        }
+
+        if (isManual) {
+          triggerHaptic('success');
+          showToast("✓ Barcha qurilmalardagi ma'lumotlar sinxronlandi!");
+        }
+      } catch (err) {
+        console.warn("Sinxronlashda xatolik:", err);
+        if (isManual) {
+          showToast("Sinxronlashda xatolik yuz berdi", "error");
+        }
+      } finally {
+        isCloudSyncInProgress = false;
+      }
+    }
+
     // Storage
     function loadStorage() {
       try {
@@ -3599,11 +3864,8 @@
         const jsonStr = JSON.stringify(expenses);
         localStorage.setItem(STORAGE_KEY, jsonStr);
 
-        if (tg?.CloudStorage?.setItem) {
-          try {
-            tg.CloudStorage.setItem(STORAGE_KEY, jsonStr, () => {});
-          } catch (cloudErr) {}
-        }
+        // Telegram Cloud Storage-ga parallel xavfsiz yozish
+        cloudSaveExpenses(expenses);
       } catch (e) {
         console.error("Storage yozishda xatolik:", e);
       }
@@ -4826,6 +5088,7 @@
             type: "danger"
           });
           if (confirmed) {
+            trackDeletedId(id);
             expenses = expenses.filter(item => item.id !== id);
             saveStorage();
             render();
@@ -5005,6 +5268,7 @@
           type: "danger"
         });
         if (confirmed) {
+          trackDeletedId(editId);
           expenses = expenses.filter(item => item.id !== editId);
           saveStorage();
           render();
@@ -5020,6 +5284,15 @@
         if (e.target === addExpenseModal) {
           closeModal();
         }
+      });
+    }
+
+    // Bulut bilan qo'lda sinxronlash tugmasi
+    const btnSyncCloudStorage = document.getElementById('btnSyncCloudStorage');
+    if (btnSyncCloudStorage) {
+      btnSyncCloudStorage.addEventListener('click', () => {
+        triggerHaptic('medium');
+        syncWithTelegramCloud(true);
       });
     }
 
@@ -5226,6 +5499,9 @@
         type: "danger"
       });
       if (confirmed) {
+        expenses.forEach(it => {
+          if (it && it.id) trackDeletedId(it.id);
+        });
         expenses = [];
         saveStorage();
         render();
@@ -5240,6 +5516,22 @@
     // Dastlabki toifalar va render
     renderCategorySelectors();
     render();
+
+    // Boshlang'ich Telegram bulut sinxronlash (qurilmalararo ma'lumotlarni tenglashtirish)
+    setTimeout(() => {
+      syncWithTelegramCloud(false);
+    }, 300);
+
+    // Foydalanuvchi ilovaga qaytganida yoki ekran fokuslanganda yangiliklarni tekshirish
+    window.addEventListener('focus', () => syncWithTelegramCloud(false));
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') {
+        syncWithTelegramCloud(false);
+      }
+    });
+
+    // Har 20 soniyada orqa fonda avtomatik sinxronlash
+    setInterval(() => syncWithTelegramCloud(false), 20000);
   </script>
 </body>
 </html>
